@@ -1,0 +1,476 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.EkranAcilisiDenemeSayisi="3" this:Main.EkranAcilisiTimeout="180" this:Main.NextralMi="1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Ekranın isminin kodunu buraya yazabilirisiniz. Örneğin; KRED&#xA;PKIZ&#xA;FRIZ" Name="MistralScreenName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Ekranınızın  açılmama durumunda kaç kere denemesini istiyorsanız değerini int olarak buraya yazabilirisiniz." Name="EkranAcilisiDenemeSayisi" Type="InArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="Ekran açılısı timeout değernini sn cinsinden girişini yapınız&#xA;Örneğin 180" Name="EkranAcilisiTimeout" Type="InArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="Mistral veya nextral ekreanlarına tıklyabilimek için, eğer ekranınız nextalde ise (Mistral+'dan giriyorsanız ) bu bayrağı 1 yapınız , mistral kullanılıoyrsunuz bayrağı 0'da bırabilirrsiniz." Name="NextralMi" Type="InArgument(x:Int32)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>693.6,1196</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="MistralScreenLogin" sap:VirtualizedContainerService.HintSize="510.4,1131.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Default="1" Name="intGirisCounter" />
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="boolMistralScreenOpen" />
+      <Variable x:TypeArguments="x:Boolean" Name="BoolSearchikon" />
+      <Variable x:TypeArguments="s:Exception" Name="systemexception" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InterruptibleDoWhile Condition="[intGirisCounter&lt;=EkranAcilisiDenemeSayisi and boolMistralScreenOpen=False]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="468.8,688" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+      <ui:InterruptibleDoWhile.Body>
+        <TryCatch sap:VirtualizedContainerService.HintSize="433.6,520.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <TryCatch.Try>
+            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window - AnkaShell " sap:VirtualizedContainerService.HintSize="604,2968.8" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="5ace3c08d7520f9844ac23f77b57bb7b" Selector="&lt;wnd app='anka.shell.exe' title='Halkbank Anka Shell Application' /&gt;">
+              <ui:WindowScope.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="570.4,2821.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:UiElementExists DisplayName="Element Exists : Search" Exists="[BoolSearchikon]" sap:VirtualizedContainerService.HintSize="528.8,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                      <ui:UiElementExists.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f198b43c-0052-428a-8025-2f2e52ef8fc0" InformativeScreenshot="46ac87140cf2530a3f788ad1fc831c18" Selector="&lt;html app='anka.shell.exe' title='Anka Menu - Anka Portal' /&gt;&lt;webctrl id='searchApplicationBar' tag='INPUT' type='text' /&gt;" TimeoutMS="1000" WaitForReady="COMPLETE" />
+                      </ui:UiElementExists.Target>
+                    </ui:UiElementExists>
+                    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="528.8,669.6" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
+                      <ui:IfElseIf.ConditionBlocks>
+                        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                          <ui:IfElseIfBlock BlockType="If" Condition="[BoolSearchikon.Equals(False)]">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="475.2,474.4" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="433.6,381.6" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <TryCatch.Try>
+                                    <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Image - Müşteri Oturumu ve İşlemler" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="ClickImage_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                      <ui:ClickImage.CursorPosition>
+                                        <ui:CursorPosition Position="Center">
+                                          <ui:CursorPosition.OffsetX>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetX>
+                                          <ui:CursorPosition.OffsetY>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetY>
+                                        </ui:CursorPosition>
+                                      </ui:ClickImage.CursorPosition>
+                                      <ui:ClickImage.Image>
+                                        <ui:ImageTarget Image="{x:Null}" Accuracy="0.8" InitialScalingFactor="1.25" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO2SURBVGhD7ZlZUxNBFIX94eJGiSyyowKCRIkgAmoE2WQzEpDFoGyyCAESUEH2AFk59mmSMpXqJJ0HHobqU3VeMtO355vb03Nv5gauqQyY1WTArCYDZjUZMKvJgFHBUAi7e/vY8G5hfdOXxlvwbv3Cid+PSCQSG/1fgUAQu3914viw/XsHxyd+XMTG6kob7Ow8gLUNH/qGRvCmsxdt73tSur2jB46ufoxNTmNndw/hGNzFxQWCwRAWl1fR/8klzksfh+7sHcSEewYHR8eIRvXxtMG2fv0Rkwzh1oMy3LxfktE5eaXIL6vG1PQs/P5TGSMajcpMNbW9R25RlXJcshnnUZ0d3+cWEQqFZRwdaYOtrK7jZatDObnKOXkluFtYgU+uceztH8oYzJxHZL2+8TVu5+vdILrkUT0GnaNyCetKG2z5pwf21++UE6tMsDsFFRgeIdiBjCHB1r2oa2zRzjxdLMAGxNI9DwRkHB0ZMAMWswHTsAFLkAG7tmCrnk20vOkUF1yqnDzZPC/3YRVGxqZwcHgkY7Bu3PRtw9bUJqDLleOSnSNc9qQBztEJBIJX8ILmXR8WVcS9wkotOGakosaGhaUVWR9SrBVZXjm6PspySzUu2bfzy1FvbxV1qldmXFfaYOFwGPsHh1haWcPM/GJGz/1YFtW7D6enZxIoLtaLLIyXVz3KccleWFyBV2SZyzAxTiZpg1EMTEBOci6q/ZQWx1nXEUJ1MfwtpBNHmNmORKKxkfrKCsxKyhqMdzsiMsGNILWjMlvpxDg8Rz0+7sxxUinrpRgSXfShaPr4vKUyd8ETsUlEFcuQ4q/c4TLFofmMEjJbaYNxgnnxIL9oeYvqhiY8efYyrWufv5IdMrf3+IXxxvCZcY27xTvRoRWHO2Lv4Ge5K2eTPW0w3/Zv2aazeeTLV7U1J5qvhILyWkyKtp7Zo3hhf3b+ig66Q77jVOOSzYaUgNMz83K16EobzJRUMRswDRuwBBkwAxazAdOwAUuQNphn04c2R7foaLProF0TblETnsgYLK34DcDW3C6g9Tvo8mobRkWc4JV00KIg/TL1DTW2ZhRX1aGo8imKKmrVFsdKHj+DvdUhG8rz2H/uLIqPjv0YcI6i5nlz+hi0OF5Z+0J+3eGNZcZ1pQ1G8TvV7PwSuvud6OgZSGnWlPzcxO9fquXDm+T+PocPfUPK8XEzjmv8qyyk9XvnS2UFxuCZe6i41d0zpdeLXZrnpYqTTlmBWUkGzGoyYFaTAbOaDJjVdE3BgH+d8nOOQnq/fwAAAABJRU5ErkJggg==" />
+                                      </ui:ClickImage.Image>
+                                      <ui:ClickImage.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="4253e0b1-37fb-40fc-9d66-9a5c6006802c" TimeoutMS="120000" WaitForReady="INTERACTIVE" />
+                                      </ui:ClickImage.Target>
+                                    </ui:ClickImage>
+                                  </TryCatch.Try>
+                                  <TryCatch.Catches>
+                                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,216.8" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ActivityAction x:TypeArguments="s:Exception">
+                                        <ActivityAction.Argument>
+                                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                        </ActivityAction.Argument>
+                                        <ui:ClickImage ContinueOnError="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Image - Müşteri Oturumu ve İşlemler" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="ClickImage_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                          <ui:ClickImage.CursorPosition>
+                                            <ui:CursorPosition Position="Center">
+                                              <ui:CursorPosition.OffsetX>
+                                                <InArgument x:TypeArguments="x:Int32" />
+                                              </ui:CursorPosition.OffsetX>
+                                              <ui:CursorPosition.OffsetY>
+                                                <InArgument x:TypeArguments="x:Int32" />
+                                              </ui:CursorPosition.OffsetY>
+                                            </ui:CursorPosition>
+                                          </ui:ClickImage.CursorPosition>
+                                          <ui:ClickImage.Image>
+                                            <ui:ImageTarget Image="{x:Null}" Accuracy="0.65" InitialScalingFactor="1.25" Profile="Basic" TargetImageBase64="iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO2SURBVGhD7ZlZUxNBFIX94eJGiSyyowKCRIkgAmoE2WQzEpDFoGyyCAESUEH2AFk59mmSMpXqJJ0HHobqU3VeMtO355vb03Nv5gauqQyY1WTArCYDZjUZMKvJgFHBUAi7e/vY8G5hfdOXxlvwbv3Cid+PSCQSG/1fgUAQu3914viw/XsHxyd+XMTG6kob7Ow8gLUNH/qGRvCmsxdt73tSur2jB46ufoxNTmNndw/hGNzFxQWCwRAWl1fR/8klzksfh+7sHcSEewYHR8eIRvXxtMG2fv0Rkwzh1oMy3LxfktE5eaXIL6vG1PQs/P5TGSMajcpMNbW9R25RlXJcshnnUZ0d3+cWEQqFZRwdaYOtrK7jZatDObnKOXkluFtYgU+uceztH8oYzJxHZL2+8TVu5+vdILrkUT0GnaNyCetKG2z5pwf21++UE6tMsDsFFRgeIdiBjCHB1r2oa2zRzjxdLMAGxNI9DwRkHB0ZMAMWswHTsAFLkAG7tmCrnk20vOkUF1yqnDzZPC/3YRVGxqZwcHgkY7Bu3PRtw9bUJqDLleOSnSNc9qQBztEJBIJX8ILmXR8WVcS9wkotOGakosaGhaUVWR9SrBVZXjm6PspySzUu2bfzy1FvbxV1qldmXFfaYOFwGPsHh1haWcPM/GJGz/1YFtW7D6enZxIoLtaLLIyXVz3KccleWFyBV2SZyzAxTiZpg1EMTEBOci6q/ZQWx1nXEUJ1MfwtpBNHmNmORKKxkfrKCsxKyhqMdzsiMsGNILWjMlvpxDg8Rz0+7sxxUinrpRgSXfShaPr4vKUyd8ETsUlEFcuQ4q/c4TLFofmMEjJbaYNxgnnxIL9oeYvqhiY8efYyrWufv5IdMrf3+IXxxvCZcY27xTvRoRWHO2Lv4Ge5K2eTPW0w3/Zv2aazeeTLV7U1J5qvhILyWkyKtp7Zo3hhf3b+ig66Q77jVOOSzYaUgNMz83K16EobzJRUMRswDRuwBBkwAxazAdOwAUuQNphn04c2R7foaLProF0TblETnsgYLK34DcDW3C6g9Tvo8mobRkWc4JV00KIg/TL1DTW2ZhRX1aGo8imKKmrVFsdKHj+DvdUhG8rz2H/uLIqPjv0YcI6i5nlz+hi0OF5Z+0J+3eGNZcZ1pQ1G8TvV7PwSuvud6OgZSGnWlPzcxO9fquXDm+T+PocPfUPK8XEzjmv8qyyk9XvnS2UFxuCZe6i41d0zpdeLXZrnpYqTTlmBWUkGzGoyYFaTAbOaDJjVdE3BgH+d8nOOQnq/fwAAAABJRU5ErkJggg==" />
+                                          </ui:ClickImage.Image>
+                                          <ui:ClickImage.Target>
+                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="4253e0b1-37fb-40fc-9d66-9a5c6006802c" TimeoutMS="120000" WaitForReady="INTERACTIVE" />
+                                          </ui:ClickImage.Target>
+                                        </ui:ClickImage>
+                                      </ActivityAction>
+                                    </Catch>
+                                  </TryCatch.Catches>
+                                  <TryCatch.Finally>
+                                    <Delay Duration="[TimeSpan.FromSeconds(5)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                                  </TryCatch.Finally>
+                                </TryCatch>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                        </sc:BindingList>
+                      </ui:IfElseIf.ConditionBlocks>
+                    </ui:IfElseIf>
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DelayBetweenKeys="10" DisplayName="Type Into : Mistal-Nextral Screen Name" EmptyField="True" sap:VirtualizedContainerService.HintSize="528.8,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[MistralScreenName]">
+                      <ui:TypeInto.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8c070fcb-3424-4a94-9f82-c7ea8584404c" InformativeScreenshot="405b5e88b5e66485466c50e2543e7ace" Selector="&lt;html app='anka.shell.exe' title='Anka Menu - Anka Portal' /&gt;&lt;webctrl id='searchApplicationBar' tag='INPUT' type='text' /&gt;" WaitForReady="COMPLETE">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                        </ui:Target>
+                      </ui:TypeInto.Target>
+                    </ui:TypeInto>
+                    <ui:CommentOut sap2010:Annotation.AnnotationText="nextral öncesi kullanılan selectör" DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="528.8,96.8" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'mistral+'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b26da38e-28c2-493b-8557-1aa8b66283a2" InformativeScreenshot="ab40ef31ce887b330f8f9e39ebafc6a7" Selector="[String.Format(&quot;&lt;html app='anka.shell.exe' title='Anka Menu - Anka Portal' /&gt;&lt;webctrl parentid='main-menu-container' tag='DIV' innertext='Mistral + *{0}*' /&gt;&quot;, MistralScreenName)]" WaitForReady="COMPLETE">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                              </ui:Target>
+                            </ui:Click.Target>
+                          </ui:Click>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:CommentOut>
+                    <TryCatch sap2010:Annotation.AnnotationText="Test ve dev ortamında nextral aktarımları olduğundan try kısmındaki selector ile ekran açılması sağlanmaktadır. Prod ortamında henüz nextral geçişi olmadığı için catch kısmındaki selector ile ekran açılışları devam etmektedir." DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="528.8,732.8" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <TryCatch.Try>
+                        <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="450.4,441.6" sap2010:WorkflowViewState.IdRef="IfElseIf_4">
+                          <ui:IfElseIf.ConditionBlocks>
+                            <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                              <ui:IfElseIfBlock BlockType="If" Condition="[NextralMi.Equals(0)]">
+                                <ui:IfElseIfBlock.Then>
+                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click : Mistral" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                                    <ui:Click.CursorPosition>
+                                      <ui:CursorPosition Position="Center">
+                                        <ui:CursorPosition.OffsetX>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetX>
+                                        <ui:CursorPosition.OffsetY>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetY>
+                                      </ui:CursorPosition>
+                                    </ui:Click.CursorPosition>
+                                    <ui:Click.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b26da38e-28c2-493b-8557-1aa8b66283a2" InformativeScreenshot="cb41783096be5d24b6457f64c305267a" Selector="[String.Format(&quot;&lt;html app='anka.shell.exe' title='Anka Menu - Anka Portal' /&gt;&lt;webctrl parentid='main-menu-container' tag='DIV' innertext='Mistral &amp;gt;*{0}*' /&gt;&quot;, MistralScreenName)]" WaitForReady="COMPLETE">
+                                        <ui:Target.TimeoutMS>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:Target.TimeoutMS>
+                                      </ui:Target>
+                                    </ui:Click.Target>
+                                  </ui:Click>
+                                </ui:IfElseIfBlock.Then>
+                              </ui:IfElseIfBlock>
+                              <ui:IfElseIfBlock BlockType="Else">
+                                <ui:IfElseIfBlock.Then>
+                                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click : Nextral" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                    <ui:Click.CursorPosition>
+                                      <ui:CursorPosition Position="Center">
+                                        <ui:CursorPosition.OffsetX>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetX>
+                                        <ui:CursorPosition.OffsetY>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:CursorPosition.OffsetY>
+                                      </ui:CursorPosition>
+                                    </ui:Click.CursorPosition>
+                                    <ui:Click.Target>
+                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8d23dc09-008b-4a79-818c-2018ed25c9c0" InformativeScreenshot="84ee51b22e87936b78fcb10a0d268b47" Selector="[String.Format(&quot;&lt;html app='anka.shell.exe' title='Anka Menu - Anka Portal' /&gt;&lt;webctrl parentid='main-menu-container' tag='DIV' innertext='*Mistral +**{0}*' /&gt;&quot;, MistralScreenName)]" WaitForReady="COMPLETE">
+                                        <ui:Target.TimeoutMS>
+                                          <InArgument x:TypeArguments="x:Int32" />
+                                        </ui:Target.TimeoutMS>
+                                      </ui:Target>
+                                    </ui:Click.Target>
+                                  </ui:Click>
+                                </ui:IfElseIfBlock.Then>
+                              </ui:IfElseIfBlock>
+                            </sc:BindingList>
+                          </ui:IfElseIf.ConditionBlocks>
+                        </ui:IfElseIf>
+                      </TryCatch.Try>
+                      <TryCatch.Catches>
+                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="453.6,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ActivityAction x:TypeArguments="s:Exception">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                            </ActivityAction.Argument>
+                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" sap2010:Annotation.AnnotationText="production kullanılan ekranlara click eden" ClickType="CLICK_SINGLE" DisplayName="Click : Result" sap:VirtualizedContainerService.HintSize="333.6,138.4" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition Position="Center">
+                                  <ui:CursorPosition.OffsetX>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetX>
+                                  <ui:CursorPosition.OffsetY>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:CursorPosition.OffsetY>
+                                </ui:CursorPosition>
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d3973964-0f27-469b-8924-634f00be05ff" InformativeScreenshot="adc39bee28a59049116d4454d6b4b8d7" Selector="[String.Format(&quot;&lt;html app='anka.shell.exe' title='Anka Menu - Anka Portal' /&gt;&lt;webctrl parentid='menuSearchBarContainer' tag='DIV' innertext='*Mistral *{0}*' parentclass='search-bar-ul' /&gt;&quot;, MistralScreenName)]" WaitForReady="COMPLETE">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                </ui:Target>
+                              </ui:Click.Target>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:Click>
+                          </ActivityAction>
+                        </Catch>
+                      </TryCatch.Catches>
+                    </TryCatch>
+                    <Assign DisplayName="Assign : MistralScreenName" sap:VirtualizedContainerService.HintSize="528.8,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[MistralScreenName]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[MistralScreenName.Substring(0,4)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:IfElseIf sap2010:Annotation.AnnotationText="Mistral ekranı ise kontrol then kısmındaki element exist ile sağlanır. Eğer nextral ekranı ise else kısmından devam eder ve kontrol farklı selector üzerinden sağlanır." DisplayName="Else If" sap:VirtualizedContainerService.HintSize="528.8,687.2" sap2010:WorkflowViewState.IdRef="IfElseIf_5">
+                      <ui:IfElseIf.ConditionBlocks>
+                        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                          <ui:IfElseIfBlock BlockType="If" Condition="[NextralMi.Equals(0)]">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence DisplayName="Body : Mistral" sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:UiElementExists DisplayName="Element Exists - Mistral Screen" Exists="[boolMistralScreenOpen]" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                                  <ui:UiElementExists.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6a7497ff-5998-41de-a61e-5ba2a696acc3" InformativeScreenshot="c9e69d42300ca99d9bb6a206ad6bd1af" Selector="[String.Format(&quot;&lt;wnd app='eze2img.exe' cls='SHELL' title='*{0}*' /&gt;&quot;, MistralScreenName)]" TimeoutMS="[EkranAcilisiTimeout*1000]" WaitForReady="COMPLETE" />
+                                  </ui:UiElementExists.Target>
+                                </ui:UiElementExists>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                          <ui:IfElseIfBlock BlockType="Else">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence DisplayName="Body : Nextral" sap:VirtualizedContainerService.HintSize="375.2,200" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:UiElementExists DisplayName="Element Exists - Nextral Screen" Exists="[boolMistralScreenOpen]" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
+                                  <ui:UiElementExists.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6a7497ff-5998-41de-a61e-5ba2a696acc3" InformativeScreenshot="ea7036535b88ea51feddd80edcfde173" Selector="[string.Format(&quot;&lt;wnd app='anka.shell.exe' title='*{0}*' /&gt;&quot;, MistralScreenName)]" TimeoutMS="[EkranAcilisiTimeout*1000]" WaitForReady="COMPLETE" />
+                                  </ui:UiElementExists.Target>
+                                </ui:UiElementExists>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                        </sc:BindingList>
+                      </ui:IfElseIf.ConditionBlocks>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:IfElseIf>
+                  </Sequence>
+                </ActivityAction>
+              </ui:WindowScope.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:WindowScope>
+          </TryCatch.Try>
+          <TryCatch.Catches>
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,356" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ActivityAction x:TypeArguments="s:Exception">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Exception" sap:VirtualizedContainerService.HintSize="375.2,285.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:Exception">[systemexception]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception.Message]" />
+                </Sequence>
+              </ActivityAction>
+            </Catch>
+          </TryCatch.Catches>
+          <TryCatch.Finally>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FinalSteps workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="FinalSteps.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:Boolean" x:Key="in_BoolScreenLogin">[boolMistralScreenOpen]</InArgument>
+                <InOutArgument x:TypeArguments="x:Int32" x:Key="io_intLoginCount">[intGirisCounter]</InOutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_strScreenName">[MistralScreenName]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+          </TryCatch.Finally>
+        </TryCatch>
+      </ui:InterruptibleDoWhile.Body>
+    </ui:InterruptibleDoWhile>
+    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="468.8,310.4" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[boolMistralScreenOpen.Equals(False)]">
+            <ui:IfElseIfBlock.Then>
+              <Sequence DisplayName="Fail" sap:VirtualizedContainerService.HintSize="241.6,115.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw Exception="[new SystemException(MistralScreenName+&quot; ekranına &quot;+EkranAcilisiDenemeSayisi.ToString+ &quot; kez denenmesine rağmen giriş yapılamamıştır.&quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_4" />
+              </Sequence>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+    </ui:IfElseIf>
+  </Sequence>
+</Activity>
