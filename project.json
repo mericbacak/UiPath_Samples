@@ -1,0 +1,63 @@
+{
+  "name": "RPA106_967_PMUAI004MuavinRaporu",
+  "description": "OPGE üzerinden 3 parça olarak çalıştırılan iş CMD üzerinden çekilir. Çekilen datasetin ilgili kısımlarının toplamları alınarak iş birimi tarafından oluşturulmuş çıktıların tutulduğu Excel’e yapıştırılır.",
+  "main": "Main.xaml",
+  "dependencies": {
+    "ANKALogin": "[1.0.24]",
+    "InitAllSettings": "[1.0.7]",
+    "MistralEkranLogin": "[1.0.11]",
+    "UiPath.Excel.Activities": "[2.20.1]",
+    "UiPath.Mail.Activities": "[1.12.3]",
+    "UiPath.System.Activities": "[22.10.5]",
+    "UiPath.UIAutomation.Activities": "[23.4.5]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "21.10.4.0",
+  "projectVersion": "1.0.6",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "workflowSerialization": "DataContract",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "02888131-c625-43f5-b7ae-8f6d4b300fb0",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Legacy"
+}
