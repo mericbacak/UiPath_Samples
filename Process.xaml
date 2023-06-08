@@ -1,0 +1,261 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_intTransactionNumber" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_strPass" Type="InArgument(ss:SecureString)" />
+    <x:Property Name="in_strUserName" Type="InArgument(x:String)" />
+    <x:Property Name="out_strStatu" Type="OutArgument(x:String)" />
+    <x:Property Name="in_strDomain" Type="InArgument(x:String)" />
+    <x:Property Name="in_strServer" Type="InArgument(x:String)" />
+    <x:Property Name="in_strHataMailTo" Type="InArgument(x:String)" />
+    <x:Property Name="in_strQueueName" Type="InArgument(x:String)" />
+    <x:Property Name="in_strMusteriNo" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1350,1275</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="52">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Reflection</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="54">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="1360,1210" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strMtBlokesi" />
+      <Variable x:TypeArguments="x:String" Name="strGuvenlikKodBlokesi" />
+      <Variable x:TypeArguments="x:String" Name="strUndeIslemSonucMesaj" />
+      <Variable x:TypeArguments="x:String" Name="strUndeYetkiUyari" />
+      <Variable x:TypeArguments="x:String" Name="strOpId" />
+      <Variable x:TypeArguments="x:String" Name="strMusAd" />
+      <Variable x:TypeArguments="x:String" Name="strMusSoyad" />
+      <Variable x:TypeArguments="x:String" Name="strUndeBloke" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke MSIZMusteriBilgileri workflow" sap:VirtualizedContainerService.HintSize="1318,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Processes\MSIZMusteriBilgileri.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_intTransactionNumber">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="in_intTransactionNumber" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strOutlookUserName">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strUserName" />
+        </InArgument>
+        <InArgument x:TypeArguments="ss:SecureString" x:Key="in_sstrOutlookPass">
+          <mva:VisualBasicValue x:TypeArguments="ss:SecureString" ExpressionText="in_strPass" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strExchangeDomain">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strDomain" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strExchangeServer">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strServer" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strHataMailTo">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strHataMailTo" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriNo">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strMusteriNo" />
+        </InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke UNDEIslem workflow" sap:VirtualizedContainerService.HintSize="1318,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Processes\UNDEIslem.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriNo">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strMusteriNo" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strUndeYetkiUyari">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strUndeYetkiUyari" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strUndeBloke">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strUndeBloke" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <If Condition="[strUndeYetkiUyari =&quot;&quot; or strUndeYetkiUyari.Contains(&quot;dialog&quot;)]" sap:VirtualizedContainerService.HintSize="1318,814" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,356" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke BLCMIslem workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Processes\BLCMIslem.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriNo">[in_strMusteriNo]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strMtBlokesi">[strMtBlokesi]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strGuvenlikKodBlokesi">[strGuvenlikKodBlokesi]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke MSIZAciklamaGuncelleme workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Processes\MSIZAciklamaGuncelleme.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strMtBlokesi">[strMtBlokesi]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strGuvenlikKodBlokesi">[strGuvenlikKodBlokesi]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriNo">[in_strMusteriNo]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strUndeBloke">[strUndeBloke]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_strStatu">[out_strStatu]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strUndeYetkiUyari">[strUndeYetkiUyari]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <If Condition="[strUndeYetkiUyari.Contains(&quot;Bu işlemi yapmaya yetkiniz bulunmamaktadır.&quot;)]" sap:VirtualizedContainerService.HintSize="897,656" sap2010:WorkflowViewState.IdRef="If_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence sap:VirtualizedContainerService.HintSize="376,456" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_strStatu]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">Girişimci müşteri</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke MSIZGirisimciMusteriIslem workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Processes\MSIZGirisimciMusteriIslem.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_strOpId">[strOpId]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_strMusAd">[strMusAd]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_strMusSoyad">[strMusSoyad]</OutArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriNo">[in_strMusteriNo]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GirisimciMail workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Output\GirisimciMail.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_strMailTo">[strOpId+"@gen.halkbank.local"]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriNo">[in_strMusteriNo]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_strMusSoyad">[strMusSoyad]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_strMusAd">[strMusAd]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_strUserName">[in_strUserName]</InArgument>
+                  <InArgument x:TypeArguments="ss:SecureString" x:Key="in_strPass">[in_strPass]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_strDomain">[in_strDomain]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_strServer">[in_strServer]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence sap:VirtualizedContainerService.HintSize="476,498" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" Window="{x:Null}" ContinueOnError="True" DisplayName="Attach Window 'eze2img.exe MSIZ-Müşteri'" sap:VirtualizedContainerService.HintSize="434,344" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="9e4ff4cb316e94432e138610a6886b5d" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='MSIZ-Müşteri Sorun/Talep Aksiyon Ekranı' /&gt;" TimeoutMS="500">
+                <ui:WindowScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" ContinueOnError="True" DisplayName="Click 'OSBUTTON'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="be1b30a4-7ea4-4686-9f07-240874089932" InformativeScreenshot="82a794b7a3041a81d228550a6bcb57cc" Selector="&lt;wnd cls='Button' title=' Seçim ' /&gt;&lt;wnd cls='OSBUTTON' title='Çıkış' /&gt;" TimeoutMS="500">
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:Click.Target>
+                      </ui:Click>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:WindowScope.Body>
+              </ui:WindowScope>
+              <Throw Exception="[new BusinessRuleException(&quot;*&quot;+in_strMusteriNo+&quot; nolu müşteri için UNDE ekranında beklenmedik uyarı mesajı alınmıştır: &quot;+ strUndeYetkiUyari+&quot;*&quot;)]" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            </Sequence>
+          </If.Else>
+        </If>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>
