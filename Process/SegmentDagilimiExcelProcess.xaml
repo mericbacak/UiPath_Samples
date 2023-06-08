@@ -1,0 +1,311 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SegmentDagilimiExcelProcess" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\INPUT\RPA034_988_InBound\(ÇİZGİ)YENİ VAR.GRAFİĞİ.SON.xlsx&quot;" Name="in_strYeniCizGrafikExcelPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\03.09.2022\03-Segment Dağılımı Raporu [1].xlsx&quot;" Name="in_strSegmentdagilimiExcelPath" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1160,4404.8</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>SegmentDagilimiExcelProcess_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="36">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Excel.Model</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SegmentDagilimiExcelProcess" sap:VirtualizedContainerService.HintSize="492,4340" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:WorkbookApplication" Name="WBSegmentDagilim" />
+      <Variable x:TypeArguments="ui:WorkbookApplication" Name="WBYeniCizGrafik" />
+      <Variable x:TypeArguments="x:String" Name="strIVRCallSheetName" />
+      <Variable x:TypeArguments="x:String" Name="strSegmentSheetName" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt2rows" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt4rows" />
+      <Variable x:TypeArguments="x:String" Name="strDigerMusteriDagilimi" />
+      <Variable x:TypeArguments="x:String" Name="strCopiedDigerMusteriDagilimi" />
+      <Variable x:TypeArguments="x:String" Name="strBordro24" />
+      <Variable x:TypeArguments="x:String" Name="strCopiedBordro24" />
+      <Variable x:TypeArguments="x:String" Name="strEmekli" />
+      <Variable x:TypeArguments="x:String" Name="strCopiedEmekli" />
+      <Variable x:TypeArguments="x:String" Name="strFirmaOrtagi" />
+      <Variable x:TypeArguments="x:String" Name="strCopiedFirmaOrtagi" />
+      <Variable x:TypeArguments="x:String" Name="strUye" />
+      <Variable x:TypeArguments="x:String" Name="strCopiedUye" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Okunacak Rapor bilgisi: &quot;+in_strSegmentdagilimiExcelPath]" />
+    <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="450.4,52.8" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" Workbook="[WBSegmentDagilim]" WorkbookPath="[in_strSegmentdagilimiExcelPath]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ExcelApplicationScope>
+    <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="450.4,52.8" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" Workbook="[WBYeniCizGrafik]" WorkbookPath="[in_strYeniCizGrafikExcelPath]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ExcelApplicationScope>
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="450.4,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strSegmentSheetName]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[WBSegmentDagilim.GetSheets(0)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strIVRCallSheetName]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[WBYeniCizGrafik.GetSheets(1)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MultipleAssign>
+    <ui:ExcelCloseWorkbook DisplayName="Close Workbook" sap:VirtualizedContainerService.HintSize="450.4,60" sap2010:WorkflowViewState.IdRef="ExcelCloseWorkbook_1" Workbook="[WBSegmentDagilim]" />
+    <ui:ExcelCloseWorkbook DisplayName="Close Workbook" sap:VirtualizedContainerService.HintSize="450.4,60" sap2010:WorkflowViewState.IdRef="ExcelCloseWorkbook_2" Workbook="[WBYeniCizGrafik]" />
+    <ui:ReadRange AddHeaders="False" DataTable="[dt2rows]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" Range="F9:F10" SheetName="[strSegmentSheetName]" WorkbookPath="[in_strSegmentdagilimiExcelPath]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ReadRange>
+    <ui:ReadRange AddHeaders="False" DataTable="[dt4rows]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" Range="A2:B5" SheetName="[strSegmentSheetName]" WorkbookPath="[in_strSegmentdagilimiExcelPath]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ReadRange>
+    <ui:WriteRange AddHeaders="False" DataTable="[dt2rows]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="450.4,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="[strIVRCallSheetName]" StartingCell="B80" WorkbookPath="[in_strYeniCizGrafikExcelPath]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:WriteRange>
+    <ui:WriteRange AddHeaders="False" DataTable="[dt4rows]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="450.4,116" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[strIVRCallSheetName]" StartingCell="F80" WorkbookPath="[in_strYeniCizGrafikExcelPath]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:WriteRange>
+    <ui:ReadCell Cell="B2" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_1" PreserveFormat="True" SheetName="[strSegmentSheetName]" WorkbookPath="[in_strSegmentdagilimiExcelPath]">
+      <ui:ReadCell.Result>
+        <OutArgument x:TypeArguments="x:String">[strDigerMusteriDagilimi]</OutArgument>
+      </ui:ReadCell.Result>
+    </ui:ReadCell>
+    <ui:ReadCell Cell="G80" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_2" PreserveFormat="True" SheetName="[strIVRCallSheetName]" WorkbookPath="[in_strYeniCizGrafikExcelPath]">
+      <ui:ReadCell.Result>
+        <OutArgument x:TypeArguments="x:String">[strCopiedDigerMusteriDagilimi]</OutArgument>
+      </ui:ReadCell.Result>
+    </ui:ReadCell>
+    <ui:ReadCell Cell="B3" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_3" PreserveFormat="True" SheetName="[strSegmentSheetName]" WorkbookPath="[in_strSegmentdagilimiExcelPath]">
+      <ui:ReadCell.Result>
+        <OutArgument x:TypeArguments="x:String">[strBordro24]</OutArgument>
+      </ui:ReadCell.Result>
+    </ui:ReadCell>
+    <ui:ReadCell Cell="G81" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_4" PreserveFormat="True" SheetName="[strIVRCallSheetName]" WorkbookPath="[in_strYeniCizGrafikExcelPath]">
+      <ui:ReadCell.Result>
+        <OutArgument x:TypeArguments="x:String">[strCopiedBordro24]</OutArgument>
+      </ui:ReadCell.Result>
+    </ui:ReadCell>
+    <ui:ReadCell Cell="B4" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_5" PreserveFormat="True" SheetName="[strSegmentSheetName]" WorkbookPath="[in_strSegmentdagilimiExcelPath]">
+      <ui:ReadCell.Result>
+        <OutArgument x:TypeArguments="x:String">[strEmekli]</OutArgument>
+      </ui:ReadCell.Result>
+    </ui:ReadCell>
+    <ui:ReadCell Cell="G82" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_6" PreserveFormat="True" SheetName="[strIVRCallSheetName]" WorkbookPath="[in_strYeniCizGrafikExcelPath]">
+      <ui:ReadCell.Result>
+        <OutArgument x:TypeArguments="x:String">[strCopiedEmekli]</OutArgument>
+      </ui:ReadCell.Result>
+    </ui:ReadCell>
+    <ui:ReadCell Cell="B5" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_7" PreserveFormat="True" SheetName="[strSegmentSheetName]" WorkbookPath="[in_strSegmentdagilimiExcelPath]">
+      <ui:ReadCell.Result>
+        <OutArgument x:TypeArguments="x:String">[strFirmaOrtagi]</OutArgument>
+      </ui:ReadCell.Result>
+    </ui:ReadCell>
+    <ui:ReadCell Cell="G83" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_8" PreserveFormat="True" SheetName="[strIVRCallSheetName]" WorkbookPath="[in_strYeniCizGrafikExcelPath]">
+      <ui:ReadCell.Result>
+        <OutArgument x:TypeArguments="x:String">[strCopiedFirmaOrtagi]</OutArgument>
+      </ui:ReadCell.Result>
+    </ui:ReadCell>
+    <ui:ReadCell Cell="F9" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_9" PreserveFormat="True" SheetName="[strSegmentSheetName]" WorkbookPath="[in_strSegmentdagilimiExcelPath]">
+      <ui:ReadCell.Result>
+        <OutArgument x:TypeArguments="x:String">[strUye]</OutArgument>
+      </ui:ReadCell.Result>
+    </ui:ReadCell>
+    <ui:ReadCell Cell="B80" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="450.4,88" sap2010:WorkflowViewState.IdRef="ReadCell_10" PreserveFormat="True" SheetName="[strIVRCallSheetName]" WorkbookPath="[in_strYeniCizGrafikExcelPath]">
+      <ui:ReadCell.Result>
+        <OutArgument x:TypeArguments="x:String">[strCopiedUye]</OutArgument>
+      </ui:ReadCell.Result>
+    </ui:ReadCell>
+    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="450.4,283.2" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[strCopiedDigerMusteriDagilimi.Equals(strDigerMusteriDagilimi)]">
+            <ui:IfElseIfBlock.Then>
+              <ui:LogMessage sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Vardiya excel kopyalanan çizelgedeki  diğer müşteri dağılımı bilgisi kontrol edilmiştir. &quot;+Environment.NewLine+&quot;Segment Rapor Diğer Müşteri Dağılımı: &quot;+strDigerMusteriDagilimi+Environment.NewLine+&quot;Vardiya excelinde okunan Diğer Müşteri Dağılımı: &quot;+strCopiedDigerMusteriDagilimi]" />
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+    </ui:IfElseIf>
+    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="450.4,283.2" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[strCopiedBordro24.Equals(strBordro24)]">
+            <ui:IfElseIfBlock.Then>
+              <ui:LogMessage sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Vardiya excel kopyalanan çizelgedeki  Bordro24 bilgisi kontrol edilmiştir. &quot;+Environment.NewLine+&quot;Segment Rapor Bordro24 bilgisi:  &quot;+strBordro24+Environment.NewLine+&quot;Vardiya excelinde okunan Bordro24 Bilgisi: &quot;+strCopiedBordro24]" />
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+    </ui:IfElseIf>
+    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="450.4,283.2" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[strEmekli.Equals(strCopiedEmekli)]">
+            <ui:IfElseIfBlock.Then>
+              <ui:LogMessage sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Vardiya excel kopyalanan çizelgedeki  Emekli bilgisi kontrol edilmiştir. &quot;+Environment.NewLine+&quot;Segment Rapor Emekli bilgisi:  &quot;+strEmekli+Environment.NewLine+&quot;Vardiya excelinde okunan Emekli bilgisi: &quot;+strCopiedEmekli]" />
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+    </ui:IfElseIf>
+    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="450.4,283.2" sap2010:WorkflowViewState.IdRef="IfElseIf_4">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[strFirmaOrtagi.Equals(strCopiedFirmaOrtagi)]">
+            <ui:IfElseIfBlock.Then>
+              <ui:LogMessage sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Vardiya excel kopyalanan çizelgedeki  Firma ortağı bilgisi kontrol edilmiştir. &quot;+Environment.NewLine+&quot;Segment Rapor Firma ortağı bilgisi:  &quot;+strFirmaOrtagi+Environment.NewLine+&quot;Vardiya excelinde okunan Firma Ortağı bilgisi: &quot;+strCopiedFirmaOrtagi]" />
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+    </ui:IfElseIf>
+    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="450.4,283.2" sap2010:WorkflowViewState.IdRef="IfElseIf_5">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[strUye.Equals( strCopiedUye)]">
+            <ui:IfElseIfBlock.Then>
+              <ui:LogMessage sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Vardiya excel kopyalanan çizelgedeki  Üye bilgisi kontrol edilmiştir. &quot;+Environment.NewLine+&quot;Segment Rapor Üye bilgisi:  &quot;+strUye+Environment.NewLine+&quot;Vardiya excelinde okunan Üye bilgisi: &quot;+strCopiedUye]" />
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+    </ui:IfElseIf>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Segment Dağılımı bilgileri vardiya exceline işlendi. İşlenen excel bilgisi: &quot;+in_strYeniCizGrafikExcelPath]" />
+  </Sequence>
+</Activity>

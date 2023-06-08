@@ -1,0 +1,1376 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="BOInBoundReportDownload" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="&quot;En Çok Yapılan 10 İşlem_gunLuk_otomatik.Exa,Inbound Vardiya Raporu,İşlem Adetleri Günlük Rapor.Exa,IVR Raporu (Yeni),Komisyon Raporu.Exa ,Segment Dağılımı Raporu.Exa&quot;" Name="in_strGunlukReportNames" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\20.03.2023-15.25\&quot;" Name="in_strReportsDailyDownloadPath" Type="InArgument(x:String)" />
+    <x:Property Name="out_strInBoundVardiyaReportExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strIVRReportExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strIslemAdetleriGunlukExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strKomisyonRaporuExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strEncokYapilan10IslemExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strsegmentDagilimiRaporuExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strSaturdayIVRReportExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strSundayIVRReportExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strSaturdayInBoundVardiyaReportExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strSundayInBoundVardiyaReportExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strSaturdayIslemAdetleriGunlukExcelPath" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strSundayIslemAdetleriGunlukExcelPath" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\INPUT\RPA034_988_InBound\FailedReportsInfoTaslak.xlsx&quot;" Name="in_strFailedReportsInfoDraftExcelPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;RPA034_988_InBoundVardiya&quot;" Name="in_strOrchestratorQueueName" Type="InArgument(x:String)" />
+    <x:Property Name="in_strIVRReportWaitDuration" Type="InArgument(x:String)" />
+    <x:Property Name="in_strSegmentReportWaitDuration" Type="InArgument(x:String)" />
+    <x:Property Name="in_strReportSaveWait" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="DateTime.Now.AddDays(-1).ToString((&quot;dd.MMM.yyyy&quot;),system.Globalization.CultureInfo.CreateSpecificCulture(&quot;tr&quot;))" Name="in_strMonday" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1104,5173</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>BOInBoundReportDownload_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="46">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>Microsoft.Exchange.WebServices.Data</x:String>
+      <x:String>UiPath.Mail.Exchange</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="37">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Exchange.WebServices</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="BOReportsDownload" sap:VirtualizedContainerService.HintSize="1013,5108" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
+      <Variable x:TypeArguments="x:String" Name="strBOSunday" />
+      <Variable x:TypeArguments="s:String[]" Name="ListGunlukReports" />
+      <Variable x:TypeArguments="s:String[]" Name="ListOracleReports" />
+      <Variable x:TypeArguments="s:String[]" Name="ListAllReports" />
+      <Variable x:TypeArguments="x:String" Name="strBOSaturday" />
+      <Variable x:TypeArguments="x:String" Name="strBOToday" />
+      <Variable x:TypeArguments="s:String[]" Name="ListMondayDays" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Inbound Vardiya Raporu,En Çok Yapılan 10 İşlem_gunLuk_otomatik" Name="strReportName" />
+      <Variable x:TypeArguments="x:String" Name="strReportSaveName" />
+      <Variable x:TypeArguments="x:String" Name="strClickInstance" />
+      <Variable x:TypeArguments="ui:WorkbookApplication" Name="WBFailedExcel" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtFiltered" />
+      <Variable x:TypeArguments="x:String" Name="strDayOfWeek" />
+      <Variable x:TypeArguments="ui:QueueItem" Name="TransactionItem" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtFailedReports" />
+      <Variable x:TypeArguments="x:String" Name="strFailedReportExcelPath" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BuildDataTable sap2010:Annotation.AnnotationText="dtFailedReports" DataTable="[dtFailedReports]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="971,82" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;RaporAdı&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Ornek_x0020_Saati&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BuildDataTable>
+    <ui:CopyFile ContinueOnError="{x:Null}" Destination="[in_strReportsDailyDownloadPath]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="971,51" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[in_strFailedReportsInfoDraftExcelPath]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CopyFile>
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="971,286" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="32">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_34">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strFailedReportExcelPath]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_strReportsDailyDownloadPath+"FailedReportsInfo.xlsx"]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strBOToday]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString(("dd.MMM.yyyy"),system.Globalization.CultureInfo.CreateSpecificCulture("tr"))]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strBOSunday]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.Now.AddDays(-1).ToString(("dd.MMM.yyyy"),system.Globalization.CultureInfo.CreateSpecificCulture("tr"))]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strBOSaturday]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.Now.AddDays(-2).ToString(("dd.MMM.yyyy"),system.Globalization.CultureInfo.CreateSpecificCulture("tr"))]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="s:String[]">[ListMondayDays]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="s:String[]">[( strBOSaturday+","+strBOSunday+","+strBOToday).Split(",".ToArray, StringSplitOptions.RemoveEmptyEntries)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="s:String[]">[ListGunlukReports]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="s:String[]">[in_strGunlukReportNames.Split(",".ToArray, StringSplitOptions.RemoveEmptyEntries)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_31">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strDayOfWeek]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.Now.AddDays(0).DayOfWeek.ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MultipleAssign>
+    <ui:RenameFileX DisplayName="Rename File" FilePath="[in_strReportsDailyDownloadPath+&quot;FailedReportsInfoTaslak.xlsx&quot;]" sap:VirtualizedContainerService.HintSize="971,141" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[strFailedReportExcelPath]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:RenameFileX>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe BI'" sap:VirtualizedContainerService.HintSize="971,4163" sap2010:WorkflowViewState.IdRef="BrowserScope_10" InformativeScreenshot="c4512f50767176852d99fd3646d0ff5a" Selector="&lt;html app='chrome.exe' url='http://kdsrapor:8080/*' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="937,4017" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[ListGunlukReports]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="item1" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Report names Loop" sap:VirtualizedContainerService.HintSize="901,3894" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ClearDataTable DataTable="[ExtractDataTable]" DisplayName="Clear Data Table" sap:VirtualizedContainerService.HintSize="859,79" sap2010:WorkflowViewState.IdRef="ClearDataTable_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ClearDataTable>
+                  <Assign sap:VirtualizedContainerService.HintSize="859,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[strReportName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[item1.ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'RaporIsmi'" sap:VirtualizedContainerService.HintSize="859,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_RIGHT">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c5491152-204f-43f4-a10f-23daec8fff0a" InformativeScreenshot="da8c887ce6ada3e82db58ec6de0f451f" Selector="[String.Format(&quot;&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl src='http://kdsrapor:8080/BOE/*' tag='IFRAME' /&gt;&lt;webctrl aaname='*{0}*' tag='DIV' /&gt;&quot;, strReportname)]" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
+                  <ui:CommentOut sap2010:Annotation.AnnotationText="20.03.2023 Esra veziroğludan gelen ek talep ile tüm raporlar günlük içinden çekilecek yapıya geldi." DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="859,123" sap2010:WorkflowViewState.IdRef="CommentOut_10">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="493,664" sap2010:WorkflowViewState.IdRef="Sequence_81">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:IfElseIf sap2010:Annotation.AnnotationText="Günlük veya oracle arşiv klasörüne göre rapor geçmişi açılması" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="200,108" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+                          <ui:IfElseIf.ConditionBlocks>
+                            <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                              <ui:IfElseIfBlock BlockType="If" Condition="[ListGunlukReports.Contains(item1.ToString)]">
+                                <ui:IfElseIfBlock.Then>
+                                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_82">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </Sequence>
+                                </ui:IfElseIfBlock.Then>
+                              </ui:IfElseIfBlock>
+                              <ui:IfElseIfBlock BlockType="Else">
+                                <ui:IfElseIfBlock.Then>
+                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,344" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" ContinueOnError="True" DisplayName="Click 'OracleArsiv'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                      <ui:Click.CursorPosition>
+                                        <ui:CursorPosition Position="Center">
+                                          <ui:CursorPosition.OffsetX>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetX>
+                                          <ui:CursorPosition.OffsetY>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetY>
+                                        </ui:CursorPosition>
+                                      </ui:Click.CursorPosition>
+                                      <ui:Click.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f7c8de76-2016-4d9c-9cd1-e0d2f4933762" InformativeScreenshot="0d91ea6df9dbe813ddab82e8425b09d6" Selector="&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl src='http://kdsrapor:8080/BOE/*' tag='IFRAME' /&gt;&lt;webctrl aaname='Oracle Arşiv' tag='DIV' /&gt;" TimeoutMS="2000" WaitForReady="COMPLETE" />
+                                      </ui:Click.Target>
+                                    </ui:Click>
+                                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'itemToStirng'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_RIGHT">
+                                      <ui:Click.CursorPosition>
+                                        <ui:CursorPosition Position="Center">
+                                          <ui:CursorPosition.OffsetX>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetX>
+                                          <ui:CursorPosition.OffsetY>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:CursorPosition.OffsetY>
+                                        </ui:CursorPosition>
+                                      </ui:Click.CursorPosition>
+                                      <ui:Click.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c5491152-204f-43f4-a10f-23daec8fff0a" InformativeScreenshot="faf9065060acb4aa272300578eb3f913" Selector="[String.Format(&quot;&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl src='http://kdsrapor:8080/BOE/*' tag='IFRAME' /&gt;&lt;webctrl aaname='{0}' tag='DIV' /&gt;&quot;, strReportName)]" WaitForReady="COMPLETE">
+                                          <ui:Target.TimeoutMS>
+                                            <InArgument x:TypeArguments="x:Int32" />
+                                          </ui:Target.TimeoutMS>
+                                        </ui:Target>
+                                      </ui:Click.Target>
+                                    </ui:Click>
+                                  </Sequence>
+                                </ui:IfElseIfBlock.Then>
+                              </ui:IfElseIfBlock>
+                            </sc:BindingList>
+                          </ui:IfElseIf.ConditionBlocks>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:IfElseIf>
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
+                  <ui:IfElseIf sap2010:Annotation.AnnotationText="IVR akışı" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="859,337" sap2010:WorkflowViewState.IdRef="IfElseIf_30">
+                    <ui:IfElseIf.ConditionBlocks>
+                      <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                        <ui:IfElseIfBlock BlockType="If" Condition="[item1.ToString.Contains(&quot;IVR&quot;)]">
+                          <ui:IfElseIfBlock.Then>
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke IVRReportDownload workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="INIT_Processes\IVRReportDownload.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_strReportsDailyDownloadPath">[in_strReportsDailyDownloadPath]</InArgument>
+                                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtFailedReports">[dtFailedReports]</InOutArgument>
+                                <OutArgument x:TypeArguments="x:String" x:Key="out_IVRSaturdayReport">[out_strSaturdayIVRReportExcelPath]</OutArgument>
+                                <OutArgument x:TypeArguments="x:String" x:Key="out_IVRSundayReport">[out_strSundayIVRReportExcelPath]</OutArgument>
+                                <OutArgument x:TypeArguments="x:String" x:Key="out_IVRReport">[out_strIVRReportExcelPath]</OutArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_strMonday">[in_strMonday]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_strReportWait">[in_strIVRReportWaitDuration]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_strOrchestratorQueueName">[in_strOrchestratorQueueName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveWait">[in_strReportSaveWait]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                          </ui:IfElseIfBlock.Then>
+                        </ui:IfElseIfBlock>
+                      </sc:BindingList>
+                    </ui:IfElseIf.ConditionBlocks>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:IfElseIf>
+                  <ui:IfElseIf sap2010:Annotation.AnnotationText="Segment Akışı" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="859,337" sap2010:WorkflowViewState.IdRef="IfElseIf_31">
+                    <ui:IfElseIf.ConditionBlocks>
+                      <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                        <ui:IfElseIfBlock BlockType="If" Condition="[item1.ToString.Contains(&quot;Segment&quot;)]">
+                          <ui:IfElseIfBlock.Then>
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SegmentDagilimiDegistirSteps workflow" sap:VirtualizedContainerService.HintSize="379,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="INIT_Processes\SegmentDagilimiReportDownload.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_strReportsDailyDownloadPath">[in_strReportsDailyDownloadPath]</InArgument>
+                                <OutArgument x:TypeArguments="x:String" x:Key="out_strSegmentDagilimiExcelPath">[out_strsegmentDagilimiRaporuExcelPath]</OutArgument>
+                                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtFailedReports">[dtFailedReports]</InOutArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_strMonday">[in_strMonday]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_strReportWait">[in_strSegmentReportWaitDuration]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_strOrchestratorQueueName">[in_strOrchestratorQueueName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveWait">[in_strReportSaveWait]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:InvokeWorkflowFile>
+                          </ui:IfElseIfBlock.Then>
+                        </ui:IfElseIfBlock>
+                      </sc:BindingList>
+                    </ui:IfElseIf.ConditionBlocks>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:IfElseIf>
+                  <ui:IfElseIf sap2010:Annotation.AnnotationText="Segment ve IVR harici" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="859,2520" sap2010:WorkflowViewState.IdRef="IfElseIf_32">
+                    <ui:IfElseIf.ConditionBlocks>
+                      <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                        <ui:IfElseIfBlock BlockType="If" Condition="[item1.ToString.Contains(&quot;Komisyon&quot;) or item1.ToString.Contains(&quot;Inbound&quot;) or item1.ToString.Contains(&quot;En Çok Yapılan&quot;)or item1.ToString.Contains(&quot;İşlem Adetleri&quot;)]">
+                          <ui:IfElseIfBlock.Then>
+                            <Sequence DisplayName="Ortak Akışlar" sap:VirtualizedContainerService.HintSize="808,2295" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Geçmiş'" sap:VirtualizedContainerService.HintSize="766,106" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                <ui:Click.CursorPosition>
+                                  <ui:CursorPosition Position="Center">
+                                    <ui:CursorPosition.OffsetX>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:CursorPosition.OffsetX>
+                                    <ui:CursorPosition.OffsetY>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:CursorPosition.OffsetY>
+                                  </ui:CursorPosition>
+                                </ui:Click.CursorPosition>
+                                <ui:Click.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="24d0de7f-3336-4d3b-bf05-ff816cd4aca8" InformativeScreenshot="8630e2c26042c4ae806dbff254040929" Selector="&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl src='http://kdsrapor:8080/BOE/*' tag='IFRAME' /&gt;&lt;webctrl aaname='Geçmiş' aria-role='menuitem' tag='A' /&gt;" TimeoutMS="120000" WaitForReady="COMPLETE" />
+                                </ui:Click.Target>
+                              </ui:Click>
+                              <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" SimulateClick="{x:Null}" DataTable="[ExtractDataTable]" DisplayName="Extract Structured Data 'TABLE '" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Column-0' attr='text' /&gt;&lt;column name='Örnek Saati, azalan sırada' attr='text' /&gt;&lt;column name='Başlık, azalan sırada' attr='text' /&gt;&lt;column name='Durum, azalan sırada' attr='text' /&gt;&lt;column name='Oluşturan, azalan sırada' attr='text' /&gt;&lt;column name='Tür, azalan sırada' attr='text' /&gt;&lt;column name='Parametreler' attr='text' /&gt;&lt;column name='Column-7' attr='text' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="766,106" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="0">
+                                <ui:ExtractData.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9e2a2d95-b14c-429f-b2ef-b80da1024e29" InformativeScreenshot="82a4eb54011ace4025d8164e47fd7526" Selector="&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl src='../../AnalyticalReporting/jsp/Shared_History/history.faces?cafWe*' tag='IFRAME' /&gt;&lt;webctrl aria-role='listbox' tag='TABLE' /&gt;" TimeoutMS="120000" WaitForReady="COMPLETE" />
+                                </ui:ExtractData.Target>
+                              </ui:ExtractData>
+                              <ui:IfElseIf sap2010:Annotation.AnnotationText="Pazartesi ve diğer haftaiçi güleri ayrımı" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="766,1723" sap2010:WorkflowViewState.IdRef="IfElseIf_4">
+                                <ui:IfElseIf.ConditionBlocks>
+                                  <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                    <ui:IfElseIfBlock BlockType="If" Condition="[strDayOfWeek.Equals(in_strMonday)]">
+                                      <ui:IfElseIfBlock.Then>
+                                        <Sequence DisplayName="Monday Loop" sap:VirtualizedContainerService.HintSize="242,143" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="IfElseIf_9">
+                                            <ui:IfElseIf.ConditionBlocks>
+                                              <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                <ui:IfElseIfBlock BlockType="If" Condition="[item1.ToString.Contains(&quot;Inbound&quot;) or item1.ToString.Contains(&quot;İşlem Adetleri&quot;)]">
+                                                  <ui:IfElseIfBlock.Then>
+                                                    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="pazartesiye ait  3 adet sample indirilecekler" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="434,220" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[ListMondayDays]">
+                                                      <ui:ForEach.Body>
+                                                        <ActivityAction x:TypeArguments="x:Object">
+                                                          <ActivityAction.Argument>
+                                                            <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+                                                          </ActivityAction.Argument>
+                                                          <Sequence DisplayName="saturday,sunday,Monday" sap:VirtualizedContainerService.HintSize="476,807" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                                            <Sequence.Variables>
+                                                              <Variable x:TypeArguments="x:Boolean" Default="False" Name="BoolSave" />
+                                                              <Variable x:TypeArguments="x:String" Name="strReferans" />
+                                                            </Sequence.Variables>
+                                                            <sap:WorkflowViewStateService.ViewState>
+                                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                              </scg:Dictionary>
+                                                            </sap:WorkflowViewStateService.ViewState>
+                                                            <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_41">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">[strReferans]</OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">[item.ToString +"-"+item1.ToString]</InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <ui:AddQueueItem ServiceBaseAddress="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_2" Priority="Normal" QueueType="[in_strOrchestratorQueueName]" Reference="[strReferans]" TimeoutMS="120000">
+                                                              <ui:AddQueueItem.ItemInformation>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="RaporAdi">[strReferans]</InArgument>
+                                                              </ui:AddQueueItem.ItemInformation>
+                                                            </ui:AddQueueItem>
+                                                            <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Transaction Item" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="GetQueueItem_2" QueueType="[in_strOrchestratorQueueName]" Reference="[strReferans]" TransactionItem="[TransactionItem]" />
+                                                            <ui:FilterDataTable sap2010:Annotation.AnnotationText="itema göre filtreleme" DataTable="[ExtractDataTable]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="434,191" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dtFiltered]" SelectColumnsMode="Keep">
+                                                              <ui:FilterDataTable.Filters>
+                                                                <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                                                  <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
+                                                                    <ui:FilterOperationArgument.Column>
+                                                                      <InArgument x:TypeArguments="x:Int32">[1]</InArgument>
+                                                                    </ui:FilterOperationArgument.Column>
+                                                                    <ui:FilterOperationArgument.Operand>
+                                                                      <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
+                                                                    </ui:FilterOperationArgument.Operand>
+                                                                  </ui:FilterOperationArgument>
+                                                                </scg:List>
+                                                              </ui:FilterDataTable.Filters>
+                                                              <ui:FilterDataTable.SelectColumns>
+                                                                <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                                                  <x:Null />
+                                                                </scg:List>
+                                                              </ui:FilterDataTable.SelectColumns>
+                                                              <sap:WorkflowViewStateService.ViewState>
+                                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                </scg:Dictionary>
+                                                              </sap:WorkflowViewStateService.ViewState>
+                                                            </ui:FilterDataTable>
+                                                            <ui:IfElseIf sap2010:Annotation.AnnotationText="raporun güncel örnek saati bulunmuyorsa datatable'a kayıt atıcaz" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="IfElseIf_23">
+                                                              <ui:IfElseIf.ConditionBlocks>
+                                                                <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                                  <ui:IfElseIfBlock BlockType="If" Condition="[dtFiltered.Rows.Count=0]">
+                                                                    <ui:IfElseIfBlock.Then>
+                                                                      <Sequence DisplayName="RowCount=0 Akışı" sap:VirtualizedContainerService.HintSize="376,334" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                                                        <sap:WorkflowViewStateService.ViewState>
+                                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                          </scg:Dictionary>
+                                                                        </sap:WorkflowViewStateService.ViewState>
+                                                                        <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="List All reports içinde dönen raporun eğer ilgili örnek saati durumu başarılı değilse excele yazılır&#xA;Ekleme sırası {raporAdı,ÖrnekSaati}" ArrayRow="[{item1.ToString,item.ToString}]" DataTable="[dtFailedReports]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,242" sap2010:WorkflowViewState.IdRef="AddDataRow_6">
+                                                                          <sap:WorkflowViewStateService.ViewState>
+                                                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                            </scg:Dictionary>
+                                                                          </sap:WorkflowViewStateService.ViewState>
+                                                                        </ui:AddDataRow>
+                                                                      </Sequence>
+                                                                    </ui:IfElseIfBlock.Then>
+                                                                  </ui:IfElseIfBlock>
+                                                                  <ui:IfElseIfBlock BlockType="Else">
+                                                                    <ui:IfElseIfBlock.Then>
+                                                                      <Sequence DisplayName="Instance Var" sap:VirtualizedContainerService.HintSize="493,1254" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                                                        <sap:WorkflowViewStateService.ViewState>
+                                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                          </scg:Dictionary>
+                                                                        </sap:WorkflowViewStateService.ViewState>
+                                                                        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="451,131" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+                                                                          <ui:MultipleAssign.AssignOperations>
+                                                                            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                                                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_26">
+                                                                                <ui:AssignOperation.To>
+                                                                                  <OutArgument x:TypeArguments="x:String">[strClickInstance]</OutArgument>
+                                                                                </ui:AssignOperation.To>
+                                                                                <ui:AssignOperation.Value>
+                                                                                  <InArgument x:TypeArguments="x:String">[dtFiltered.Rows(0)(1).ToString]</InArgument>
+                                                                                </ui:AssignOperation.Value>
+                                                                              </ui:AssignOperation>
+                                                                              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_27">
+                                                                                <ui:AssignOperation.To>
+                                                                                  <OutArgument x:TypeArguments="x:String">[strReportSaveName]</OutArgument>
+                                                                                </ui:AssignOperation.To>
+                                                                                <ui:AssignOperation.Value>
+                                                                                  <InArgument x:TypeArguments="x:String">[in_strReportsDailyDownloadPath+item.ToString.Substring(0,2)+"-"+strReportName+".xlsx"]</InArgument>
+                                                                                </ui:AssignOperation.Value>
+                                                                              </ui:AssignOperation>
+                                                                            </scg:List>
+                                                                          </ui:MultipleAssign.AssignOperations>
+                                                                        </ui:MultipleAssign>
+                                                                        <ui:IfElseIf sap2010:Annotation.AnnotationText="İşlem adetleri ve Inbound rapor kaydedilen dizin argümana atanması, pazartesi akışı,  cumartesi pazar ve pazartesi" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="451,138" sap2010:WorkflowViewState.IdRef="IfElseIf_17">
+                                                                          <ui:IfElseIf.ConditionBlocks>
+                                                                            <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                                              <ui:IfElseIfBlock BlockType="If" Condition="[item1.ToString.Contains(&quot;İşlem Adetleri Günlük Rapor&quot;) and item.ToString.Equals(strBOToday)]">
+                                                                                <ui:IfElseIfBlock.Then>
+                                                                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+                                                                                    <Assign.To>
+                                                                                      <OutArgument x:TypeArguments="x:String">[out_strIslemAdetleriGunlukExcelPath]</OutArgument>
+                                                                                    </Assign.To>
+                                                                                    <Assign.Value>
+                                                                                      <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                                    </Assign.Value>
+                                                                                  </Assign>
+                                                                                </ui:IfElseIfBlock.Then>
+                                                                              </ui:IfElseIfBlock>
+                                                                              <ui:IfElseIfBlock BlockType="ElseIf" Condition="[item1.ToString.Contains(&quot;Inbound&quot;) and item.ToString.Equals(strBOToday)]">
+                                                                                <ui:IfElseIfBlock.Then>
+                                                                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+                                                                                    <Assign.To>
+                                                                                      <OutArgument x:TypeArguments="x:String">[out_strInBoundVardiyaReportExcelPath]</OutArgument>
+                                                                                    </Assign.To>
+                                                                                    <Assign.Value>
+                                                                                      <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                                    </Assign.Value>
+                                                                                  </Assign>
+                                                                                </ui:IfElseIfBlock.Then>
+                                                                              </ui:IfElseIfBlock>
+                                                                              <ui:IfElseIfBlock BlockType="ElseIf" Condition="[item1.ToString.Contains(&quot;Inbound&quot;) and item.ToString.Equals(strBOSaturday)]">
+                                                                                <ui:IfElseIfBlock.Then>
+                                                                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+                                                                                    <Assign.To>
+                                                                                      <OutArgument x:TypeArguments="x:String">[out_strSaturdayInBoundVardiyaReportExcelPath]</OutArgument>
+                                                                                    </Assign.To>
+                                                                                    <Assign.Value>
+                                                                                      <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                                    </Assign.Value>
+                                                                                  </Assign>
+                                                                                </ui:IfElseIfBlock.Then>
+                                                                              </ui:IfElseIfBlock>
+                                                                              <ui:IfElseIfBlock BlockType="ElseIf" Condition="[item1.ToString.Contains(&quot;İşlem Adetleri Günlük Rapor&quot;) and item.ToString.Equals(strBOSaturday)]">
+                                                                                <ui:IfElseIfBlock.Then>
+                                                                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+                                                                                    <Assign.To>
+                                                                                      <OutArgument x:TypeArguments="x:String">[out_strSaturdayIslemAdetleriGunlukExcelPath]</OutArgument>
+                                                                                    </Assign.To>
+                                                                                    <Assign.Value>
+                                                                                      <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                                    </Assign.Value>
+                                                                                  </Assign>
+                                                                                </ui:IfElseIfBlock.Then>
+                                                                              </ui:IfElseIfBlock>
+                                                                              <ui:IfElseIfBlock BlockType="ElseIf" Condition="[item1.ToString.Contains(&quot;İşlem Adetleri Günlük Rapor&quot;) and item.ToString.Equals(strBOSunday)]">
+                                                                                <ui:IfElseIfBlock.Then>
+                                                                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                                                                    <Assign.To>
+                                                                                      <OutArgument x:TypeArguments="x:String">[out_strSundayIslemAdetleriGunlukExcelPath]</OutArgument>
+                                                                                    </Assign.To>
+                                                                                    <Assign.Value>
+                                                                                      <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                                    </Assign.Value>
+                                                                                  </Assign>
+                                                                                </ui:IfElseIfBlock.Then>
+                                                                              </ui:IfElseIfBlock>
+                                                                              <ui:IfElseIfBlock BlockType="ElseIf" Condition="[item1.ToString.Contains(&quot;Inbound&quot;) And item.ToString.Equals(strBOSunday)]">
+                                                                                <ui:IfElseIfBlock.Then>
+                                                                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_28">
+                                                                                    <Assign.To>
+                                                                                      <OutArgument x:TypeArguments="x:String">[out_strSundayInBoundVardiyaReportExcelPath]</OutArgument>
+                                                                                    </Assign.To>
+                                                                                    <Assign.Value>
+                                                                                      <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                                    </Assign.Value>
+                                                                                  </Assign>
+                                                                                </ui:IfElseIfBlock.Then>
+                                                                              </ui:IfElseIfBlock>
+                                                                            </sc:BindingList>
+                                                                          </ui:IfElseIf.ConditionBlocks>
+                                                                          <sap:WorkflowViewStateService.ViewState>
+                                                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                            </scg:Dictionary>
+                                                                          </sap:WorkflowViewStateService.ViewState>
+                                                                        </ui:IfElseIf>
+                                                                        <ui:IfElseIf sap2010:Annotation.AnnotationText="Pazartesi 3 kez indirilecek raporlar için bu kayıt adımı buarada dönmek zorunda, dtFilterdda 03 bakılması önemli" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="451,813" sap2010:WorkflowViewState.IdRef="IfElseIf_20">
+                                                                          <ui:IfElseIf.ConditionBlocks>
+                                                                            <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                                              <ui:IfElseIfBlock BlockType="If" Condition="[dtFiltered.Rows(0)(3).Equals(&quot;Başarılı&quot;)or dtFiltered.Rows(0)(3).Equals(&quot;Success&quot;)]">
+                                                                                <ui:IfElseIfBlock.Then>
+                                                                                  <Sequence sap:VirtualizedContainerService.HintSize="376,304" sap2010:WorkflowViewState.IdRef="Sequence_80">
+                                                                                    <sap:WorkflowViewStateService.ViewState>
+                                                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                                      </scg:Dictionary>
+                                                                                    </sap:WorkflowViewStateService.ViewState>
+                                                                                    <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+                                                                                      <Assign.To>
+                                                                                        <OutArgument x:TypeArguments="x:Boolean">[BoolSave]</OutArgument>
+                                                                                      </Assign.To>
+                                                                                      <Assign.Value>
+                                                                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                                                                      </Assign.Value>
+                                                                                    </Assign>
+                                                                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SaveProcess workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="INIT_Processes\SaveProcess.xaml">
+                                                                                      <ui:InvokeWorkflowFile.Arguments>
+                                                                                        <InArgument x:TypeArguments="x:String" x:Key="in_strClickInstance">[strClickInstance]</InArgument>
+                                                                                        <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveName">[strReportSaveName]</InArgument>
+                                                                                        <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveWait">[in_strReportSaveWait]</InArgument>
+                                                                                      </ui:InvokeWorkflowFile.Arguments>
+                                                                                    </ui:InvokeWorkflowFile>
+                                                                                  </Sequence>
+                                                                                </ui:IfElseIfBlock.Then>
+                                                                              </ui:IfElseIfBlock>
+                                                                              <ui:IfElseIfBlock BlockType="Else">
+                                                                                <ui:IfElseIfBlock.Then>
+                                                                                  <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="List All reports içinde dönen raporun eğer ilgili örnek saati durumu başarılı değilse excele yazılır&#xA;Ekleme sırası {raporAdı,ÖrnekSaati}" ArrayRow="[{item1.ToString,dtFiltered.Rows(0)(1).ToString}]" DataTable="[dtFailedReports]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,242" sap2010:WorkflowViewState.IdRef="AddDataRow_5">
+                                                                                    <sap:WorkflowViewStateService.ViewState>
+                                                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                                      </scg:Dictionary>
+                                                                                    </sap:WorkflowViewStateService.ViewState>
+                                                                                  </ui:AddDataRow>
+                                                                                </ui:IfElseIfBlock.Then>
+                                                                              </ui:IfElseIfBlock>
+                                                                            </sc:BindingList>
+                                                                          </ui:IfElseIf.ConditionBlocks>
+                                                                          <sap:WorkflowViewStateService.ViewState>
+                                                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                            </scg:Dictionary>
+                                                                          </sap:WorkflowViewStateService.ViewState>
+                                                                        </ui:IfElseIf>
+                                                                      </Sequence>
+                                                                    </ui:IfElseIfBlock.Then>
+                                                                  </ui:IfElseIfBlock>
+                                                                </sc:BindingList>
+                                                              </ui:IfElseIf.ConditionBlocks>
+                                                              <sap:WorkflowViewStateService.ViewState>
+                                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                </scg:Dictionary>
+                                                              </sap:WorkflowViewStateService.ViewState>
+                                                            </ui:IfElseIf>
+                                                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SetTransactionStatus workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Framework\SetTransactionStatus.xaml">
+                                                              <ui:InvokeWorkflowFile.Arguments>
+                                                                <InArgument x:TypeArguments="x:Boolean" x:Key="inBoolSuccess">[BoolSave]</InArgument>
+                                                                <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[TransactionItem]</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="in_strClickInstance">[strClickInstance]</InArgument>
+                                                                <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveName">[strReportSaveName]</InArgument>
+                                                              </ui:InvokeWorkflowFile.Arguments>
+                                                            </ui:InvokeWorkflowFile>
+                                                          </Sequence>
+                                                        </ActivityAction>
+                                                      </ui:ForEach.Body>
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                    </ui:ForEach>
+                                                  </ui:IfElseIfBlock.Then>
+                                                </ui:IfElseIfBlock>
+                                                <ui:IfElseIfBlock BlockType="Else">
+                                                  <ui:IfElseIfBlock.Then>
+                                                    <Sequence DisplayName="Pazartesiye Özel T-2" sap:VirtualizedContainerService.HintSize="476,719" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                                                      <Sequence.Variables>
+                                                        <Variable x:TypeArguments="x:Boolean" Default="False" Name="BoolSave2" />
+                                                        <Variable x:TypeArguments="ui:QueueItem" Name="TransactionItem2" />
+                                                        <Variable x:TypeArguments="x:String" Name="strReferans2" />
+                                                      </Sequence.Variables>
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                      <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_42">
+                                                        <Assign.To>
+                                                          <OutArgument x:TypeArguments="x:String">[strReferans2]</OutArgument>
+                                                        </Assign.To>
+                                                        <Assign.Value>
+                                                          <InArgument x:TypeArguments="x:String">[strBOSaturday +"-"+item1.ToString]</InArgument>
+                                                        </Assign.Value>
+                                                      </Assign>
+                                                      <ui:AddQueueItem ServiceBaseAddress="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_3" Priority="Normal" QueueType="[in_strOrchestratorQueueName]" Reference="[strReferans2]" TimeoutMS="120000">
+                                                        <ui:AddQueueItem.ItemInformation>
+                                                          <InArgument x:TypeArguments="x:String" x:Key="RaporAdi">[strReferans2]</InArgument>
+                                                        </ui:AddQueueItem.ItemInformation>
+                                                      </ui:AddQueueItem>
+                                                      <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Transaction Item" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="GetQueueItem_3" QueueType="[in_strOrchestratorQueueName]" Reference="[strReferans2]" TransactionItem="[TransactionItem2]" />
+                                                      <ui:FilterDataTable DataTable="[ExtractDataTable]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="434,160" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[dtFiltered]" SelectColumnsMode="Keep">
+                                                        <ui:FilterDataTable.Filters>
+                                                          <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                                            <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
+                                                              <ui:FilterOperationArgument.Column>
+                                                                <InArgument x:TypeArguments="x:Int32">[1]</InArgument>
+                                                              </ui:FilterOperationArgument.Column>
+                                                              <ui:FilterOperationArgument.Operand>
+                                                                <InArgument x:TypeArguments="x:String">[strBOSaturday]</InArgument>
+                                                              </ui:FilterOperationArgument.Operand>
+                                                            </ui:FilterOperationArgument>
+                                                          </scg:List>
+                                                        </ui:FilterDataTable.Filters>
+                                                        <ui:FilterDataTable.SelectColumns>
+                                                          <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                                            <x:Null />
+                                                          </scg:List>
+                                                        </ui:FilterDataTable.SelectColumns>
+                                                      </ui:FilterDataTable>
+                                                      <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="434,51" sap2010:WorkflowViewState.IdRef="IfElseIf_33">
+                                                        <ui:IfElseIf.ConditionBlocks>
+                                                          <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                            <ui:IfElseIfBlock BlockType="If" Condition="[dtFiltered.Rows.Count=0]">
+                                                              <ui:IfElseIfBlock.Then>
+                                                                <Sequence DisplayName="Instance Yok" sap:VirtualizedContainerService.HintSize="376,334" sap2010:WorkflowViewState.IdRef="Sequence_67">
+                                                                  <sap:WorkflowViewStateService.ViewState>
+                                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                    </scg:Dictionary>
+                                                                  </sap:WorkflowViewStateService.ViewState>
+                                                                  <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="List All reports içinde dönen raporun eğer ilgili örnek saati durumu başarılı değilse excele yazılır&#xA;Ekleme sırası {raporAdı,ÖrnekSaati}" ArrayRow="[{item1.ToString,strBOSaturday}]" DataTable="[dtFailedReports]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,242" sap2010:WorkflowViewState.IdRef="AddDataRow_8">
+                                                                    <sap:WorkflowViewStateService.ViewState>
+                                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                      </scg:Dictionary>
+                                                                    </sap:WorkflowViewStateService.ViewState>
+                                                                  </ui:AddDataRow>
+                                                                </Sequence>
+                                                              </ui:IfElseIfBlock.Then>
+                                                            </ui:IfElseIfBlock>
+                                                            <ui:IfElseIfBlock BlockType="Else">
+                                                              <ui:IfElseIfBlock.Then>
+                                                                <Sequence DisplayName="Instance var" sap:VirtualizedContainerService.HintSize="473,504" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                                                                  <sap:WorkflowViewStateService.ViewState>
+                                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                    </scg:Dictionary>
+                                                                  </sap:WorkflowViewStateService.ViewState>
+                                                                  <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431,131" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+                                                                    <ui:MultipleAssign.AssignOperations>
+                                                                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                                                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_28">
+                                                                          <ui:AssignOperation.To>
+                                                                            <OutArgument x:TypeArguments="x:String">[strClickInstance]</OutArgument>
+                                                                          </ui:AssignOperation.To>
+                                                                          <ui:AssignOperation.Value>
+                                                                            <InArgument x:TypeArguments="x:String">[dtFiltered.Rows(0)(1).ToString]</InArgument>
+                                                                          </ui:AssignOperation.Value>
+                                                                        </ui:AssignOperation>
+                                                                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_30">
+                                                                          <ui:AssignOperation.To>
+                                                                            <OutArgument x:TypeArguments="x:String">[strReportSaveName]</OutArgument>
+                                                                          </ui:AssignOperation.To>
+                                                                          <ui:AssignOperation.Value>
+                                                                            <InArgument x:TypeArguments="x:String">[in_strReportsDailyDownloadPath+strBOSaturday.ToString.Substring(0,2)+"-"+strReportName+".xlsx"]</InArgument>
+                                                                          </ui:AssignOperation.Value>
+                                                                        </ui:AssignOperation>
+                                                                      </scg:List>
+                                                                    </ui:MultipleAssign.AssignOperations>
+                                                                  </ui:MultipleAssign>
+                                                                  <ui:IfElseIf sap2010:Annotation.AnnotationText="Komisyon ve En çok yapılan 10 raporu için excelpath argüman ataması" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="431,108" sap2010:WorkflowViewState.IdRef="IfElseIf_21">
+                                                                    <ui:IfElseIf.ConditionBlocks>
+                                                                      <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                                        <ui:IfElseIfBlock BlockType="If" Condition="[item1.ToString.Contains(&quot;En Çok Yapılan 10&quot;)]">
+                                                                          <ui:IfElseIfBlock.Then>
+                                                                            <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+                                                                              <Assign.To>
+                                                                                <OutArgument x:TypeArguments="x:String">[out_strEncokYapilan10IslemExcelPath]</OutArgument>
+                                                                              </Assign.To>
+                                                                              <Assign.Value>
+                                                                                <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                              </Assign.Value>
+                                                                            </Assign>
+                                                                          </ui:IfElseIfBlock.Then>
+                                                                        </ui:IfElseIfBlock>
+                                                                        <ui:IfElseIfBlock BlockType="ElseIf" Condition="[item1.ToString.Contains(&quot;Komisyon&quot;)]">
+                                                                          <ui:IfElseIfBlock.Then>
+                                                                            <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_30">
+                                                                              <Assign.To>
+                                                                                <OutArgument x:TypeArguments="x:String">[out_strKomisyonRaporuExcelPath]</OutArgument>
+                                                                              </Assign.To>
+                                                                              <Assign.Value>
+                                                                                <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                              </Assign.Value>
+                                                                            </Assign>
+                                                                          </ui:IfElseIfBlock.Then>
+                                                                        </ui:IfElseIfBlock>
+                                                                      </sc:BindingList>
+                                                                    </ui:IfElseIf.ConditionBlocks>
+                                                                    <sap:WorkflowViewStateService.ViewState>
+                                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                      </scg:Dictionary>
+                                                                    </sap:WorkflowViewStateService.ViewState>
+                                                                  </ui:IfElseIf>
+                                                                  <ui:IfElseIf sap2010:Annotation.AnnotationText="Rapor örneği başarılı ise raporu kaydetme adımları" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="431,93" sap2010:WorkflowViewState.IdRef="IfElseIf_29">
+                                                                    <ui:IfElseIf.ConditionBlocks>
+                                                                      <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                                        <ui:IfElseIfBlock BlockType="If" Condition="[dtFiltered.Rows(0)(3).Equals(&quot;Başarılı&quot;)or dtFiltered.Rows(0)(3).Equals(&quot;Success&quot;)]">
+                                                                          <ui:IfElseIfBlock.Then>
+                                                                            <Sequence DisplayName="success" sap:VirtualizedContainerService.HintSize="376,304" sap2010:WorkflowViewState.IdRef="Sequence_77">
+                                                                              <sap:WorkflowViewStateService.ViewState>
+                                                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                                </scg:Dictionary>
+                                                                              </sap:WorkflowViewStateService.ViewState>
+                                                                              <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_39">
+                                                                                <Assign.To>
+                                                                                  <OutArgument x:TypeArguments="x:Boolean">[BoolSave2]</OutArgument>
+                                                                                </Assign.To>
+                                                                                <Assign.Value>
+                                                                                  <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                                                                </Assign.Value>
+                                                                              </Assign>
+                                                                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SaveProcess workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="INIT_Processes\SaveProcess.xaml">
+                                                                                <ui:InvokeWorkflowFile.Arguments>
+                                                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strClickInstance">[strClickInstance]</InArgument>
+                                                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveName">[strReportSaveName]</InArgument>
+                                                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveWait">[in_strReportSaveWait]</InArgument>
+                                                                                </ui:InvokeWorkflowFile.Arguments>
+                                                                              </ui:InvokeWorkflowFile>
+                                                                            </Sequence>
+                                                                          </ui:IfElseIfBlock.Then>
+                                                                        </ui:IfElseIfBlock>
+                                                                        <ui:IfElseIfBlock BlockType="Else">
+                                                                          <ui:IfElseIfBlock.Then>
+                                                                            <Sequence DisplayName="Failed" sap:VirtualizedContainerService.HintSize="376,334" sap2010:WorkflowViewState.IdRef="Sequence_76">
+                                                                              <sap:WorkflowViewStateService.ViewState>
+                                                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                                </scg:Dictionary>
+                                                                              </sap:WorkflowViewStateService.ViewState>
+                                                                              <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="List All reports içinde dönen raporun eğer ilgili örnek saati durumu başarılı değilse excele yazılır&#xA;Ekleme sırası {raporAdı,ÖrnekSaati}" ArrayRow="[{item1.ToString,dtFiltered.Rows(0)(1).ToString}]" DataTable="[dtFailedReports]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,242" sap2010:WorkflowViewState.IdRef="AddDataRow_7">
+                                                                                <sap:WorkflowViewStateService.ViewState>
+                                                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                                  </scg:Dictionary>
+                                                                                </sap:WorkflowViewStateService.ViewState>
+                                                                              </ui:AddDataRow>
+                                                                            </Sequence>
+                                                                          </ui:IfElseIfBlock.Then>
+                                                                        </ui:IfElseIfBlock>
+                                                                      </sc:BindingList>
+                                                                    </ui:IfElseIf.ConditionBlocks>
+                                                                    <sap:WorkflowViewStateService.ViewState>
+                                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                      </scg:Dictionary>
+                                                                    </sap:WorkflowViewStateService.ViewState>
+                                                                  </ui:IfElseIf>
+                                                                </Sequence>
+                                                              </ui:IfElseIfBlock.Then>
+                                                            </ui:IfElseIfBlock>
+                                                          </sc:BindingList>
+                                                        </ui:IfElseIf.ConditionBlocks>
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                      </ui:IfElseIf>
+                                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SetTransactionStatus workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Framework\SetTransactionStatus.xaml">
+                                                        <ui:InvokeWorkflowFile.Arguments>
+                                                          <InArgument x:TypeArguments="x:Boolean" x:Key="inBoolSuccess">[BoolSave2]</InArgument>
+                                                          <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[TransactionItem2]</InArgument>
+                                                          <InArgument x:TypeArguments="x:String" x:Key="in_strClickInstance">[strClickInstance]</InArgument>
+                                                          <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveName">[strReportSaveName]</InArgument>
+                                                        </ui:InvokeWorkflowFile.Arguments>
+                                                      </ui:InvokeWorkflowFile>
+                                                    </Sequence>
+                                                  </ui:IfElseIfBlock.Then>
+                                                </ui:IfElseIfBlock>
+                                              </sc:BindingList>
+                                            </ui:IfElseIf.ConditionBlocks>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:IfElseIf>
+                                        </Sequence>
+                                      </ui:IfElseIfBlock.Then>
+                                    </ui:IfElseIfBlock>
+                                    <ui:IfElseIfBlock BlockType="Else">
+                                      <ui:IfElseIfBlock.Then>
+                                        <Sequence DisplayName="Other WeekDay" sap:VirtualizedContainerService.HintSize="586,1324" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                                          <Sequence.Variables>
+                                            <Variable x:TypeArguments="x:Boolean" Default="False" Name="BoolSave3" />
+                                            <Variable x:TypeArguments="ui:QueueItem" Name="TransactionItem3" />
+                                            <Variable x:TypeArguments="x:String" Name="strReferans3" />
+                                          </Sequence.Variables>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign sap:VirtualizedContainerService.HintSize="544,60" sap2010:WorkflowViewState.IdRef="Assign_43">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[strReferans3]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[strBOToday+"-"+item1.ToString]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <ui:AddQueueItem ServiceBaseAddress="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="544,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_4" Priority="Normal" QueueType="[in_strOrchestratorQueueName]" Reference="[strReferans3]" TimeoutMS="120000">
+                                            <ui:AddQueueItem.ItemInformation>
+                                              <InArgument x:TypeArguments="x:String" x:Key="RaporAdi">[strReferans3]</InArgument>
+                                            </ui:AddQueueItem.ItemInformation>
+                                          </ui:AddQueueItem>
+                                          <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Transaction Item" sap:VirtualizedContainerService.HintSize="544,22" sap2010:WorkflowViewState.IdRef="GetQueueItem_4" QueueType="[in_strOrchestratorQueueName]" Reference="[strReferans3]" TransactionItem="[TransactionItem3]" />
+                                          <ui:FilterDataTable sap2010:Annotation.AnnotationText="itema göre filtreleme" DataTable="[ExtractDataTable]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="544,191" sap2010:WorkflowViewState.IdRef="FilterDataTable_3" OutputDataTable="[dtFiltered]" SelectColumnsMode="Keep">
+                                            <ui:FilterDataTable.Filters>
+                                              <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                                <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
+                                                  <ui:FilterOperationArgument.Column>
+                                                    <InArgument x:TypeArguments="x:Int32">[1]</InArgument>
+                                                  </ui:FilterOperationArgument.Column>
+                                                  <ui:FilterOperationArgument.Operand>
+                                                    <InArgument x:TypeArguments="x:String">[strBOToday]</InArgument>
+                                                  </ui:FilterOperationArgument.Operand>
+                                                </ui:FilterOperationArgument>
+                                              </scg:List>
+                                            </ui:FilterDataTable.Filters>
+                                            <ui:FilterDataTable.SelectColumns>
+                                              <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                                <x:Null />
+                                              </scg:List>
+                                            </ui:FilterDataTable.SelectColumns>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:FilterDataTable>
+                                          <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="544,625" sap2010:WorkflowViewState.IdRef="IfElseIf_34">
+                                            <ui:IfElseIf.ConditionBlocks>
+                                              <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                <ui:IfElseIfBlock BlockType="If" Condition="[dtFiltered.Rows.Count=0]">
+                                                  <ui:IfElseIfBlock.Then>
+                                                    <Sequence DisplayName="RowCount=0" sap:VirtualizedContainerService.HintSize="376,334" sap2010:WorkflowViewState.IdRef="Sequence_73">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                      <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="List All reports içinde dönen raporun eğer ilgili örnek saati durumu başarılı değilse excele yazılır&#xA;Ekleme sırası {raporAdı,ÖrnekSaati}" ArrayRow="[{item1.ToString,strBOToday}]" DataTable="[dtFailedReports]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,242" sap2010:WorkflowViewState.IdRef="AddDataRow_9">
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                      </ui:AddDataRow>
+                                                    </Sequence>
+                                                  </ui:IfElseIfBlock.Then>
+                                                </ui:IfElseIfBlock>
+                                                <ui:IfElseIfBlock BlockType="Else">
+                                                  <ui:IfElseIfBlock.Then>
+                                                    <Sequence DisplayName="instance var" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_74">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                      <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="451,131" sap2010:WorkflowViewState.IdRef="MultipleAssign_6">
+                                                        <ui:MultipleAssign.AssignOperations>
+                                                          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_32">
+                                                              <ui:AssignOperation.To>
+                                                                <OutArgument x:TypeArguments="x:String">[strReportSaveName]</OutArgument>
+                                                              </ui:AssignOperation.To>
+                                                              <ui:AssignOperation.Value>
+                                                                <InArgument x:TypeArguments="x:String">[in_strReportsDailyDownloadPath+strBOToday.ToString.Substring(0,2)+"-"+strReportName+".xlsx"]</InArgument>
+                                                              </ui:AssignOperation.Value>
+                                                            </ui:AssignOperation>
+                                                            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_33">
+                                                              <ui:AssignOperation.To>
+                                                                <OutArgument x:TypeArguments="x:String">[strClickInstance]</OutArgument>
+                                                              </ui:AssignOperation.To>
+                                                              <ui:AssignOperation.Value>
+                                                                <InArgument x:TypeArguments="x:String">[dtFiltered.Rows(0)(1).ToString]</InArgument>
+                                                              </ui:AssignOperation.Value>
+                                                            </ui:AssignOperation>
+                                                          </scg:List>
+                                                        </ui:MultipleAssign.AssignOperations>
+                                                      </ui:MultipleAssign>
+                                                      <ui:IfElseIf sap2010:Annotation.AnnotationText="4 rapor için rapor kaydedilmesine göre argümana ataması" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="451,825" sap2010:WorkflowViewState.IdRef="IfElseIf_22">
+                                                        <ui:IfElseIf.ConditionBlocks>
+                                                          <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                            <ui:IfElseIfBlock BlockType="If" Condition="[item1.ToString.Contains(&quot;Inbound&quot;)]">
+                                                              <ui:IfElseIfBlock.Then>
+                                                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                                                  <Assign.To>
+                                                                    <OutArgument x:TypeArguments="x:String">[out_strInBoundVardiyaReportExcelPath]</OutArgument>
+                                                                  </Assign.To>
+                                                                  <Assign.Value>
+                                                                    <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                  </Assign.Value>
+                                                                </Assign>
+                                                              </ui:IfElseIfBlock.Then>
+                                                            </ui:IfElseIfBlock>
+                                                            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[item1.ToString.Contains(&quot;En Çok Yapılan 10&quot;)]">
+                                                              <ui:IfElseIfBlock.Then>
+                                                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_33">
+                                                                  <Assign.To>
+                                                                    <OutArgument x:TypeArguments="x:String">[out_strEncokYapilan10IslemExcelPath]</OutArgument>
+                                                                  </Assign.To>
+                                                                  <Assign.Value>
+                                                                    <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                  </Assign.Value>
+                                                                </Assign>
+                                                              </ui:IfElseIfBlock.Then>
+                                                            </ui:IfElseIfBlock>
+                                                            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[item1.ToString.Contains(&quot;İşlem Adetleri&quot;)]">
+                                                              <ui:IfElseIfBlock.Then>
+                                                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+                                                                  <Assign.To>
+                                                                    <OutArgument x:TypeArguments="x:String">[out_strIslemAdetleriGunlukExcelPath]</OutArgument>
+                                                                  </Assign.To>
+                                                                  <Assign.Value>
+                                                                    <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                  </Assign.Value>
+                                                                </Assign>
+                                                              </ui:IfElseIfBlock.Then>
+                                                            </ui:IfElseIfBlock>
+                                                            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[item1.ToString.Contains(&quot;Komisyon&quot;)]">
+                                                              <ui:IfElseIfBlock.Then>
+                                                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                                                                  <Assign.To>
+                                                                    <OutArgument x:TypeArguments="x:String">[out_strKomisyonRaporuExcelPath]</OutArgument>
+                                                                  </Assign.To>
+                                                                  <Assign.Value>
+                                                                    <InArgument x:TypeArguments="x:String">[strReportSaveName]</InArgument>
+                                                                  </Assign.Value>
+                                                                </Assign>
+                                                              </ui:IfElseIfBlock.Then>
+                                                            </ui:IfElseIfBlock>
+                                                          </sc:BindingList>
+                                                        </ui:IfElseIf.ConditionBlocks>
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                      </ui:IfElseIf>
+                                                      <ui:IfElseIf sap2010:Annotation.AnnotationText="Rapor örneği başarılı ise raporu kaydetme adımları" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="451,93" sap2010:WorkflowViewState.IdRef="IfElseIf_35">
+                                                        <ui:IfElseIf.ConditionBlocks>
+                                                          <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                            <ui:IfElseIfBlock BlockType="If" Condition="[dtFiltered.Rows(0)(3).Equals(&quot;Başarılı&quot;)or dtFiltered.Rows(0)(3).Equals(&quot;Success&quot;)]">
+                                                              <ui:IfElseIfBlock.Then>
+                                                                <Sequence DisplayName="Success" sap:VirtualizedContainerService.HintSize="376,304" sap2010:WorkflowViewState.IdRef="Sequence_79">
+                                                                  <sap:WorkflowViewStateService.ViewState>
+                                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                    </scg:Dictionary>
+                                                                  </sap:WorkflowViewStateService.ViewState>
+                                                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SaveProcess workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="INIT_Processes\SaveProcess.xaml">
+                                                                    <ui:InvokeWorkflowFile.Arguments>
+                                                                      <InArgument x:TypeArguments="x:String" x:Key="in_strClickInstance">[strClickInstance]</InArgument>
+                                                                      <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveName">[strReportSaveName]</InArgument>
+                                                                      <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveWait">[in_strReportSaveWait]</InArgument>
+                                                                    </ui:InvokeWorkflowFile.Arguments>
+                                                                  </ui:InvokeWorkflowFile>
+                                                                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_40">
+                                                                    <Assign.To>
+                                                                      <OutArgument x:TypeArguments="x:Boolean">[BoolSave3]</OutArgument>
+                                                                    </Assign.To>
+                                                                    <Assign.Value>
+                                                                      <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                                                    </Assign.Value>
+                                                                  </Assign>
+                                                                </Sequence>
+                                                              </ui:IfElseIfBlock.Then>
+                                                            </ui:IfElseIfBlock>
+                                                            <ui:IfElseIfBlock BlockType="Else">
+                                                              <ui:IfElseIfBlock.Then>
+                                                                <Sequence DisplayName="Failed" sap:VirtualizedContainerService.HintSize="376,334" sap2010:WorkflowViewState.IdRef="Sequence_78">
+                                                                  <sap:WorkflowViewStateService.ViewState>
+                                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                    </scg:Dictionary>
+                                                                  </sap:WorkflowViewStateService.ViewState>
+                                                                  <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="List All reports içinde dönen raporun eğer ilgili örnek saati durumu başarılı değilse excele yazılır&#xA;Ekleme sırası {raporAdı,ÖrnekSaati}" ArrayRow="[{item1.ToString,dtFiltered.Rows(0)(1).ToString}]" DataTable="[dtFailedReports]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,242" sap2010:WorkflowViewState.IdRef="AddDataRow_10">
+                                                                    <sap:WorkflowViewStateService.ViewState>
+                                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                                      </scg:Dictionary>
+                                                                    </sap:WorkflowViewStateService.ViewState>
+                                                                  </ui:AddDataRow>
+                                                                </Sequence>
+                                                              </ui:IfElseIfBlock.Then>
+                                                            </ui:IfElseIfBlock>
+                                                          </sc:BindingList>
+                                                        </ui:IfElseIf.ConditionBlocks>
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                      </ui:IfElseIf>
+                                                    </Sequence>
+                                                  </ui:IfElseIfBlock.Then>
+                                                </ui:IfElseIfBlock>
+                                              </sc:BindingList>
+                                            </ui:IfElseIf.ConditionBlocks>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </ui:IfElseIf>
+                                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SetTransactionStatus workflow" sap:VirtualizedContainerService.HintSize="544,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Framework\SetTransactionStatus.xaml">
+                                            <ui:InvokeWorkflowFile.Arguments>
+                                              <InArgument x:TypeArguments="x:Boolean" x:Key="inBoolSuccess">[BoolSave3]</InArgument>
+                                              <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[TransactionItem3]</InArgument>
+                                              <InArgument x:TypeArguments="x:String" x:Key="in_strClickInstance">[strClickInstance]</InArgument>
+                                              <InArgument x:TypeArguments="x:String" x:Key="in_strReportSaveName">[strReportSaveName]</InArgument>
+                                            </ui:InvokeWorkflowFile.Arguments>
+                                          </ui:InvokeWorkflowFile>
+                                        </Sequence>
+                                      </ui:IfElseIfBlock.Then>
+                                    </ui:IfElseIfBlock>
+                                  </sc:BindingList>
+                                </ui:IfElseIf.ConditionBlocks>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:IfElseIf>
+                              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="Rapor gerekli örnekler kaydedildikten sonra örnek listesinin kapatılması" ClickType="CLICK_SINGLE" ContinueOnError="True" DelayMS="1000" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="766,148" sap2010:WorkflowViewState.IdRef="Click_23" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                <ui:Click.CursorPosition>
+                                  <ui:CursorPosition Position="Center">
+                                    <ui:CursorPosition.OffsetX>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:CursorPosition.OffsetX>
+                                    <ui:CursorPosition.OffsetY>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:CursorPosition.OffsetY>
+                                  </ui:CursorPosition>
+                                </ui:Click.CursorPosition>
+                                <ui:Click.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="398491be-ae99-461f-856b-4afae36c25db" InformativeScreenshot="7b1935949a9845b1895eeae2b6480771" Selector="&lt;html app='chrome.exe' url='http://kdsrapor:8080/*' /&gt;&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl tag='SPAN' class='container-close' /&gt;" TimeoutMS="2000" WaitForReady="COMPLETE" />
+                                </ui:Click.Target>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:Click>
+                            </Sequence>
+                          </ui:IfElseIfBlock.Then>
+                        </ui:IfElseIfBlock>
+                      </sc:BindingList>
+                    </ui:IfElseIf.ConditionBlocks>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:IfElseIf>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BrowserScope>
+    <ui:IfElseIf sap2010:Annotation.AnnotationText="Eğer dtFailedReporta item eklenmişse" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="971,93" sap2010:WorkflowViewState.IdRef="IfElseIf_25">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[dtFailedReports.Rows.Count=0]">
+            <ui:IfElseIfBlock.Then>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Rapor indirme işlemleri başarıyla tamamlandı&quot;]" />
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+          <ui:IfElseIfBlock BlockType="Else">
+            <ui:IfElseIfBlock.Then>
+              <Sequence DisplayName="We got failed reports" sap:VirtualizedContainerService.HintSize="476,699" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,87" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[&quot;Hata alınan veya örnek saati başarılı olmayan raporlar &quot;+strFailedReportExcelPath+&quot; adresindeki excele kaydedildi.&quot;]" />
+                <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="dtFailedReports excele yazılır" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,319" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="30000" Visible="False" Workbook="[WBFailedExcel]" WorkbookPath="[strFailedReportExcelPath]">
+                  <ui:ExcelApplicationScope.Body>
+                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtFailedReports]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_3" SheetName="[WBFailedExcel.GetSheets(0)]" StartingCell="A1" />
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ExcelApplicationScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ExcelApplicationScope>
+                <ui:ExcelCloseWorkbook DisplayName="Close Workbook" sap:VirtualizedContainerService.HintSize="434,59" sap2010:WorkflowViewState.IdRef="ExcelCloseWorkbook_1" Workbook="[WBFailedExcel]" />
+                <Throw DisplayName="Throw(BRE)" Exception="[new BusinessRuleException(&quot;Örnek Saatinin statüsü Başarısız olan raporlar bulunmaktadır&quot;)]" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+              </Sequence>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:IfElseIf>
+  </Sequence>
+</Activity>

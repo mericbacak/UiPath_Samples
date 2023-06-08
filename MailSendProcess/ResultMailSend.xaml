@@ -1,0 +1,433 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ResultMailSend" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="&quot;https://mail.halkbank.com.tr/ews/exchange.asmx&quot;" Name="in_strExchangeServer" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;halkgen&quot;" Name="in_strExchangeDomain" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="new system.Net.NetworkCredential(&quot;&quot;, “sU6iY8wB”).SecurePassword" Name="in_sstrOutlookPass" Type="InArgument(ss:SecureString)" />
+    <x:Property Name="in_strOutlookUsername" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\KÇMT_HizmetSeviyesi.png&quot;" Name="in_strKCMTHizmetseviyesiPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\HizmetSeviyesi.png&quot;" Name="in_strHizmetSeviyesiPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\CallCenterIslemleri.png&quot;" Name="in_strCallCenterIslemleriPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\IVRİşlemleri.png&quot;" Name="in_strIVRIslemleriPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\MusteriDagilimi.png&quot;" Name="in_strMusteriDagilimiPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\DialogUyeligi.png&quot;" Name="in_strDialogUyeligiPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\İşlemAdetleri.png&quot;" Name="in_strIslemAdetleriPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\İşlemOranlari.png&quot;" Name="in_strIslemOranlariPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\IVRÇagriGelisimi.png&quot;" Name="in_strIVRCagriGelisimiPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\CallCenterCagriGelisimi.png&quot;" Name="in_strCallCenterCagriGelisimiPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\ÇağrıOranlari.png&quot;" Name="in_strCagriOranlariPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\KarsilamaOrani.png&quot;" Name="in_strKarsilamaOraniPicPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;Z:\BELGELERIM\CA1GSGB\My Documents\Downloads\EXCEL\Şubat_2023.xlsx&quot;" Name="in_strVardiyoRaporuExcelPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\INPUT\RPA034_988_InBound\InBound VARDİYA RAPORU\GÜNLÜK\Eylül'22 InBound Vardiya Raporu.xlsx&quot;" Name="in_strAylikInboundVardiyaRaporuExcelPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;&lt;html&gt;  &lt;head&gt;   &lt;style&gt; .title{ background-color:blue; color:purple } table, th, td { border: 1px solid; border-collapse: collapse; border-color:black; text-align:center; font-size: 12px; font-family:'Calibri'; font-weight:Bold; padding:7px; }.title2{ background-color:#A9A9A9; color: black; font-family:'Calibri'; font-size: 14px } .title3{ background-color:#2086C9; color: white; font-family:'Calibri'; font-weight:Bold;font-size: 14px } .title4{ background:#F7FF0A; color: black; font-family:'Calibri'; font-weight:Bold;font-size: 14px}  .title5{ background:white; }   &lt;/style&gt;  &lt;/head&gt; &lt;body&gt;   &lt;table  border='1' width='50%'&gt;&lt;tr&gt; &lt;td   Class='title3' colspan='8'&gt; Komisyon Alınan İşlemler&lt;/td&gt; &lt;/tr&gt;  &lt;tr&gt;  &lt;td Class='title2'&gt; Açıklama  &lt;/td&gt;  &lt;td Class='title2' colspan='2'&gt; İşlem Açıklaması &lt;/td&gt;  &lt;td Class='title2'&gt; Gönderilen Tutar  &lt;/td&gt;  &lt;td Class='title2'&gt;  Komisyon Tutarı &lt;/td&gt;   &lt;td Class='title2'&gt; Gönderen Hesap Döviz Cinsi  &lt;/td&gt; &lt;td Class='title2'&gt;  Toplam Müşteri Adedi &lt;/td&gt;     &lt;td Class='title2'&gt;  Toplam İşlem Adedi &lt;/td&gt;   &lt;/tr&gt;  &lt;tr&gt;    &lt;td Class='title5'&gt; DİĞER &lt;/td&gt;    &lt;td Class='title5' colspan='2'&gt; Doğalgaz Faturası Ödeme &lt;/td&gt;    &lt;td Class='title5'&gt; 119 &lt;/td&gt;  &lt;td Class='title5'&gt; 3.04 &lt;/td&gt;&lt;td Class='title5'&gt; TL &lt;/td&gt;     &lt;td Class='title5'&gt; 2 &lt;/td&gt;    &lt;td Class='title5'&gt; 2 &lt;/td&gt;   &lt;/tr&gt; &lt;tr&gt;    &lt;td Class='title5'&gt; DİĞER &lt;/td&gt;    &lt;td Class='title5' colspan='2'&gt; Elektrik Ödemesi &lt;/td&gt;    &lt;td Class='title5'&gt; 2,085 &lt;/td&gt;  &lt;td Class='title5'&gt; 31.50 &lt;/td&gt;&lt;td Class='title5'&gt; TL &lt;/td&gt;     &lt;td Class='title5'&gt; 8 &lt;/td&gt;    &lt;td Class='title5'&gt; 9 &lt;/td&gt;   &lt;/tr&gt; &lt;tr&gt;    &lt;td Class='title5'&gt; DİĞER &lt;/td&gt;    &lt;td Class='title5' colspan='2'&gt; GSM Ödemesi &lt;/td&gt;    &lt;td Class='title5'&gt; 1,444 &lt;/td&gt;  &lt;td Class='title5'&gt; 22.95 &lt;/td&gt;&lt;td Class='title5'&gt; TL &lt;/td&gt;     &lt;td Class='title5'&gt; 5 &lt;/td&gt;    &lt;td Class='title5'&gt; 6 &lt;/td&gt;   &lt;/tr&gt; &lt;tr&gt;    &lt;td Class='title5'&gt; DİĞER &lt;/td&gt;    &lt;td Class='title5' colspan='2'&gt; HGS Ürüne Bakiye Yükleme &lt;/td&gt;    &lt;td Class='title5'&gt; 100 &lt;/td&gt;  &lt;td Class='title5'&gt; 1.49 &lt;/td&gt;&lt;td Class='title5'&gt; TL &lt;/td&gt;     &lt;td Class='title5'&gt; 1 &lt;/td&gt;    &lt;td Class='title5'&gt; 1 &lt;/td&gt;   &lt;/tr&gt; &lt;tr&gt;    &lt;td Class='title5'&gt; EFT &lt;/td&gt;    &lt;td Class='title5' colspan='2'&gt; Hesaba EFT &lt;/td&gt;    &lt;td Class='title5'&gt; 376,288 &lt;/td&gt;  &lt;td Class='title5'&gt; 505.76 &lt;/td&gt;&lt;td Class='title5'&gt; TL &lt;/td&gt;     &lt;td Class='title5'&gt; 36 &lt;/td&gt;    &lt;td Class='title5'&gt; 39 &lt;/td&gt;   &lt;/tr&gt; &lt;tr&gt;    &lt;td Class='title5'&gt; EFT &lt;/td&gt;    &lt;td Class='title5' colspan='2'&gt; IBAN’a FAST &lt;/td&gt;    &lt;td Class='title5'&gt; 97,422 &lt;/td&gt;  &lt;td Class='title5'&gt; 680.57 &lt;/td&gt;&lt;td Class='title5'&gt; TL &lt;/td&gt;     &lt;td Class='title5'&gt; 43 &lt;/td&gt;    &lt;td Class='title5'&gt; 53 &lt;/td&gt;   &lt;/tr&gt; &lt;tr&gt;    &lt;td Class='title5'&gt; EFT &lt;/td&gt;    &lt;td Class='title5' colspan='2'&gt; Kart a EFT &lt;/td&gt;    &lt;td Class='title5'&gt; 9,768 &lt;/td&gt;  &lt;td Class='title5'&gt; 29.94 &lt;/td&gt;&lt;td Class='title5'&gt; TL &lt;/td&gt;     &lt;td Class='title5'&gt; 3 &lt;/td&gt;    &lt;td Class='title5'&gt; 3 &lt;/td&gt;   &lt;/tr&gt; &lt;tr&gt;    &lt;td Class='title5'&gt; EFT &lt;/td&gt;    &lt;td Class='title5' colspan='2'&gt; KOLAS ile FAST &lt;/td&gt;    &lt;td Class='title5'&gt; 288 &lt;/td&gt;  &lt;td Class='title5'&gt; 12.08 &lt;/td&gt;&lt;td Class='title5'&gt; TL &lt;/td&gt;     &lt;td Class='title5'&gt; 1 &lt;/td&gt;    &lt;td Class='title5'&gt; 1 &lt;/td&gt;   &lt;/tr&gt; &lt;tr&gt;    &lt;td Class='title5'&gt; HAVALE &lt;/td&gt;    &lt;td Class='title5' colspan='2'&gt; Başka Hesaba Havale &lt;/td&gt;    &lt;td Class='title5'&gt; 948 &lt;/td&gt;  &lt;td Class='title5'&gt; 1.58 &lt;/td&gt;&lt;td Class='title5'&gt; TL &lt;/td&gt;     &lt;td Class='title5'&gt; 1 &lt;/td&gt;    &lt;td Class='title5'&gt; 1 &lt;/td&gt;   &lt;/tr&gt; &lt;tr&gt;    &lt;td Class='title5'&gt; HAVALE &lt;/td&gt;    &lt;td Class='title5' colspan='2'&gt; IBANa Havale &lt;/td&gt;    &lt;td Class='title5'&gt; 761,619 &lt;/td&gt;  &lt;td Class='title5'&gt; 43.60 &lt;/td&gt;&lt;td Class='title5'&gt; TL &lt;/td&gt;     &lt;td Class='title5'&gt; 11 &lt;/td&gt;    &lt;td Class='title5'&gt; 11 &lt;/td&gt;   &lt;/tr&gt; &lt;tr&gt;   &lt;td Class='title4' colspan='3'&gt; TOPLAM&lt;/td&gt; &lt;td Class='title4'&gt; 1,250,082 &lt;/td&gt;   &lt;td Class='title4'&gt; 1,333 &lt;/td&gt;    &lt;td Class='title4'&gt; TL &lt;/td&gt;  &lt;td Class='title4'&gt; 111 &lt;/td&gt;  &lt;td Class='title4'&gt; 126 &lt;/td&gt;    &lt;/tr&gt;&lt;/html&gt;&quot;" Name="in_htmlKomisyon" Type="InArgument(x:String)" />
+    <x:Property Name="in_strTalepSahibiCC" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;Meric.BACAK@halkbank.com.tr&quot;" Name="in_strTalepSahibiMailTo" Type="InArgument(x:String)" />
+    <x:Property Name="in_strTalepSahibiBCC" Type="InArgument(x:String)" />
+    <x:Property Name="in_strMonday" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;86.627&quot;" Name="in_strFridayMusteriCount" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;70.161&quot;" Name="in_strSaturdayMusteriCount" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;102.626&quot;" Name="in_strYesterdayMusteriCount" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;Z:\BELGELERIM\CA1GSGB\My Documents\Downloads\CBT_THY\&quot;" Name="in_strExcelDailyDownloadPath" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1153,3404</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ResultMailSend_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="72">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>Microsoft.Exchange.WebServices.Data</x:String>
+      <x:String>UiPath.Mail.Exchange</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>Microsoft.Exchange.WebServices</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ResultMailSend" sap:VirtualizedContainerService.HintSize="582,3339" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strMonth" />
+      <Variable x:TypeArguments="x:String" Name="strYear" />
+      <Variable x:TypeArguments="x:String" Name="strFriday" />
+      <Variable x:TypeArguments="x:String" Name="strSaturday" />
+      <Variable x:TypeArguments="x:String" Name="strYesterday" />
+      <Variable x:TypeArguments="x:String" Name="strYearLast2" />
+      <Variable x:TypeArguments="x:String" Name="strSubjectPazartesi" />
+      <Variable x:TypeArguments="x:String" Name="strSubject" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="520,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,288" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="width='800' height='600',  isboyhtml'de aşapı in &lt;br&gt;" Body="21 Ocak’22 Segment İşlem ve Genel Üyelik bazında müşteri dağılımı aşağıdaki gibidir. &lt;br&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;br&gt;&lt;img src='\\Trpafs01\rpa001\TEST\INPUT\RPA034_988_InBound\test.png' alt='test'&gt;&lt;/body&gt;&lt;/html&gt;" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="338,177" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="img test" To="Meric.BACAK@halkbank.com.tr;Seyma.GUNTEKIN@halkbank.com.tr">
+            <ui:SendOutlookMail.Files>
+              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4" />
+            </ui:SendOutlookMail.Files>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:SendOutlookMail>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,92" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Sabit Vardiya exceli &amp;&amp; &quot;+in_strVardiyoRaporuExcelPath+&quot; işlenen günlük vardiya exceli !!&quot;+in_strAylikInboundVardiyaRaporuExcelPath]" />
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="520,256" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strMonth]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("tr")).ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strYear]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("yyyy")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strFriday]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.Now.AddDays(-3).ToString("dd")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strSaturday]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.Now.AddDays(-2).ToString("dd")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strYesterday]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.Now.AddDays(-1).ToString("dd")]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strYearLast2]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[strYear.Substring(strYear.Length-2)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MultipleAssign>
+    <If Condition="[DateTime.now.Day.ToString.Equals(&quot;1&quot;)]" sap:VirtualizedContainerService.HintSize="520,249" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Assign sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[strMonth]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[DateTime.Now.AddDays(-1).ToString("MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("tr")).ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="520,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strSubjectPazartesi]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[strFriday+"-"+strSaturday+"-"+strYesterday+" "+strMonth+"'"+strYearLast2+""]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strSubject]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[strYesterday+" "+strMonth+"'"+strYearLast2+""]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
+    <ui:CopyFile ContinueOnError="{x:Null}" Destination="[in_strExcelDailyDownloadPath]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="520,158" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[in_strVardiyoRaporuExcelPath]" />
+    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="520,617" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[Directory.GetFiles(in_strExcelDailyDownloadPath)]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+          </ActivityAction.Argument>
+          <If Condition="[item.ToString.Contains(&quot;.xlsx&quot;) and (item.ToString.Contains(strMonth)or item.ToString.Contains(strMonth.ToUpper)) and item.ToString.Contains(strYear)]" sap:VirtualizedContainerService.HintSize="484,492" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Sequence DisplayName="Detection" sap:VirtualizedContainerService.HintSize="400,304" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[in_strVardiyoRaporuExcelPath]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,92" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Kopyalama işleminde sonra bulunan vardiya rapor dizini: &quot;+in_strVardiyoRaporuExcelPath]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="520,1098" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[DateTime.now.DayOfWeek.ToString().Equals(in_strMonday)]">
+            <ui:IfElseIfBlock.Then>
+              <TryCatch sap2010:Annotation.AnnotationText="Pazartesi Maili" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,436" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <TryCatch.Try>
+                  <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" sap2010:Annotation.AnnotationText="width='600' height='250'," AuthenticationMode="UserNameAndPassword" Bcc="[in_strTalepSahibiBCC]" Body="[&quot;Merhaba Kadriye Hanım, &lt;br&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:10px'&gt;&lt;strong&gt;&quot;+strSubjectPazartesi+&quot;&lt;/strong&gt; tarihlerine ait Inbound vardiya raporu bilgileri ekte yer almaktadır.&lt;p/&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:10px'&gt;&lt;strong&gt;&quot;+&#xA;strFriday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot;&lt;/strong&gt; tarihinde &lt;strong&gt;&quot;+in_strFridayMusteriCount+&quot;&lt;/strong&gt; müşterimize , &lt;strong&gt;&quot;+&#xA;strSaturday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot;&lt;/strong&gt; tarihinde &lt;strong&gt;&quot;+in_strSaturdayMusteriCount+&quot;&lt;/strong&gt; müşterimize  , &lt;strong&gt;&quot;+&#xA;strYesterday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; &lt;/strong&gt; tarihinde &lt;strong&gt;&quot;+in_strYesterdayMusteriCount+&quot; &lt;/strong&gt; müşterimize  maaş ödemesi yapılmıştır. &lt;/p&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:30px'&gt;&lt;strong&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Son bir hafta değerlendirmesi aşağıdaki gibidir.&lt;/strong&gt;&lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strHizmetSeviyesiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strKCMTHizmetseviyesiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strKarsilamaOraniPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strCallCenterCagriGelisimiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strCagriOranlariPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIVRCagriGelisimiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIslemAdetleriPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIslemOranlariPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt;&quot;+&#xA;&quot;&lt;strong&gt;&lt;p style='margin-left:30px'&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;+strFriday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; Callcenter ve IVR ‘da işlem yoğunluğuna göre ilk  10 İşlem bilgisi aşağıda yer almaktadır.&lt;/strong&gt; &lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;img src='&quot;+in_strCallCenterIslemleriPicPath+&quot;' width='600' height='250'&gt;&quot;+&quot;&lt;img src='&quot;+in_strIVRIslemleriPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt;&lt;br&gt;&lt;br&gt;&quot;+&#xA;&quot;&lt;strong&gt;&lt;p style='margin-left:30px'&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;+strFriday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; Segment İşlem ve Genel Üyelik bazında müşteri dağılımı aşağıdaki gibidir. &lt;/strong&gt;&lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;img src='&quot;+in_strDialogUyeligiPicPath+&quot;' width='600' height='250'&gt;&quot;+&quot;&lt;img src='&quot;+in_strMusteriDagilimiPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt;&lt;br&gt;&lt;br&gt;&quot;+&#xA;&quot;&lt;strong&gt;&lt;p style='margin-left:5px'&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;+strFriday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; tarihine ait komisyon alınan işlem bilgileri aşağıdaki gibidir.&lt;/strong&gt;&lt;/p&gt;&quot;+in_htmlKomisyon+&quot;&lt;/p&gt;&lt;/html&gt;&lt;br&gt; Bilgilerinize sunarım &lt;br&gt;&lt;br&gt; Saygılarımla,&quot;]" Cc="[in_strTalepSahibiCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,177" sap2010:WorkflowViewState.IdRef="SendExchangeMail_16" IsBodyHtml="True" IsDraft="False" SaveCopy="False" SecurePassword="[in_sstrOutlookPass]" Server="[in_strExchangeServer]" Subject="[strSubjectPazartesi+&quot; Inbound Vardiya Raporu&quot;]" TimeoutMS="120000" To="[in_strTalepSahibiMailTo]" User="[in_strOutlookUsername]">
+                    <ui:SendExchangeMail.Files>
+                      <InArgument x:TypeArguments="x:String">[in_strAylikInboundVardiyaRaporuExcelPath]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[in_strVardiyoRaporuExcelPath]</InArgument>
+                    </ui:SendExchangeMail.Files>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:SendExchangeMail>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                      </ActivityAction.Argument>
+                      <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" sap2010:Annotation.AnnotationText="width='600' height='250'," AuthenticationMode="UserNameAndPassword" Bcc="[in_strTalepSahibiBCC]" Body="[&quot;Merhaba Kadriye Hanım, &lt;br&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:10px'&gt;&lt;strong&gt;&quot;+strSubjectPazartesi+&quot;&lt;/strong&gt; tarihlerine ait Inbound vardiya raporu bilgileri ekte yer almaktadır.&lt;p/&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:10px'&gt;&lt;strong&gt;&quot;+&#xA;strFriday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot;&lt;/strong&gt; tarihinde &lt;strong&gt;&quot;+in_strFridayMusteriCount+&quot;&lt;/strong&gt; müşterimize , &lt;strong&gt;&quot;+&#xA;strSaturday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot;&lt;/strong&gt; tarihinde &lt;strong&gt;&quot;+in_strSaturdayMusteriCount+&quot;&lt;/strong&gt; müşterimize  , &lt;strong&gt;&quot;+&#xA;strYesterday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; &lt;/strong&gt; tarihinde &lt;strong&gt;&quot;+in_strYesterdayMusteriCount+&quot; &lt;/strong&gt; müşterimize  maaş ödemesi yapılmıştır. &lt;/p&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:30px'&gt;&lt;strong&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Son bir hafta değerlendirmesi aşağıdaki gibidir.&lt;/strong&gt;&lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strHizmetSeviyesiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strKCMTHizmetseviyesiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strKarsilamaOraniPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strCallCenterCagriGelisimiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strCagriOranlariPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIVRCagriGelisimiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIslemAdetleriPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIslemOranlariPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt;&quot;+&#xA;&quot;&lt;strong&gt;&lt;p style='margin-left:30px'&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;+strFriday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; Callcenter ve IVR ‘da işlem yoğunluğuna göre ilk  10 İşlem bilgisi aşağıda yer almaktadır.&lt;/strong&gt; &lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;img src='&quot;+in_strCallCenterIslemleriPicPath+&quot;' width='600' height='250'&gt;&quot;+&quot;&lt;img src='&quot;+in_strIVRIslemleriPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt;&lt;br&gt;&lt;br&gt;&quot;+&#xA;&quot;&lt;strong&gt;&lt;p style='margin-left:30px'&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;+strFriday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; Segment İşlem ve Genel Üyelik bazında müşteri dağılımı aşağıdaki gibidir. &lt;/strong&gt;&lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;img src='&quot;+in_strDialogUyeligiPicPath+&quot;' width='600' height='250'&gt;&quot;+&quot;&lt;img src='&quot;+in_strMusteriDagilimiPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt;&lt;br&gt;&lt;br&gt;&quot;+&#xA;&quot;&lt;strong&gt;&lt;p style='margin-left:5px'&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;+strFriday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; tarihine ait komisyon alınan işlem bilgileri aşağıdaki gibidir.&lt;/strong&gt;&lt;/p&gt;&quot;+in_htmlKomisyon+&quot;&lt;/p&gt;&lt;/html&gt;&lt;br&gt; Bilgilerinize sunarım &lt;br&gt;&lt;br&gt; Saygılarımla,&quot;]" Cc="[in_strTalepSahibiCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,177" sap2010:WorkflowViewState.IdRef="SendExchangeMail_19" IsBodyHtml="True" IsDraft="False" SaveCopy="False" SecurePassword="[in_sstrOutlookPass]" Server="[in_strExchangeServer]" Subject="[strSubjectPazartesi+&quot; Inbound Vardiya Raporu&quot;]" TimeoutMS="120000" To="[in_strTalepSahibiMailTo]" User="[in_strOutlookUsername]">
+                        <ui:SendExchangeMail.Files>
+                          <InArgument x:TypeArguments="x:String">[in_strAylikInboundVardiyaRaporuExcelPath]</InArgument>
+                          <InArgument x:TypeArguments="x:String">[in_strVardiyoRaporuExcelPath]</InArgument>
+                        </ui:SendExchangeMail.Files>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:SendExchangeMail>
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+                <TryCatch.Finally>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Pazartesi akışı Inbound Vardiya Sonuç Maili iletildi..&quot;]" />
+                </TryCatch.Finally>
+              </TryCatch>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+          <ui:IfElseIfBlock BlockType="Else">
+            <ui:IfElseIfBlock.Then>
+              <TryCatch sap2010:Annotation.AnnotationText="Pazartesi hariç hafta içi günleri" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,436" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <TryCatch.Try>
+                  <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" sap2010:Annotation.AnnotationText="width='600' height='250'," AuthenticationMode="UserNameAndPassword" Bcc="[in_strTalepSahibiBCC]" Body="[&quot;Merhaba Kadriye Hanım, &lt;br&gt; &quot;+&#xA;&quot;&lt;p style='margin-left:10px'&gt;&lt;strong&gt;&quot;+strSubject+&quot;&lt;/strong&gt; tarihlerine ait Inbound vardiya raporu bilgileri ekte yer almaktadır.&lt;/p&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:10px'&gt;&lt;strong&gt;   &quot;+strYesterday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; &lt;/strong&gt; tarihinde &lt;strong&gt;&quot;+&#xA;in_strYesterdayMusteriCount+&quot; &lt;/strong&gt; müşterimize maaş ödemesi yapılmıştır. &lt;/p&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:30px'&gt; &lt;strong&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbspSon bir hafta değerlendirmesi aşağıdaki gibidir.&lt;/strong&gt;&lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strHizmetSeviyesiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strKCMTHizmetseviyesiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strKarsilamaOraniPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strCallCenterCagriGelisimiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strCagriOranlariPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIVRCagriGelisimiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIslemAdetleriPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIslemOranlariPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt; &lt;br&gt;&lt;br&gt; &quot;+&#xA;&quot;&lt;p style='margin-left:30px'&gt;&lt;strong&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp&quot;+strYesterday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; Callcenter ve IVR ‘da işlem yoğunluğuna göre ilk  10 İşlem bilgisi aşağıda yer almaktadır.&lt;/strong&gt; &lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;img src='&quot;+in_strCallCenterIslemleriPicPath+&quot;' width='600' height='250'&gt;&quot;+&quot;&lt;img src='&quot;+in_strIVRIslemleriPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt;&lt;br&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:30px'&gt;&lt;strong&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp&quot;+strYesterday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; Segment İşlem ve Genel Üyelik bazında müşteri dağılımı aşağıdaki gibidir. &lt;/strong&gt;&lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;img src='&quot;+in_strDialogUyeligiPicPath+&quot;' width='600' height='250'&gt;&quot;+&quot;&lt;img src='&quot;+in_strMusteriDagilimiPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt;&lt;br&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:5px'&gt;&lt;strong&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp&quot;+strYesterday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; tarihine ait komisyon alınan işlem bilgileri aşağıdaki gibidir.&lt;/strong&gt;&lt;br&gt;&lt;br&gt;&quot;+in_htmlKomisyon+&quot;&lt;/html&gt;&lt;br&gt; Bilgilerinize sunarım &lt;br&gt;&lt;br&gt; Saygılarımla,&quot;]" Cc="[in_strTalepSahibiCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,177" sap2010:WorkflowViewState.IdRef="SendExchangeMail_7" IsBodyHtml="True" IsDraft="False" SaveCopy="False" SecurePassword="[in_sstrOutlookPass]" Server="[in_strExchangeServer]" Subject="[strSubject+&quot; Inbound Vardiya Raporu&quot;]" TimeoutMS="120000" To="[in_strTalepSahibiMailTo]" User="[in_strOutlookUsername]">
+                    <ui:SendExchangeMail.Files>
+                      <InArgument x:TypeArguments="x:String">[in_strAylikInboundVardiyaRaporuExcelPath]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[in_strVardiyoRaporuExcelPath]</InArgument>
+                    </ui:SendExchangeMail.Files>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:SendExchangeMail>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                      </ActivityAction.Argument>
+                      <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" sap2010:Annotation.AnnotationText="width='600' height='250'," AuthenticationMode="UserNameAndPassword" Bcc="[in_strTalepSahibiBCC]" Body="[&quot;Merhaba Kadriye Hanım, &lt;br&gt; &quot;+&#xA;&quot;&lt;p style='margin-left:10px'&gt;&lt;strong&gt;&quot;+strSubject+&quot;&lt;/strong&gt; tarihlerine ait Inbound vardiya raporu bilgileri ekte yer almaktadır.&lt;/p&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:10px'&gt;&lt;strong&gt;   &quot;+strYesterday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; &lt;/strong&gt; tarihinde &lt;strong&gt;&quot;+&#xA;in_strYesterdayMusteriCount+&quot; &lt;/strong&gt; müşterimize maaş ödemesi yapılmıştır. &lt;/p&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:30px'&gt; &lt;strong&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbspSon bir hafta değerlendirmesi aşağıdaki gibidir.&lt;/strong&gt;&lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strHizmetSeviyesiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strKCMTHizmetseviyesiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strKarsilamaOraniPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strCallCenterCagriGelisimiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strCagriOranlariPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIVRCagriGelisimiPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIslemAdetleriPicPath+&quot;' width='600' height='250'&gt;&quot;+&#xA;&quot;&lt;img src='&quot;+in_strIslemOranlariPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt; &lt;br&gt;&lt;br&gt; &quot;+&#xA;&quot;&lt;p style='margin-left:30px'&gt;&lt;strong&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp&quot;+strYesterday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; Callcenter ve IVR ‘da işlem yoğunluğuna göre ilk  10 İşlem bilgisi aşağıda yer almaktadır.&lt;/strong&gt; &lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;img src='&quot;+in_strCallCenterIslemleriPicPath+&quot;' width='600' height='250'&gt;&quot;+&quot;&lt;img src='&quot;+in_strIVRIslemleriPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt;&lt;br&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:30px'&gt;&lt;strong&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp&quot;+strYesterday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; Segment İşlem ve Genel Üyelik bazında müşteri dağılımı aşağıdaki gibidir. &lt;/strong&gt;&lt;/p&gt;&quot;+&#xA;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;img src='&quot;+in_strDialogUyeligiPicPath+&quot;' width='600' height='250'&gt;&quot;+&quot;&lt;img src='&quot;+in_strMusteriDagilimiPicPath+&quot;' width='600' height='250'&gt;&lt;/body&gt;&lt;/html&gt;&lt;br&gt;&quot;+&#xA;&quot;&lt;p style='margin-left:5px'&gt;&lt;strong&gt;•&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp&quot;+strYesterday+&quot; &quot;+strMonth+&quot;'&quot;+strYearLast2+&quot; tarihine ait komisyon alınan işlem bilgileri aşağıdaki gibidir.&lt;/strong&gt;&lt;br&gt;&lt;br&gt;&quot;+in_htmlKomisyon+&quot;&lt;/html&gt;&lt;br&gt; Bilgilerinize sunarım &lt;br&gt;&lt;br&gt; Saygılarımla,&quot;]" Cc="[in_strTalepSahibiCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,177" sap2010:WorkflowViewState.IdRef="SendExchangeMail_18" IsBodyHtml="True" IsDraft="False" SaveCopy="False" SecurePassword="[in_sstrOutlookPass]" Server="[in_strExchangeServer]" Subject="[strSubject+&quot; Inbound Vardiya Raporu&quot;]" TimeoutMS="120000" To="[in_strTalepSahibiMailTo]" User="[in_strOutlookUsername]">
+                        <ui:SendExchangeMail.Files>
+                          <InArgument x:TypeArguments="x:String">[in_strAylikInboundVardiyaRaporuExcelPath]</InArgument>
+                          <InArgument x:TypeArguments="x:String">[in_strVardiyoRaporuExcelPath]</InArgument>
+                        </ui:SendExchangeMail.Files>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:SendExchangeMail>
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+                <TryCatch.Finally>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot; Haftaiçi diğer günler Inbound Vardiya Sonuç Maili iletildi..&quot;]" />
+                </TryCatch.Finally>
+              </TryCatch>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:IfElseIf>
+    <ui:DeleteFileX sap2010:Annotation.AnnotationText="kendi ortak alanımızdaki dosyayı siler, mailden önceki for each ile in_strVardiyoRaporuExcelPath değeri kendi ortak alanımızdaki dosya olur" DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="520,122" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[in_strVardiyoRaporuExcelPath]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:DeleteFileX>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,92" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[in_strVardiyoRaporuExcelPath+&quot; dosyası silindi.&quot;]" />
+  </Sequence>
+</Activity>

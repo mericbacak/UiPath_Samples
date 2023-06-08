@@ -1,0 +1,226 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_intRowIndex" Type="InArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA034_988_InBound\RAPORLAR\14.09.2022\14-Komisyon Raporu.xlsx&quot;" Name="in_strKomisyonRaporExcelPath" Type="InArgument(x:String)" />
+    <x:Property Name="out_strHtmlText" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1160,1858.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="76">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>Microsoft.Exchange.WebServices.Data</x:String>
+      <x:String>UiPath.Mail.Exchange</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="62">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.Exchange.WebServices</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="DataTable ToHtmlText" sap:VirtualizedContainerService.HintSize="475.2,1793.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:GenericValue" Name="tableHTML" />
+      <Variable x:TypeArguments="x:Int32" Name="intindex" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtKomisyon" />
+      <Variable x:TypeArguments="ui:WorkbookApplication" Name="WBKomisyon" />
+      <Variable x:TypeArguments="x:String" Name="strParasalDetay1sheet" />
+      <Variable x:TypeArguments="x:String" Default="&lt;th style='border-collapse: collapse;border: solid windowtext 1.0pt;background:#DDD9C4'&gt;" Name="strHeaderTag_th" />
+      <Variable x:TypeArguments="x:String" Default="&lt;td style='border-collapse: collapse;border: solid windowtext 1.0pt;color:black'&gt;" Name="strTdTag" />
+      <Variable x:TypeArguments="x:String" Default="&lt;table style='border-collapse: collapse;border: solid windowtext 1.0pt;table-layout: Auto;width: 100%;color:black;margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif; color: #000000; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;'&gt;" Name="strTableTag_td" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" Workbook="[WBKomisyon]" WorkbookPath="[in_strKomisyonRaporExcelPath]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ExcelApplicationScope>
+    <Assign sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[strParasalDetay1sheet]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[WBKomisyon.GetSheets(1)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ExcelCloseWorkbook DisplayName="Close Workbook" sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="ExcelCloseWorkbook_1" Workbook="[WBKomisyon]" />
+    <ui:ReadRange AddHeaders="False" DataTable="[dtKomisyon]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="ReadRange_1" Range="A1:H2" SheetName="[strParasalDetay1sheet]" WorkbookPath="[in_strKomisyonRaporExcelPath]" />
+    <Assign sap:VirtualizedContainerService.HintSize="433.6,64" sap2010:WorkflowViewState.IdRef="Assign_10">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_strHtmlText]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">["&lt;html&gt; &lt;head&gt; &lt;style&gt; .title{ background-color:blue; color:purple } table, th, td { border: 1px solid; border-collapse: collapse; border-color:black; text-align:center; font-size: 12px; font-family:'Calibri'; font-weight:Bold; padding:7px; }.title2{ background-color:#A9A9A9; color: black; font-family:'Calibri'; font-size: 14px } .title3{ background-color:#2086C9; color: white; font-family:'Calibri'; font-weight:Bold;font-size: 14px } .title4{ background:#F7FF0A; color: black; font-family:'Calibri'; font-weight:Bold;font-size: 14px} 	.title5{ background:white; } &lt;/style&gt; 	&lt;/head&gt;	&lt;body&gt; 		&lt;table  border='1' width='50%'&gt;&lt;tr&gt;	"+
+"&lt;td   Class='title3' colspan='8'&gt; "+dtKomisyon.Rows(0).Item(0).ToString+"&lt;/td&gt;	&lt;/tr&gt;		&lt;tr&gt; 	&lt;td Class='title2'&gt; "+
+dtKomisyon.Rows(1).Item(0).ToString+"  &lt;/td&gt; 	&lt;td Class='title2' colspan='2'&gt; "+
+dtKomisyon.Rows(1).Item(1).ToString+" &lt;/td&gt; 	&lt;td Class='title2'&gt; "+
+dtKomisyon.Rows(1).Item(3).ToString+"  &lt;/td&gt; 	&lt;td Class='title2'&gt;  "+
+dtKomisyon.Rows(1).Item(4).ToString+" &lt;/td&gt; 		&lt;td Class='title2'&gt; "+
+dtKomisyon.Rows(1).Item(5).ToString+"  &lt;/td&gt; "+	"&lt;td Class='title2'&gt;  "+
+dtKomisyon.Rows(1).Item(6).ToString+" &lt;/td&gt; 				&lt;td Class='title2'&gt;  "+
+dtKomisyon.Rows(1).Item(7).ToString+" &lt;/td&gt; 		&lt;/tr&gt;"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ClearDataTable DataTable="[dtKomisyon]" DisplayName="Clear Data Table" sap:VirtualizedContainerService.HintSize="433.6,80.8" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
+    <ui:ReadRange AddHeaders="False" DataTable="[dtKomisyon]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" PreserveFormat="True" Range="[&quot;A3:H&quot;+in_intRowIndex.ToString]" SheetName="[strParasalDetay1sheet]" WorkbookPath="[in_strKomisyonRaporExcelPath]" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[intindex]" DataTable="[dtKomisyon]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="433.6,272.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="304,156.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="262.4,64" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_strHtmlText]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[out_strHtmlText+"&lt;tr&gt;				&lt;td Class='title5'&gt; "+row(0).ToString+" &lt;/td&gt;				&lt;td Class='title5' colspan='2'&gt; "+row(1).ToString+" &lt;/td&gt; 			&lt;td Class='title5'&gt; "+Decimal.Parse(row(3).ToString).ToString(("###,###"))+" &lt;/td&gt;"+
+"		&lt;td Class='title5'&gt; "+Decimal.Parse(row(4).ToString).ToString(("#,##0.00"))+" &lt;/td&gt;&lt;td Class='title5'&gt; "+row(5).ToString+" &lt;/td&gt; 				&lt;td Class='title5'&gt; "+Decimal.Parse(row(6).ToString).ToString(("###,###"))+" &lt;/td&gt; 			&lt;td Class='title5'&gt; "+Decimal.Parse(row(7).ToString).ToString(("###,###"))+" &lt;/td&gt; 		&lt;/tr&gt; "]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachRow>
+    <ui:ClearDataTable DataTable="[dtKomisyon]" DisplayName="Clear Data Table" sap:VirtualizedContainerService.HintSize="433.6,80.8" sap2010:WorkflowViewState.IdRef="ClearDataTable_2" />
+    <ui:ReadRange AddHeaders="False" DataTable="[dtKomisyon]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="ReadRange_3" Range="[&quot;A&quot;+(in_intRowIndex+1).ToString+&quot;:H&quot;+(in_intRowIndex+1).ToString]" SheetName="[strParasalDetay1sheet]" WorkbookPath="[in_strKomisyonRaporExcelPath]" />
+    <Assign sap:VirtualizedContainerService.HintSize="433.6,64" sap2010:WorkflowViewState.IdRef="Assign_12">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_strHtmlText]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[out_strHtmlText+"&lt;tr&gt;			&lt;td Class='title4' colspan='3'&gt; "+dtKomisyon.Rows(0).Item(0).ToString +"&lt;/td&gt;	"+
+"&lt;td Class='title4'&gt; "+Decimal.Parse(dtKomisyon.Rows(0).Item(3).ToString).ToString(("###,###"))+" &lt;/td&gt; 		&lt;td Class='title4'&gt; "+Decimal.Parse(dtKomisyon.Rows(0).Item(4).ToString).ToString(("#,##0.00"))+" &lt;/td&gt;				&lt;td Class='title4'&gt; "+dtKomisyon.Rows(0).Item(5).ToString+" &lt;/td&gt; "+
+"	&lt;td Class='title4'&gt; "+Decimal.Parse(dtKomisyon.Rows(0).Item(6).ToString).ToString(("###,###"))+" &lt;/td&gt; 	&lt;td Class='title4'&gt; "+Decimal.Parse(dtKomisyon.Rows(0).Item(7).ToString).ToString(("###,###"))+" &lt;/td&gt; 			&lt;/tr&gt; "]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CommentOut sap2010:Annotation.AnnotationText="test amaçlı, html formatı send outlook ile knedimize gönderip nasıl göründüğüne baktık" DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="433.6,128.8" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,239.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[out_strHtmlText]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="HtMLtest" To="Meric.BACAK@halkbank.com.tr">
+            <ui:SendOutlookMail.Files>
+              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+            </ui:SendOutlookMail.Files>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:SendOutlookMail>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Komisyon raporu &quot;+strParasalDetay1sheet+&quot; sheetinde yer alan Komisyon Alınan İşlemler html formata verildi.&quot;]" />
+  </Sequence>
+</Activity>
