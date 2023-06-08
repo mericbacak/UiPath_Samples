@@ -1,0 +1,153 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ClickEditAllDashboardsTest" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1132,1481.6" sap2010:WorkflowViewState.IdRef="ClickEditAllDashboardsTest_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="31">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="20">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ClickEditAllDashboardsTest" sap:VirtualizedContainerService.HintSize="826.4,1416.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="dtDashboardLinks" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BuildDataTable DataTable="[dtDashboardLinks]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="784.8,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Url&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;dayType&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Blge-ubeKredi_16207357158050/BlgeubeNakdiKredi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Blge-ubeMevduat_16207376263500/BlgeubeMevduat&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/BrtTakip_16207348335650/BrtTakipGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/DierFaaliyetGiderleri_16213221240110/DierFaaliyetGiderleri&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/GayriNakdiKrediler_16213386906250/GayriNakdiKredilerGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/lBlge_16208064592550/lBlge&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/KrediMevduatYzde_16213412375390/KrediMevduatGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Krediler_16212541456780/KredilerGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/KullandrmKapama_16213270268980/KrediKullandrmKapama&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/MaliyetGetiri_16212571231860/MaliyetGetiri&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Mevduat_16212533826620/MevduatGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/MevduatSegmentDalm_16213248247860/MevduatSegmentDalm&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/MevduatTrDalm_16213362180020/MevduatTrDalm&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Rasyolar_16225506763770/ListeRapor&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Segment_16212561022620/Segment&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/AlnanKrediler/ListeRapor&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/BeklenenZararKarlklar/BeklenenZararKarlklar&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Karlklar/BeklenenKrediZararKarlklar&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Bilano/BilanoGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/BilanoDYkmllkler/BilanoDYkmllklerGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/BilanoGetiriMaliyetSpread/BilanoGetiriMaliyetSpread&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Bilanozet/AktifListeRapor&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Blge-ubeYzde_16016282872440/Blge-ubeYzde&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Blge-ubeKredi/BlgeubeNakdiKredi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Blge-ubeMevduat/BlgeubeMevduat&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/BlgeubeStok/BlgeubeStokMarjinal&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-cuma&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/BorluGeiciHesaplar/ListeRapor&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/BrtTakip/BrtTakipGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/DetayBteRaporlar/Bilano&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/DierAktifler/DierAktifler&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/DierFaaliyetGelirleri/FaaliyetGelirleri&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/DierFaaliyetGiderleri/DierFaaliyetGiderleri&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/DierPasifler/DierPasiflerGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/DierYabancKaynaklar/ListeRapor&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/DvizBazndaBilanoGeliimi/DvizBazndaYPBilano&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/DvizdenTLyeDnenVadeliMevduat_0/DvizdenTLyeDnenVadeliMevduat&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-slider&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/DuranAktifler/DuranAktiflerGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/GayriNakdiKrediler/GayriNakdiKredilerGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/GelirGider/Gelir-Gider&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/lBlge/lBlge&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/KaynakKullandrm/KaynakKullandrmDetay&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/KaynakMaliyeti/KaynakMaliyeti&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/KonutKredileri/KonutKredileri&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-slider&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/KrediBeklenenZararKarlklar/KrediBeklenenZararKarlklar&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/KrediMevduatFaizOranlarGerekletirmeSpread/Spread&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/KrediMevduatYzde/KrediMevduatGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Krediler/KredilerGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/KredilerdenAlnanFaizler-MevduataVerilenFaizler/KredilerdenAlnanFaizler-MevduataVerilenFaizler&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/KullandrmKapama/KrediKullandrmKapama&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/LikitAktifler/LikitAktiflerGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/MaliyetGetiri/MaliyetGetiri&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/MenkulDeerler/MenkulDeerlerGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Mevduat/MevduatGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/MevduatDKaynaklar/MevduatDKaynaklar&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/MevduatSegmentDalm/MevduatSegmentDalm&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/MevduatTrDalm/MevduatTrDalm&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/MuhtelifAlacaklar/ListeRapor&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/MuhtelifBorlar/ListeRapor&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/NetFaizGeliri/NetFaizGeliri&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/NetFaizMarj/NetFaizMarj&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/zkaynaklar/zkaynaklarGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/PazarPayiveIcYuzde/PazarPayveYzde&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Segment/Segment&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Sektr-AktifPasif/SektrAktifPasif&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Sektr-NakdiKredi/Sektr-NakdiKredi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/SYRLikiditeKarlamaOran/SYRLikiditeKarlamaOran&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/TicariK_Z/TicariKarZarar&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/NetcretKomisyon/cretveKomisyon&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/YPKrediMevduat/YPKrediMevduatGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/Rasyolar_0/ListeRapor&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-1&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Url&gt;http://yonetimbilgisistemi2/#/views/GelirGider/KarGeliimi&lt;/Url&gt;&#xD;&#xA;    &lt;dayType&gt;t-slider&lt;/dayType&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtDashboardLinks]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="784.8,1224" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="751.2,1103.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Bölge'" sap:VirtualizedContainerService.HintSize="709.6,1010.4" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="c9eb5bc8cd3239d5414e889d356d3870" Selector="&lt;html app='chrome.exe' url='http://yonetimbilgisistemi2*' /&gt;">
+              <ui:BrowserScope.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="676,863.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="strSavedYesterDay" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="634.4,60" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[CurrentRow(0).ToString]" />
+                    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="634.4,523.2" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+                      <ui:IfElseIf.ConditionBlocks>
+                        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                          <ui:IfElseIfBlock BlockType="If" Condition="[CurrentRow(1).ToString.Equals(&quot;t-1&quot;)]">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence DisplayName="t-1 check" sap:VirtualizedContainerService.HintSize="375.2,328" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Düne Çekilen Tarih Get Text" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_1">
+                                  <ui:GetValue.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ee07460a-bee5-4c6d-9863-f2c67dbe6f75" InformativeScreenshot="d34346f4f37451530e88f6728ef0ce2d" Selector="&lt;html app='chrome.exe' url='http://yonetimbilgisistemi*' /&gt;&lt;webctrl src='http://yonetimbilgisistemi*' tag='IFRAME' /&gt;&lt;webctrl parentid='tableau_base_widget_LegacyQuantitativeDateQuickFilter_0' tag='DIV' parentclass='QFReadout QFUpperBound tab-ctrl-formatted-border-hover' /&gt;" TimeoutMS="120000" WaitForReady="COMPLETE" />
+                                  </ui:GetValue.Target>
+                                  <ui:GetValue.Value>
+                                    <OutArgument x:TypeArguments="x:String">[strSavedYesterDay]</OutArgument>
+                                  </ui:GetValue.Value>
+                                </ui:GetValue>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[CurrentRow(0).ToString+&quot; dashboard kaydedilmiş tarih bilgisi: &quot;+strSavedYesterDay]" />
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                        </sc:BindingList>
+                      </ui:IfElseIf.ConditionBlocks>
+                    </ui:IfElseIf>
+                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="10000" DisplayName="Click 'Edit'" sap:VirtualizedContainerService.HintSize="634.4,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2b3534af-14ba-428c-8d11-5ea5de1f86c1" InformativeScreenshot="3a757c5bc420fe18b2cfb5bbb8acad52" Selector="&lt;html app='chrome.exe' url='*http://yonetimbilgisistemi2*' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl aaname='Edit' tag='SPAN' class='tabToolbarButtonText' innertext='Edit' /&gt;" WaitForReady="COMPLETE">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                        </ui:Target>
+                      </ui:Click.Target>
+                    </ui:Click>
+                  </Sequence>
+                </ActivityAction>
+              </ui:BrowserScope.Body>
+            </ui:BrowserScope>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+    </ui:ForEachRow>
+  </Sequence>
+</Activity>
