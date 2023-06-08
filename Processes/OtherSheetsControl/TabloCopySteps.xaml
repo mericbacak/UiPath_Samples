@@ -1,0 +1,1222 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="TabloCopySteps" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:i="clr-namespace:InitAllSettings;assembly=InitAllSettings" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\INPUT\RPA015_948_MizanOlusturma\Part2_RapkonSimule\CumaDahilAnaDosyalar\&quot;" Name="in_strCumaDahilExcelsFolderPath" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\INPUT\RPA015_948_MizanOlusturma\Part2_RapkonSimule\02-ŞUBAT\YENİ 27.02.2023    RAPKON ÇALIŞMA YENİ FORMAT-V223.xlsx&quot;" Name="in_strCurrentRapkonExcelPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1126,4107</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>TabloCopySteps_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="33">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>InitAllSettings</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="31">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>InitAllSettings</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="F6 ile test OK 24.02.2023" DisplayName="TabloCopySteps" sap:VirtualizedContainerService.HintSize="522,4042" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:WorkbookApplication" Name="WB" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="&quot;Z:\MERİÇ\YGDB124_RPAYönetimi\RPA015_Mizan_Olusturma\ExcelÖrnekler\1varliklarCopyRange.txt&quot;" Name="strvarliklarMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="str1varliklarSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1YukumlulukSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1GelirGiderSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1findurdisiSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1BekzararSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1KarsilikSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1MevduatSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1KredilerSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1YipaSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1IsletmeGelirGiderSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1PersonelSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1DigerYukumSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1DigerAktifSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1DigerFaizSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1FaalGelirSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1UcretKomisyonSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1PesinTahKomSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1gmenkulsheet" />
+      <Variable x:TypeArguments="x:String" Name="str1TicariKzSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1KrdAlFaizSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1MevFaizGidSheet" />
+      <Variable x:TypeArguments="x:String" Name="str1VrgSheet" />
+      <Variable x:TypeArguments="x:String" Name="strYukumlulukMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strGelirGiderMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strFindurDisiCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strBekzararCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strKarsilikCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strMevduatCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strKredilerCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strYipaCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strIsletmeGiderCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strPersonelCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strdigerYukumCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strdigerAktifCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strdigerFaizCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strdigerFaalGelirCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strUcretKomisyonCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strPesinTahKomCopyMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strGmenkulCopyRangeMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strTicariKzCopyRangeMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strKrediAlFaizCopyRangeMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strMevFaizGidCopyRangeMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strVergiCopyRangeMacroVb" />
+      <Variable x:TypeArguments="x:String" Name="strOrchQName" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="&quot;Z:\MERİÇ\YGDB124_RPAYönetimi\RPA015_Mizan_Olusturma\ExcelÖrnekler\CUMA DAHİL ANA DOSYA 10-13-14-15-16-17.02.2023 BİLANÇO - Copy.xlsx&quot;" Name="strCurrentCumaExcelPath" />
+      <Variable x:TypeArguments="x:String" Name="strCumaExcelName" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="480,51" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,158" sap2010:WorkflowViewState.IdRef="Sequence_54">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="For Testing" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_34">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="strConfigExcelPath" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,364" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <TryCatch.Try>
+                <ui:GetRobotAsset AssetName="RPA015ConfigExcel" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="334,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1" TimeoutMS="300000">
+                  <ui:GetRobotAsset.Value>
+                    <OutArgument x:TypeArguments="x:String">[strConfigExcelPath]</OutArgument>
+                  </ui:GetRobotAsset.Value>
+                </ui:GetRobotAsset>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <ui:GetRobotAsset AssetName="RPA015ConfigExcel" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="334,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2" TimeoutMS="300000">
+                      <ui:GetRobotAsset.Value>
+                        <OutArgument x:TypeArguments="x:String">[strConfigExcelPath]</OutArgument>
+                      </ui:GetRobotAsset.Value>
+                    </ui:GetRobotAsset>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+              <TryCatch.Finally>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[strConfigExcelPath+&quot; dizinindeki excel Config olarak okundu&quot;]" />
+              </TryCatch.Finally>
+            </TryCatch>
+            <i:InitAllSettings sap:VirtualizedContainerService.HintSize="438,22" sap2010:WorkflowViewState.IdRef="InitAllSettings_1" in_ConfigFile="[strConfigExcelPath]" in_ConfigSheets="[{&quot;Settings&quot;, &quot;Constants&quot;}]" out_Config="[in_Config]" />
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="480,51" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" Workbook="[WB]" WorkbookPath="[in_strCurrentRapkonExcelPath]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431,751" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="32">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_18">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1VarliklarSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(0)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_19">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1YukumlulukSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(1)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_20">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1GelirGiderSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(2)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_21">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1findurdisiSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(3)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_22">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1BekzararSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(4)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_23">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1KarsilikSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(5)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_24">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1MevduatSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(6)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_25">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1KredilerSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(7)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_26">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1YipaSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(8)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_27">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1IsletmeGelirGiderSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(9)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_28">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1PersonelSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(10)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_29">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1DigerYukumSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(11)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_30">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1DigerAktifSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(12)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_31">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1DigerFaizSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(13)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_32">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1FaalGelirSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(14)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_33">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1UcretKomisyonSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(15)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_34">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1PesinTahKomSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(16)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_35">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1gmenkulsheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(17)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_36">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1TicariKzSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(18)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_37">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1KrdAlFaizSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(19)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_38">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1MevFaizGidSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(20)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_39">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[str1VrgSheet]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[WB.GetSheets(21)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:MultipleAssign>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ExcelApplicationScope>
+    <ui:ExcelCloseWorkbook DisplayName="Close Workbook" sap:VirtualizedContainerService.HintSize="480,59" sap2010:WorkflowViewState.IdRef="ExcelCloseWorkbook_3" Workbook="[WB]" />
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="480,51" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="64">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_17">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strvarliklarMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("VarliklarCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_40">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strYukumlulukMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("yukumlulukCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_41">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strGelirGiderMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("GelirGiderCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_42">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strFindurDisiCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("FindurDisiCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_43">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strBekzararCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("BekzararCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_44">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strKarsilikCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("KarsilikCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_45">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strMevduatCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("MevduatCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_46">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strKredilerCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("KredilerCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_47">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strYipaCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("YipaCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_48">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strIsletmeGiderCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("IsletmeGiderCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_49">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strPersonelCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("PersonelCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_50">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strdigerYukumCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("digerYukumCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_51">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strdigerAktifCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("digerAktifCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_52">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strdigerFaizCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("digerFaizCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_53">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strdigerFaalGelirCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("digerFaalGelirCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_54">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strUcretKomisyonCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("UcretKomisyonCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_55">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strPesinTahKomCopyMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("PesinTahKomCopyMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_56">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strGmenkulCopyRangeMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("GmenkulCopyRangeMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_57">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strTicariKzCopyRangeMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("TicariKzCopyRangeMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_58">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strKrediAlFaizCopyRangeMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("KrediAlFaizCopyRangeMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_59">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strMevFaizGidCopyRangeMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("MevFaizGidCopyRangeMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_60">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strVergiCopyRangeMacroVb]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("VergiCopyRangeMacro").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_77">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strCumaExcelName]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("CumaDahilAnaDosyaExcelName").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MultipleAssign>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="480,51" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="493,614" sap2010:WorkflowViewState.IdRef="Sequence_53">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:IfElseIf sap2010:Annotation.AnnotationText="dizinde ay bilgisi exlce isminde 2 yerine 02 diye tutulyorsa o koşulu da sağlamak için" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="622,123" sap2010:WorkflowViewState.IdRef="IfElseIf_6">
+            <ui:IfElseIf.ConditionBlocks>
+              <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                <ui:IfElseIfBlock BlockType="If" Condition="[DateTime.now.Month&lt;10]">
+                  <ui:IfElseIfBlock.Then>
+                    <Sequence DisplayName="strMonth2" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[strMonth2]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">["0"+strMonth]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ui:IfElseIfBlock.Then>
+                </ui:IfElseIfBlock>
+              </sc:BindingList>
+            </ui:IfElseIf.ConditionBlocks>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:IfElseIf>
+          <ui:IfElseIf sap2010:Annotation.AnnotationText="dizinde ay bilgisi exlce isminde 2 yerine 02 diye tutulyorsa o koşulu da sağlamak için" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="622,123" sap2010:WorkflowViewState.IdRef="IfElseIf_7">
+            <ui:IfElseIf.ConditionBlocks>
+              <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                <ui:IfElseIfBlock BlockType="If" Condition="[DateTime.now.AddMonths(1).Month&lt;10]">
+                  <ui:IfElseIfBlock.Then>
+                    <Sequence DisplayName="strNextMonth2" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[strNextMonth2]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">["0"+strNextMonth]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ui:IfElseIfBlock.Then>
+                </ui:IfElseIfBlock>
+              </sc:BindingList>
+            </ui:IfElseIf.ConditionBlocks>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:IfElseIf>
+          <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="622,51" sap2010:WorkflowViewState.IdRef="ForEach`1_10" Values="[Directory.GetFiles(in_strCumaDahilExcelsFolderPath)]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Declearations" sap:VirtualizedContainerService.HintSize="586,4599" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="544,224" sap2010:WorkflowViewState.IdRef="MultipleAssign_7">
+                    <ui:MultipleAssign.AssignOperations>
+                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_71">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[stritemDay]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[item.ToString.Split("-"c)(1)]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_72">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[stritemDay2]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[item.ToString.Split("-"c)(2)]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_73">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[stritemMonth]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[item.ToString.Split("."c)(1)]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_74">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[stritemYear]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[item.ToString.Split("."c)(2)]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_75">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[stritemYear]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[stritemYear.Replace("BİLANÇO","").Trim]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                      </scg:List>
+                    </ui:MultipleAssign.AssignOperations>
+                  </ui:MultipleAssign>
+                  <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="544,4243" sap2010:WorkflowViewState.IdRef="IfElseIf_13">
+                    <ui:IfElseIf.ConditionBlocks>
+                      <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                        <ui:IfElseIfBlock BlockType="If" Condition="[DateTime.Now.DayOfWeek.ToString.Equals(&quot;Monday&quot;)]">
+                          <ui:IfElseIfBlock.Then>
+                            <Sequence sap2010:Annotation.AnnotationText="T T+1" DisplayName="Monday" sap:VirtualizedContainerService.HintSize="493,596" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="451,473" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+                                <ui:IfElseIf.ConditionBlocks>
+                                  <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                    <ui:IfElseIfBlock BlockType="If" Condition="[stritemYear.ToString.Equals(strYear) And stritemDay.ToString.Equals(strDay) And stritemDay2.Equals(strTomorrow) And (stritemMonth.ToString.Equals(strMonth) Or stritemMonth.ToString.Equals(strMonth2) Or stritemMonth.ToString.Equals(strNextMonth) Or stritemMonth.ToString.Equals(strNextMonth2))]">
+                                      <ui:IfElseIfBlock.Then>
+                                        <Sequence DisplayName="Detetction" sap:VirtualizedContainerService.HintSize="376,279" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[strCurrentCumaExcelPath]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Info" Message="[&quot;Cuma dahil ana dosya şu dizinde bulundu: &quot;+item.ToString]" />
+                                        </Sequence>
+                                      </ui:IfElseIfBlock.Then>
+                                    </ui:IfElseIfBlock>
+                                  </sc:BindingList>
+                                </ui:IfElseIf.ConditionBlocks>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:IfElseIf>
+                            </Sequence>
+                          </ui:IfElseIfBlock.Then>
+                        </ui:IfElseIfBlock>
+                        <ui:IfElseIfBlock BlockType="ElseIf" Condition="[DateTime.Now.DayOfWeek.ToString.Equals(&quot;Tuesday&quot;)]">
+                          <ui:IfElseIfBlock.Then>
+                            <Sequence sap2010:Annotation.AnnotationText="T-1 T" DisplayName="Tueday" sap:VirtualizedContainerService.HintSize="493,596" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="451,473" sap2010:WorkflowViewState.IdRef="IfElseIf_14">
+                                <ui:IfElseIf.ConditionBlocks>
+                                  <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                    <ui:IfElseIfBlock BlockType="If" Condition="[stritemYear.ToString.Equals(strYear) And stritemDay.ToString.Equals(stryesterday) And stritemDay2.Equals(strDay) And (stritemMonth.ToString.Equals(strMonth) Or stritemMonth.ToString.Equals(strMonth2) Or stritemMonth.ToString.Equals(strNextMonth) Or stritemMonth.ToString.Equals(strNextMonth2))]">
+                                      <ui:IfElseIfBlock.Then>
+                                        <Sequence DisplayName="Detetction" sap:VirtualizedContainerService.HintSize="376,279" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[strCurrentCumaExcelPath]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Info" Message="[&quot;Cuma dahil ana dosya şu dizinde bulundu: &quot;+item.ToString]" />
+                                        </Sequence>
+                                      </ui:IfElseIfBlock.Then>
+                                    </ui:IfElseIfBlock>
+                                  </sc:BindingList>
+                                </ui:IfElseIf.ConditionBlocks>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:IfElseIf>
+                            </Sequence>
+                          </ui:IfElseIfBlock.Then>
+                        </ui:IfElseIfBlock>
+                        <ui:IfElseIfBlock BlockType="ElseIf" Condition="[DateTime.Now.DayOfWeek.ToString.Equals(&quot;Wednesday&quot;)]">
+                          <ui:IfElseIfBlock.Then>
+                            <Sequence sap2010:Annotation.AnnotationText="T-2 T-1" DisplayName="Wednesday" sap:VirtualizedContainerService.HintSize="493,469" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="451,346" sap2010:WorkflowViewState.IdRef="IfElseIf_15">
+                                <ui:IfElseIf.ConditionBlocks>
+                                  <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                    <ui:IfElseIfBlock BlockType="If" Condition="[stritemYear.ToString.Equals(strYear) And stritemDay.ToString.Equals(str2DaysAgo) And stritemDay2.Equals(stryesterday) And (stritemMonth.ToString.Equals(strMonth) Or stritemMonth.ToString.Equals(strMonth2) Or stritemMonth.ToString.Equals(strNextMonth) Or stritemMonth.ToString.Equals(strNextMonth2))]">
+                                      <ui:IfElseIfBlock.Then>
+                                        <Sequence DisplayName="Detetction" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[strCurrentCumaExcelPath]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </ui:IfElseIfBlock.Then>
+                                    </ui:IfElseIfBlock>
+                                  </sc:BindingList>
+                                </ui:IfElseIf.ConditionBlocks>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:IfElseIf>
+                            </Sequence>
+                          </ui:IfElseIfBlock.Then>
+                        </ui:IfElseIfBlock>
+                        <ui:IfElseIfBlock BlockType="ElseIf" Condition="[DateTime.Now.DayOfWeek.ToString.Equals(&quot;Thursday&quot;)]">
+                          <ui:IfElseIfBlock.Then>
+                            <Sequence sap2010:Annotation.AnnotationText="T-3 T-2" DisplayName="Thursday" sap:VirtualizedContainerService.HintSize="493,596" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="451,473" sap2010:WorkflowViewState.IdRef="IfElseIf_16">
+                                <ui:IfElseIf.ConditionBlocks>
+                                  <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                    <ui:IfElseIfBlock BlockType="If" Condition="[stritemYear.ToString.Equals(strYear) And stritemDay.ToString.Equals(str3DaysAgo) And stritemDay2.Equals(str2DaysAgo) And (stritemMonth.ToString.Equals(strMonth) Or stritemMonth.ToString.Equals(strMonth2) Or stritemMonth.ToString.Equals(strNextMonth) Or stritemMonth.ToString.Equals(strNextMonth2))]">
+                                      <ui:IfElseIfBlock.Then>
+                                        <Sequence DisplayName="Detetction" sap:VirtualizedContainerService.HintSize="376,279" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[strCurrentCumaExcelPath]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Info" Message="[&quot;Cuma dahil ana dosya şu dizinde bulundu: &quot;+item.ToString]" />
+                                        </Sequence>
+                                      </ui:IfElseIfBlock.Then>
+                                    </ui:IfElseIfBlock>
+                                  </sc:BindingList>
+                                </ui:IfElseIf.ConditionBlocks>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:IfElseIf>
+                            </Sequence>
+                          </ui:IfElseIfBlock.Then>
+                        </ui:IfElseIfBlock>
+                        <ui:IfElseIfBlock BlockType="ElseIf" Condition="[DateTime.Now.DayOfWeek.ToString.Equals(&quot;Friday&quot;)]">
+                          <ui:IfElseIfBlock.Then>
+                            <Sequence sap2010:Annotation.AnnotationText="T-4 T-3" DisplayName="Friday" sap:VirtualizedContainerService.HintSize="493,596" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="451,473" sap2010:WorkflowViewState.IdRef="IfElseIf_17">
+                                <ui:IfElseIf.ConditionBlocks>
+                                  <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                    <ui:IfElseIfBlock BlockType="If" Condition="[stritemYear.ToString.Equals(strYear) And stritemDay.ToString.Equals(str4DaysAgo) And stritemDay2.Equals(str3DaysAgo) And (stritemMonth.ToString.Equals(strMonth) Or stritemMonth.ToString.Equals(strMonth2) Or stritemMonth.ToString.Equals(strNextMonth) Or stritemMonth.ToString.Equals(strNextMonth2))]">
+                                      <ui:IfElseIfBlock.Then>
+                                        <Sequence DisplayName="Detetction" sap:VirtualizedContainerService.HintSize="376,279" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[strCurrentCumaExcelPath]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_24" Level="Info" Message="[&quot;Cuma dahil ana dosya şu dizinde bulundu: &quot;+item.ToString]" />
+                                        </Sequence>
+                                      </ui:IfElseIfBlock.Then>
+                                    </ui:IfElseIfBlock>
+                                  </sc:BindingList>
+                                </ui:IfElseIf.ConditionBlocks>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:IfElseIf>
+                            </Sequence>
+                          </ui:IfElseIfBlock.Then>
+                        </ui:IfElseIfBlock>
+                        <ui:IfElseIfBlock BlockType="ElseIf" Condition="[DateTime.Now.DayOfWeek.ToString.Equals(&quot;Saturday&quot;)]">
+                          <ui:IfElseIfBlock.Then>
+                            <Sequence sap2010:Annotation.AnnotationText="T-5 T-4" DisplayName="Saturday" sap:VirtualizedContainerService.HintSize="493,596" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="451,473" sap2010:WorkflowViewState.IdRef="IfElseIf_18">
+                                <ui:IfElseIf.ConditionBlocks>
+                                  <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                    <ui:IfElseIfBlock BlockType="If" Condition="[stritemYear.ToString.Equals(strYear) And stritemDay.ToString.Equals(str5DaysAgo) And stritemDay2.Equals(str4DaysAgo) And (stritemMonth.ToString.Equals(strMonth) Or stritemMonth.ToString.Equals(strMonth2) Or stritemMonth.ToString.Equals(strNextMonth) Or stritemMonth.ToString.Equals(strNextMonth2))]">
+                                      <ui:IfElseIfBlock.Then>
+                                        <Sequence DisplayName="Detetction" sap:VirtualizedContainerService.HintSize="376,279" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[strCurrentCumaExcelPath]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[item.ToString]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Info" Message="[&quot;Cuma dahil ana dosya şu dizinde bulundu: &quot;+item.ToString]" />
+                                        </Sequence>
+                                      </ui:IfElseIfBlock.Then>
+                                    </ui:IfElseIfBlock>
+                                  </sc:BindingList>
+                                </ui:IfElseIf.ConditionBlocks>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:IfElseIf>
+                            </Sequence>
+                          </ui:IfElseIfBlock.Then>
+                        </ui:IfElseIfBlock>
+                      </sc:BindingList>
+                    </ui:IfElseIf.ConditionBlocks>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:IfElseIf>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEach>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FindCumaExcelPath workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="Processes\CopySheets\FindCumaExcelPath.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCumaDahilExcelsFolderPath">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_strCumaDahilExcelsFolderPath" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strCurrentCumaExcelPath">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strCurrentCumaExcelPath" />
+        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCumaExcelName">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCumaExcelName" />
+        </InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke VarliklarSheetCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Processes\CopySheets\VarliklarSheetCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str1varliklarSheet">[str1varliklarSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strvarliklarMacroTxt">[strvarliklarMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke yukumlulukSheetCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Processes\CopySheets\yukumlulukSheetCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str1YukumlulukSheet">[str1YukumlulukSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_stryukumlulukMacroTxt">[strYukumlulukMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GelirGiderSheetCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Processes\CopySheets\GelirGiderSheetCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strGelirGiderMacroTxt">[strGelirGiderMacroVb]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strGelirGiderSheet">[str1GelirGiderSheet]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke FinDurDisiSheetCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Processes\CopySheets\FinDurDisiSheetCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strFinDurDisiMacroTxt">[strFindurDisiCopyMacroVb]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strFinDurdisiSheet">[str1findurdisiSheet]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke BekZararCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Processes\CopySheets\BekZararCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strBekZararSheet">[str1BekzararSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strBekZararMacroTxt">[strBekzararCopyMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke KarsilikCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Processes\CopySheets\KarsilikCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strKarsilikSheet">[str1KarsilikSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strKarsilikCopyMacroTxt">[strKarsilikCopyMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke MevduatCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Processes\CopySheets\MevduatCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strMevduatSheet">[str1MevduatSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strMevduatCopyMacroTxt">[strMevduatCopyMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke KredilerCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Processes\CopySheets\KredilerCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strKredilerSheet">[str1KredilerSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strKredilerCopyMacroTxt">[strKredilerCopyMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke YipaCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Processes\CopySheets\YipaCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strYipaCopyMacroTxt">[strYipaCopyMacroVb]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strYipaSheet">[str1YipaSheet]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke IsletmeGelirGiderSheetCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Processes\CopySheets\IsletmeGelirGiderSheetCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strIsletmeGiderSheet">[str1IsletmeGelirGiderSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strIsletmeGiderCopyMacroTxt">[strIsletmeGiderCopyMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke PersonalSheetCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Processes\CopySheets\PersonalSheetCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strPersonelSheet">[str1PersonelSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strPersonelMacroVb">[strPersonelCopyMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DigerYukumCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Processes\CopySheets\DigerYukumCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strDigerYukmMacroVb">[strdigerYukumCopyMacroVb]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strDigerYukumSheet">[str1DigerYukumSheet]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DigerAktifCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Processes\CopySheets\DigerAktifCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strDigerAktifMacroVb">[strdigerAktifCopyMacroVb]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strDigerAktif">[str1DigerAktifSheet]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DigerFaalCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Processes\CopySheets\DigerFaalCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strDigerFaalSheet">[str1FaalGelirSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strDigerFaalMacroVb">[strdigerFaalGelirCopyMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DigerFaizCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Processes\CopySheets\DigerFaizCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strDigerFaizSheet">[str1DigerFaizSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strDigerFaizMacroVb">[strdigerFaizCopyMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke UcretKomisyonCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Processes\CopySheets\UcretKomisyonCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strUcretKomisyonSheet">[str1UcretKomisyonSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strUcretKomisyonMacroVb">[strUcretKomisyonCopyMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke PesinTahKomCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Processes\CopySheets\PesinTahKomCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strPesTahKomSheet">[str1PesinTahKomSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strPesinTahKomMacroVb">[strPesinTahKomCopyMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GmenkulSheetCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="Processes\CopySheets\GmenkulSheetCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_stGmenkulMacroVb">[strGmenkulCopyRangeMacroVb]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strGmenkulSheet">[str1gmenkulsheet]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TicariKzCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Processes\CopySheets\TicariKzCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strTicariKzSheet">[str1TicariKzSheet]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strTicariKzMacroVb">[strTicariKzCopyRangeMacroVb]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke KrediAlFaizCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Processes\CopySheets\KrediAlFaizCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strKrediAlFaizMacroVb">[strKrediAlFaizCopyRangeMacroVb]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strKrdAlFaizSheet">[str1KrdAlFaizSheet]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke MevFaizGid workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" UnSafe="False" WorkflowFileName="Processes\CopySheets\MevFaizGid.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strMevFaizGidMacroVb">[strMevFaizGidCopyRangeMacroVb]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strMevFaizGidSheet">[str1MevFaizGidSheet]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke VergiCopyRange workflow" sap:VirtualizedContainerService.HintSize="480,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" UnSafe="False" WorkflowFileName="Processes\CopySheets\VergiCopyRange.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentRapkonExcelPath">[in_strCurrentRapkonExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCurrentCumaExcelPath">[strCurrentCumaExcelPath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strVergiMacroVb">[strVergiCopyRangeMacroVb]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strVergiSheet">[str1VrgSheet]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+  </Sequence>
+</Activity>
