@@ -1,0 +1,144 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="testforexcelduzenleme" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1160,1278" sap2010:WorkflowViewState.IdRef="testforexcelduzenleme_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="30">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="25">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="testforexcelduzenleme" sap:VirtualizedContainerService.HintSize="476,1213" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:WorkbookApplication" Name="wb" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtHamData" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtNihai" />
+      <Variable x:TypeArguments="sd:DataTable" Name="out_dtCekNo" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtCek" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BuildDataTable DataTable="[dtNihai]" DisplayName="Build Data Table - out_dtHamDataNihai" sap:VirtualizedContainerService.HintSize="434,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_ADI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_KODU&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_ŞUBE_x0020_ADI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_ŞUBE_x0020_KODU&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_MÜŞT.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_HSP.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_ESKİ_x0020_HESAP_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_HSP.IBAN.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;HESAP_x0020_CİNSİ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DEFK_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;HSP.SAHİBİ_x0020_ADI_x0020_SOYADI_x002F_UNVANI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;HSP.SAHİBİ_x0020_T.C._x002F_VRG._x0020_KİMLİK_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_TARİHİ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;VALÖR_x0020_TARİHİ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_TÜRÜ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_REF.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_TUTARI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:decimal&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;B_x002F_A&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BAKİYE&quot; msdata:Caption=&quot;&quot; type=&quot;xs:decimal&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DVZ_x0020_CİNSİ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEME_x0020_İLİŞKİN_x0020_AÇIKLAMA&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MENÜ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MENÜ_x0020_AÇIKLAMA&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_BİRİM_x0020_KOD&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KULLANICI_x0020_KODU&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_KANALI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEMİ_x0020_YAPAN_x0020_T.C._x002F_VRG._x0020_KİMLİK_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEMİ_x0020_YAPAN_x0020_AD-SOYAD-UNVAN&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_ADI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_KODU&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_ŞUBE_x0020_ADI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_ŞUBE_x0020_KODU&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_MÜŞT.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_HSP.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_HSP.IBAN_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_AD-SOYAD-UNVAN&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_T.C._x002F_VRG._x0020_KİMLİK_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BORÇ_x0020_İŞL.TUT&quot; msdata:Caption=&quot;&quot; type=&quot;xs:decimal&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ALACAK_x0020_İŞL.TUT&quot; msdata:Caption=&quot;&quot; type=&quot;xs:decimal&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:BuildDataTable DataTable="[out_dtCekNo]" DisplayName="Build Data Table - out_dtCekNo" sap:VirtualizedContainerService.HintSize="434,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_3" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;ÇEK_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,260" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" ReadOnly="True" Visible="False" Workbook="[wb]" WorkbookPath="Tests\HamData.xls">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtHamData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[wb.GetSheets(0)]">
+              <ui:ExcelReadRange.Range>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </ui:ExcelReadRange.Range>
+            </ui:ExcelReadRange>
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+    <Assign sap:VirtualizedContainerService.HintSize="434,64" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dtNihai]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row In dtHamData.AsEnumerable() Select dtNihai.LoadDataRow(New Object()  {row("BANKA ADI"),row("BANKA KODU"), row("BANKA ŞUBE ADI"),row("BANKA ŞUBE KODU"),row("BANKA MÜŞT.NO"),row("BANKA HSP.NO"),row("BANKA ESKİ HESAP NO"),row("BANKA HSP.IBAN NO"),row("HESAP CİNSİ").ToString.TrimEnd,row("DEFK NO"),
+row("HSP.SAHİBİ ADI").ToString.TrimStart.TrimEnd+" "+row("HSP.SAHİBİ SOYADI").ToString.TrimEnd.TrimStart,row("HSP.KİMLİK NO"),row("İŞLEM TARİHİ"),row("VALÖR TARİHİ"),row("İŞLEM TÜRÜ"),
+row("İŞLEM REF.NO").ToString.TrimStart,If(row("İŞLEM TUTARI").toString.Replace(" ","").Equals(""),0,CDec(row("İŞLEM TUTARI").toString.Replace(" ","").Replace("+","").Replace(".","").Replace(",","."))),row("B/A"),
+If(row("BAKİYE").toString.Replace(" ","").Equals(""),0,CDec(row("BAKİYE").toString.Replace(" ","").Replace("+","").Replace(".","").Replace(",","."))),row("DVZ CİNSİ"),row("İŞLEME İLİŞKİN AÇIKLAMA"),row("MENÜ").ToString.Trim,row("MENÜ AÇIKLAMA"),row("İŞLEM BİRİM KOD"),row("KULLANICI KODU").ToString,row("İŞLEM KANALI"),
+row("İŞLEMİ YAPAN KİMLİK NO"),row("İŞLEMİ YAPAN AD-SOYAD-UNVAN"),row("KARŞI BANKA ADI"),row("KARŞI BANKA KODU"),row("KARŞI BANKA ŞUBE ADI"),row("KARŞI BANKA ŞUBE KODU"),row("KARŞI BANKA MÜŞT.NO"),row("KARŞI BANKA HSP.NO"),row("KARŞI BANKA HSP.IBAN NO"),
+row("KARŞI AD-SOYAD-UNVAN"),row("KARŞI KİMLİK NO").ToString.Trim,If(row("BORÇ İŞL.TUT").toString.Replace(" ","").Equals(""),0,CDec(row("BORÇ İŞL.TUT").toString.Replace(" ","").Replace("+","").Replace(".","").Replace(",","."))),
+If(row("ALACAK İŞL.TUT").toString.Replace(" ","").Equals(""),0,CDec(row("ALACAK İŞL.TUT").toString.Replace(" ","").Replace("+","").Replace(".","").Replace(",",".")))},False)).CopyToDataTable()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,64" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dtCek]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row In dtHamData.AsEnumerable() Select out_dtCekNo.LoadDataRow(New Object()  {if(row("İŞLEME İLİŞKİN AÇIKLAMA").ToString.Length&lt;7,row("İŞLEME İLİŞKİN AÇIKLAMA").ToString,row("İŞLEME İLİŞKİN AÇIKLAMA").ToString.Substring(0,7))},False)).CopyToDataTable()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,415" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" Visible="False" Workbook="[wb]" WorkbookPath="Tests\HamDataNew.xlsx">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,306" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtNihai]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="SheetNew" StartingCell="A1" />
+            <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtCek]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="çek" StartingCell="A1" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+  </Sequence>
+</Activity>

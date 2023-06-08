@@ -1,0 +1,83 @@
+{
+  "name": "RPA007_928_MusteriArastirmalari_Performer",
+  "description": "Kuyruktan alinan isler icin gerekli raporlari indirir ve Katip-Haciz uygulamasina yukler.",
+  "main": "Main.xaml",
+  "dependencies": {
+    "ANKALogin": "[1.0.24]",
+    "InitAllSettings": "[1.0.7]",
+    "KillAllProcess": "[1.0.4]",
+    "MistralEkranLogin": "[1.0.11]",
+    "UiPath.Excel.Activities": "[2.12.3]",
+    "UiPath.Mail.Activities": "[1.12.3]",
+    "UiPath.System.Activities": "[21.10.4]",
+    "UiPath.UIAutomation.Activities": "[23.4.5]",
+    "UiPath.WebAPI.Activities": "[1.13.3]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "20.10.6.0",
+  "projectVersion": "1.0.118",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "workflowSerialization": "DataContract",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": false,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": false
+  },
+  "arguments": {
+    "input": [
+      {
+        "name": "in_OrchestratorQueueName",
+        "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+        "required": false,
+        "hasDefault": false
+      }
+    ],
+    "output": []
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "268f0e56-0a07-4623-a101-1b304a126202",
+      "input": [
+        {
+          "name": "in_OrchestratorQueueName",
+          "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "required": false,
+          "hasDefault": false
+        }
+      ],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Legacy"
+}

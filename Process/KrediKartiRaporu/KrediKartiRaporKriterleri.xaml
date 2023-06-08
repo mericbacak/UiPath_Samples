@@ -1,0 +1,245 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="KrediBilgileriRaporKriterleri" this:KrediBilgileriRaporKriterleri.in_strMusteriNo="7233" this:KrediBilgileriRaporKriterleri.in_strBaslangicTarihi="12-10-2022" this:KrediBilgileriRaporKriterleri.in_strBitisTarihi="12-10-2022" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_strMusteriNo" Type="InArgument(x:String)" />
+    <x:Property Name="in_strBaslangicTarihi" Type="InArgument(x:String)" />
+    <x:Property Name="in_strBitisTarihi" Type="InArgument(x:String)" />
+    <x:Property Name="out_strDosyaAdi" Type="OutArgument(x:String)" />
+    <x:Property Name="in_strRaporAdi" Type="InArgument(x:String)" />
+    <x:Property Name="in_intKrediKartiCounter" Type="InArgument(x:Int32)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1186,2118</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>KrediBilgileriRaporKriterleri_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="64">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="56">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="KrediBilgileriRaporKriterleri" sap:VirtualizedContainerService.HintSize="536,2053" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe BI'" sap:VirtualizedContainerService.HintSize="494,1961" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="45ceee39e81d22b7d7b5e43aa0b9eb99" Selector="&lt;html app='chrome.exe' title='BI başlatma alanı' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="460,1815" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="strBitisTarih" />
+              <Variable x:TypeArguments="x:String" Name="strBaslangicTarih" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click - Musteri No" sap:VirtualizedContainerService.HintSize="418,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d3132497-35b4-4bee-b081-92dacb498ca1" InformativeScreenshot="d7f4a89c2f4b382646c0ff7bb65dff10" Selector="&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' class='dlgContainer' /&gt;&lt;webctrl aria-role='main' tag='IFRAME' /&gt;&lt;webctrl id='frame2' tag='IFRAME' /&gt;&lt;webctrl aaname='* Mbmerkezmustno2 girin:' tag='SPAN' /&gt;" TimeoutMS="240000" WaitForReady="COMPLETE" />
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DisplayName="Type Into - Kimlik No" EmptyField="True" sap:VirtualizedContainerService.HintSize="418,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_strMusteriNo+ &quot;[k(enter)]&quot;]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e99e471d-a696-4f80-b672-1cd9c9ad9117" InformativeScreenshot="88e99892ff406c5bf191f9c8a10a4d5f" Selector="&lt;webctrl id='lovWidgetpromptLovZone_textField' tag='INPUT' type='text' /&gt;" TimeoutMS="240000" WaitForReady="COMPLETE" />
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="418,1303" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="00:00:02">
+              <ui:RetryScope.ActivityBody>
+                <ActivityAction>
+                  <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="376,1038" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click - Baslangic Tarihi" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0d65f79c-6308-4ef5-ae89-5e766f0b4c03" InformativeScreenshot="c5e7c0388614e26361841ed0f3152adb" Selector="&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' class='dlgContainer' /&gt;&lt;webctrl aria-role='main' tag='IFRAME' /&gt;&lt;webctrl id='frame2' tag='IFRAME' /&gt;&lt;webctrl aaname='* Başlangıç Ekstre Tarihi:' tag='SPAN' /&gt;" TimeoutMS="240000" WaitForReady="COMPLETE" />
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <Assign DisplayName="Assign - strBaslangicTarih" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[strBaslangicTarih]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[(DateTime.ParseExact(in_strBaslangicTarihi,"dd-MM-yyyy",system.Globalization.CultureInfo.InvariantCulture)).ToString("dd.MM.yyyy")+" 00:00:00"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DelayBefore="1000" DelayBetweenKeys="30" DelayMS="1000" DisplayName="Type Into - Baslangic Tarihi" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[strBaslangicTarih]">
+                      <ui:TypeInto.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="96df50bb-7336-47e7-966f-965a52c8bde3" InformativeScreenshot="8eab05147c0e692a814af6ea98308173" Selector="&lt;webctrl id='text_promptLovZone_RightZone_oneTextField_date0' tag='INPUT' type='text' /&gt;" TimeoutMS="240000" WaitForReady="COMPLETE" />
+                      </ui:TypeInto.Target>
+                    </ui:TypeInto>
+                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click - Bitis Tarihi" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0d65f79c-6308-4ef5-ae89-5e766f0b4c03" InformativeScreenshot="9233151582859cfd63a8bdfa51cd7da6" Selector="&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' class='dlgContainer' /&gt;&lt;webctrl aria-role='main' tag='IFRAME' /&gt;&lt;webctrl id='frame2' tag='IFRAME' /&gt;&lt;webctrl aaname='* Bitiş Ekstre Tarihi:' tag='SPAN' /&gt;" TimeoutMS="240000" WaitForReady="COMPLETE" />
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <Assign DisplayName="Assign - strBitisTarih" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[strBitisTarih]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[(DateTime.ParseExact(in_strBitisTarihi,"dd-MM-yyyy",system.Globalization.CultureInfo.InvariantCulture)).ToString("dd.MM.yyyy")+" 00:00:00"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DelayBefore="1000" DelayBetweenKeys="30" DelayMS="2000" DisplayName="Type Into - Bitis Tarihi" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[strBitisTarih]">
+                      <ui:TypeInto.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="96df50bb-7336-47e7-966f-965a52c8bde3" InformativeScreenshot="7d821118980a6698f547474eee3169db" Selector="&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' class='dlgContainer' /&gt;&lt;webctrl aria-role='main' tag='IFRAME' /&gt;&lt;webctrl id='frame2' tag='IFRAME' /&gt;&lt;webctrl aaname='dd.MM.yyyy HH:mm:ss' tag='INPUT' type='text' id='text_promptLovZone_RightZone_oneTextField_date0' /&gt;" WaitForReady="COMPLETE">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                        </ui:Target>
+                      </ui:TypeInto.Target>
+                    </ui:TypeInto>
+                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click - Bitis Tarihi" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0d65f79c-6308-4ef5-ae89-5e766f0b4c03" InformativeScreenshot="9233151582859cfd63a8bdfa51cd7da6" Selector="&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl tag='IFRAME' class='dlgContainer' /&gt;&lt;webctrl aria-role='main' tag='IFRAME' /&gt;&lt;webctrl id='frame2' tag='IFRAME' /&gt;&lt;webctrl aaname='* Bitiş Ekstre Tarihi:' tag='SPAN' /&gt;" TimeoutMS="240000" WaitForReady="COMPLETE" />
+                      </ui:Click.Target>
+                    </ui:Click>
+                  </Sequence>
+                </ActivityAction>
+              </ui:RetryScope.ActivityBody>
+              <ui:RetryScope.Condition>
+                <ActivityFunc x:TypeArguments="x:Boolean">
+                  <ui:UiElementExists Exists="{x:Null}" DisplayName="Element Exists 'BUTTON  RealBtn_OK_BTN_...'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                    <ui:UiElementExists.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f05fedf4-0f80-4bbc-beb8-ec5f09850166" InformativeScreenshot="9d9289cf87996b31230681948a14f923" Selector="&lt;webctrl name='servletBridgeIframe' tag='IFRAME' /&gt;&lt;webctrl src='../../InfoView/jsp/common/actionNavFrame.jsp?bttoken=*' tag='IFRAME' /&gt;&lt;webctrl aria-role='main' tag='IFRAME' /&gt;&lt;webctrl id='frame2' tag='IFRAME' /&gt;&lt;webctrl aaname='Apply' tag='BUTTON' parentclass='btnBase btnMidBase btnMFocus' /&gt;" TimeoutMS="3000" WaitForReady="COMPLETE" />
+                    </ui:UiElementExists.Target>
+                  </ui:UiElementExists>
+                </ActivityFunc>
+              </ui:RetryScope.Condition>
+            </ui:RetryScope>
+            <Assign DisplayName="Assign - strDosyaAdi" sap:VirtualizedContainerService.HintSize="418,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_strDosyaAdi]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_strRaporAdi+" "+in_strMusteriNo.ToString+"_"+ in_intKrediKartiCounter.ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
+  </Sequence>
+</Activity>

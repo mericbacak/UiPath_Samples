@@ -1,0 +1,526 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ExcelHamDataDuzenle" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_strTempFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="out_dtHamDataNihai" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="io_strHamExcelPath" Type="InOutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1223,1723</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ExcelHamDataDuzenle_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="70">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>BalaReva.Excel.Enums</x:String>
+      <x:String>BalaReva.Excel.Sheets</x:String>
+      <x:String>BalaReva.Excel.Base</x:String>
+      <x:String>BalaReva.Excel.Merge</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>BalaReva.EasyExcel.Sheets</x:String>
+      <x:String>BalaReva.EasyExcel.Base</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="66">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>BalaReva.Excel</AssemblyReference>
+      <AssemblyReference>BalaReva.Excel.Base</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>BalaReva.EasyExcel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ExcelHamDataDuzenle" sap:VirtualizedContainerService.HintSize="476,1658" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:WorkbookApplication" Name="wb" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtHamData" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:CloseApplication ContinueOnError="True" DisplayName="Close Application - Excel" sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="CloseApplication_2">
+      <ui:CloseApplication.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="47ff8764-5599-467e-9b5c-0e8017a26ba3" InformativeScreenshot="9f8625d806bdbd91a365b3d55d72826e" Selector="&lt;wnd app='excel.exe' /&gt;" TimeoutMS="500" WaitForReady="COMPLETE" />
+      </ui:CloseApplication.Target>
+    </ui:CloseApplication>
+    <ui:CopyFile ContinueOnError="{x:Null}" Destination="[io_strHamExcelPath]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="False" Path="[in_strTempFilePath]" />
+    <ui:BuildDataTable DataTable="[out_dtHamDataNihai]" DisplayName="Build Data Table - out_dtHamDataNihai" sap:VirtualizedContainerService.HintSize="434,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_ADI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_KODU&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_ŞUBE_x0020_ADI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_ŞUBE_x0020_KODU&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_MÜŞT.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_HSP.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_ESKİ_x0020_HESAP_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BANKA_x0020_HSP.IBAN.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;HESAP_x0020_CİNSİ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DEFK_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;HSP.SAHİBİ_x0020_ADI_x0020_SOYADI_x002F_UNVANI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;HSP.SAHİBİ_x0020_T.C._x002F_VRG._x0020_KİMLİK_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_TARİHİ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;VALÖR_x0020_TARİHİ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_TÜRÜ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_REF.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_TUTARI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:decimal&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;B_x002F_A&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BAKİYE&quot; msdata:Caption=&quot;&quot; type=&quot;xs:decimal&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DVZ_x0020_CİNSİ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEME_x0020_İLİŞKİN_x0020_AÇIKLAMA&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MENÜ&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MENÜ_x0020_AÇIKLAMA&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_BİRİM_x0020_KOD&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KULLANICI_x0020_KODU&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEM_x0020_KANALI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEMİ_x0020_YAPAN_x0020_T.C._x002F_VRG._x0020_KİMLİK_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;İŞLEMİ_x0020_YAPAN_x0020_AD-SOYAD-UNVAN&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_ADI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_KODU&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_ŞUBE_x0020_ADI&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_ŞUBE_x0020_KODU&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_MÜŞT.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_HSP.NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_BANKA_x0020_HSP.IBAN_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_AD-SOYAD-UNVAN&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KARŞI_x0020_T.C._x002F_VRG._x0020_KİMLİK_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:anyType&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;BORÇ_x0020_İŞL.TUT&quot; msdata:Caption=&quot;&quot; type=&quot;xs:decimal&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ALACAK_x0020_İŞL.TUT&quot; msdata:Caption=&quot;&quot; type=&quot;xs:decimal&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;KASA_x0020_NİTELİKLİ_x0020_İŞLEM&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434,51" sap2010:WorkflowViewState.IdRef="CommentOut_10">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_28">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:BuildDataTable DataTable="[out_dtCekNo]" DisplayName="Build Data Table - out_dtCekNo" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_3" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;ÇEK_x0020_NO&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,260" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="7000" ReadOnly="True" Visible="False" Workbook="[wb]" WorkbookPath="[in_strTempFilePath]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtHamData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[wb.GetSheets(0)]">
+              <ui:ExcelReadRange.Range>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </ui:ExcelReadRange.Range>
+            </ui:ExcelReadRange>
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+    <ui:ExcelCloseWorkbook DisplayName="Close Workbook" sap:VirtualizedContainerService.HintSize="434,59" sap2010:WorkflowViewState.IdRef="ExcelCloseWorkbook_1" Workbook="[wb]" />
+    <ui:FilterDataTable DataTable="[dtHamData]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="434,160" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dtHamData]" SelectColumnsMode="Remove">
+      <ui:FilterDataTable.Filters>
+        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+          <ui:FilterOperationArgument Column="{x:Null}" Operand="{x:Null}" BooleanOperator="And" Operator="LT" />
+        </scg:List>
+      </ui:FilterDataTable.Filters>
+      <ui:FilterDataTable.SelectColumns>
+        <scg:List x:TypeArguments="InArgument" Capacity="4">
+          <InArgument x:TypeArguments="x:String">["HSP.KİMLİK TÜRÜ"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["MESAJ TİPİ"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["İŞLEMİ YAPAN KİMLİK TÜRÜ"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["KARŞI KİMLİK TÜRÜ"]</InArgument>
+        </scg:List>
+      </ui:FilterDataTable.SelectColumns>
+    </ui:FilterDataTable>
+    <Assign sap2010:Annotation.AnnotationText="Tutar bilgileri sayıya çevirilir.Bakiye,İşlem Tutarı, Borç İşlem Tutarı, Alacak İşlem Tutarı" sap:VirtualizedContainerService.HintSize="434,121" sap2010:WorkflowViewState.IdRef="Assign_16">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[out_dtHamDataNihai]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row In dtHamData.AsEnumerable() Select out_dtHamDataNihai.LoadDataRow(New Object()  {row("BANKA ADI"),row("BANKA KODU"), row("BANKA ŞUBE ADI"),row("BANKA ŞUBE KODU"),row("BANKA MÜŞT.NO"),row("BANKA HSP.NO"),row("BANKA ESKİ HESAP NO"),row("BANKA HSP.IBAN NO"),row("HESAP CİNSİ").ToString.TrimEnd,row("DEFK NO"),
+row("HSP.SAHİBİ ADI").ToString.TrimStart.TrimEnd+" "+row("HSP.SAHİBİ SOYADI").ToString.TrimEnd.TrimStart,row("HSP.KİMLİK NO"),row("İŞLEM TARİHİ"),row("VALÖR TARİHİ"),row("İŞLEM TÜRÜ"),
+row("İŞLEM REF.NO").ToString.TrimStart,If(row("İŞLEM TUTARI").toString.Replace(" ","").Equals(""),0,CDec(row("İŞLEM TUTARI").toString.Replace(" ","").Replace("+","").Replace(".","").Replace(",","."))),row("B/A"),
+If(row("BAKİYE").toString.Replace(" ","").Equals(""),0,CDec(row("BAKİYE").toString.Replace(" ","").Replace("+","").Replace(".","").Replace(",","."))),row("DVZ CİNSİ"),row("İŞLEME İLİŞKİN AÇIKLAMA"),row("MENÜ").ToString.Trim,row("MENÜ AÇIKLAMA"),row("İŞLEM BİRİM KOD"),row("KULLANICI KODU").ToString,row("İŞLEM KANALI"),
+row("İŞLEMİ YAPAN KİMLİK NO"),row("İŞLEMİ YAPAN AD-SOYAD-UNVAN"),row("KARŞI BANKA ADI"),row("KARŞI BANKA KODU"),row("KARŞI BANKA ŞUBE ADI"),row("KARŞI BANKA ŞUBE KODU"),row("KARŞI BANKA MÜŞT.NO"),row("KARŞI BANKA HSP.NO"),row("KARŞI BANKA HSP.IBAN NO"),
+row("KARŞI AD-SOYAD-UNVAN"),row("KARŞI KİMLİK NO").ToString.Trim,If(row("BORÇ İŞL.TUT").toString.Replace(" ","").Equals(""),0,CDec(row("BORÇ İŞL.TUT").toString.Replace(" ","").Replace("+","").Replace(".","").Replace(",","."))),
+If(row("ALACAK İŞL.TUT").toString.Replace(" ","").Equals(""),0,CDec(row("ALACAK İŞL.TUT").toString.Replace(" ","").Replace("+","").Replace(".","").Replace(",","."))),row("KASA NİTELİKLİ İŞLEM").ToString.Trim},False)).CopyToDataTable()]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434,51" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_27">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap2010:Annotation.AnnotationText="işleme ilişkin açıklama sütunundaki ilk 8 karakter alınır. İlk 8 karakterde çek no belirtiliyor." sap:VirtualizedContainerService.HintSize="262,117" sap2010:WorkflowViewState.IdRef="Assign_17">
+            <Assign.To>
+              <OutArgument x:TypeArguments="sd:DataTable">[out_dtCekNo]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row In dtHamData.AsEnumerable() Select out_dtCekNo.LoadDataRow(New Object()  {if(row("İŞLEME İLİŞKİN AÇIKLAMA").ToString.Length&lt;8,row("İŞLEME İLİŞKİN AÇIKLAMA").ToString,row("İŞLEME İLİŞKİN AÇIKLAMA").ToString.Substring(0,8))},False)).CopyToDataTable()]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Hamdata düzenlendi.&quot;]" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434,51" sap2010:WorkflowViewState.IdRef="CommentOut_8">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="751,2862" sap2010:WorkflowViewState.IdRef="Sequence_26">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtHamData]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="709,2770" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow.Body>
+              <ActivityAction x:TypeArguments="sd:DataRow">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="675,2651" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="ui:GenericValue" Name="gvBakiye" />
+                    <Variable x:TypeArguments="ui:GenericValue" Name="gvIslemTutar" />
+                    <Variable x:TypeArguments="ui:GenericValue" Name="gvBorcIslemTutar" />
+                    <Variable x:TypeArguments="ui:GenericValue" Name="gvAlacakIslemTutar" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence sap2010:Annotation.AnnotationText="Tutar bilgileri sayıya çevirilir.Bakiye,İşlem Tutarı, Borç İşlem Tutarı, Alacak İşlem Tutarı" DisplayName="Sayıya Cevirme Islemleri" sap:VirtualizedContainerService.HintSize="633,1882" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="591,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="ui:GenericValue">[gvBakiye]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="ui:GenericValue">[row("BAKİYE").ToString.Replace(" ","").Replace(".","").Replace(",",".")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <If Condition="[gvBakiye=&quot;&quot; or gvBakiye=&quot;0&quot;]" sap:VirtualizedContainerService.HintSize="591,309" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="ui:GenericValue">[gvBakiye]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="ui:GenericValue">[0]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="242,143" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:FormatValue DisplayName="Format Value" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="FormatValue_1" Value="[gvBakiye]">
+                                  <ui:FormatValue.Format>
+                                    <ui:GeneralNumberFormatProvider DecimalDigits="2" DecimalSeparator="," GroupSeparator="" />
+                                  </ui:FormatValue.Format>
+                                </ui:FormatValue>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <Assign sap:VirtualizedContainerService.HintSize="591,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="ui:GenericValue">[gvIslemTutar]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="ui:GenericValue">[row("İŞLEM TUTARI").ToString.Trim.Replace(".","").Replace(",",".")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <If Condition="[gvIslemTutar=&quot;&quot; or gvIslemTutar=&quot;0&quot;]" sap:VirtualizedContainerService.HintSize="591,310" sap2010:WorkflowViewState.IdRef="If_2">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="ui:GenericValue">[gvIslemTutar]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="ui:GenericValue">[0]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="242,143" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="CommentOut_7">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:FormatValue DisplayName="Format Value" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="FormatValue_2" Value="[gvIslemTutar]">
+                                  <ui:FormatValue.Format>
+                                    <ui:GeneralNumberFormatProvider DecimalDigits="2" DecimalSeparator="," GroupSeparator="" />
+                                  </ui:FormatValue.Format>
+                                </ui:FormatValue>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <Assign sap:VirtualizedContainerService.HintSize="591,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="ui:GenericValue">[gvBorcIslemTutar]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="ui:GenericValue">[row("BORÇ İŞL.TUT").ToString.Replace(".","").Trim.Replace(",",".")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <If Condition="[gvBorcIslemTutar=&quot;&quot; or gvBorcIslemTutar=&quot;0&quot;]" sap:VirtualizedContainerService.HintSize="591,310" sap2010:WorkflowViewState.IdRef="If_3">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="ui:GenericValue">[gvBorcIslemTutar]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="ui:GenericValue">[0]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="242,143" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:FormatValue DisplayName="Format Value" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="FormatValue_3" Value="[gvBorcIslemTutar]">
+                                  <ui:FormatValue.Format>
+                                    <ui:GeneralNumberFormatProvider DecimalDigits="2" DecimalSeparator="," GroupSeparator="" />
+                                  </ui:FormatValue.Format>
+                                </ui:FormatValue>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <Assign sap:VirtualizedContainerService.HintSize="591,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="ui:GenericValue">[gvAlacakIslemTutar]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="ui:GenericValue">[row("ALACAK İŞL.TUT").ToString.Replace(".","").Trim.Replace(",",".")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <If Condition="[gvAlacakIslemTutar=&quot;&quot; or gvAlacakIslemTutar=&quot;0&quot;]" sap:VirtualizedContainerService.HintSize="591,310" sap2010:WorkflowViewState.IdRef="If_4">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="ui:GenericValue">[gvAlacakIslemTutar]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="ui:GenericValue">[0]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="242,143" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:FormatValue DisplayName="Format Value" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="FormatValue_4" Value="[gvAlacakIslemTutar]">
+                                  <ui:FormatValue.Format>
+                                    <ui:GeneralNumberFormatProvider DecimalDigits="2" DecimalSeparator="," GroupSeparator="" />
+                                  </ui:FormatValue.Format>
+                                </ui:FormatValue>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{row(&quot;BANKA ADI&quot;),row(&quot;BANKA KODU&quot;), row(&quot;BANKA ŞUBE ADI&quot;),row(&quot;BANKA ŞUBE KODU&quot;),row(&quot;BANKA MÜŞT.NO&quot;),row(&quot;BANKA HSP.NO&quot;),row(&quot;BANKA ESKİ HESAP NO&quot;),row(&quot;BANKA HSP.IBAN NO&quot;),row(&quot;HESAP CİNSİ&quot;).ToString.TrimEnd,row(&quot;DEFK NO&quot;),&#xA;row(&quot;HSP.SAHİBİ ADI&quot;).ToString.TrimStart.TrimEnd+&quot; &quot;+row(&quot;HSP.SAHİBİ SOYADI&quot;).ToString.TrimEnd.TrimStart,row(&quot;HSP.KİMLİK NO&quot;),row(&quot;İŞLEM TARİHİ&quot;),row(&quot;VALÖR TARİHİ&quot;),row(&quot;İŞLEM TÜRÜ&quot;),&#xA;row(&quot;İŞLEM REF.NO&quot;).ToString.TrimStart,gvIslemTutar,row(&quot;B/A&quot;),gvBakiye,row(&quot;DVZ CİNSİ&quot;),row(&quot;İŞLEME İLİŞKİN AÇIKLAMA&quot;),row(&quot;MENÜ&quot;).ToString.Trim,row(&quot;MENÜ AÇIKLAMA&quot;),row(&quot;İŞLEM BİRİM KOD&quot;),row(&quot;KULLANICI KODU&quot;).ToString,row(&quot;İŞLEM KANALI&quot;),&#xA;row(&quot;İŞLEMİ YAPAN KİMLİK NO&quot;),row(&quot;İŞLEMİ YAPAN AD-SOYAD-UNVAN&quot;),row(&quot;KARŞI BANKA ADI&quot;),row(&quot;KARŞI BANKA KODU&quot;),row(&quot;KARŞI BANKA ŞUBE ADI&quot;),row(&quot;KARŞI BANKA ŞUBE KODU&quot;),row(&quot;KARŞI BANKA MÜŞT.NO&quot;),row(&quot;KARŞI BANKA HSP.NO&quot;),row(&quot;KARŞI BANKA HSP.IBAN NO&quot;),&#xA;row(&quot;KARŞI AD-SOYAD-UNVAN&quot;),row(&quot;KARŞI KİMLİK NO&quot;).ToString.Trim,gvBorcIslemTutar,gvAlacakIslemTutar}]" DataTable="[out_dtHamDataNihai]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="633,185" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="633,412" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                    <TryCatch.Try>
+                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{row(&quot;İŞLEME İLİŞKİN AÇIKLAMA&quot;).ToString.Substring(0,7)}]" DataTable="[out_dtCekNo]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+                    </TryCatch.Try>
+                    <TryCatch.Catches>
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ActivityAction x:TypeArguments="s:Exception">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                          </ActivityAction.Argument>
+                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;&quot;}]" DataTable="[out_dtCekNo]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="AddDataRow_3" />
+                        </ActivityAction>
+                      </Catch>
+                    </TryCatch.Catches>
+                  </TryCatch>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachRow.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEachRow>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+  </Sequence>
+</Activity>

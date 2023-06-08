@@ -1,0 +1,317 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ExcelIslemleri" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_strRapor585ExcelFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_strKrediSkontFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_strTempFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="io_listEksikIslem" Type="InOutArgument(scg:List(x:String))" />
+    <x:Property Name="io_strHamExcelPath" Type="InOutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1217,4683</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ExcelIslemleri_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="72">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>BalaReva.EasyExcel.Utilities</x:String>
+      <x:String>BalaReva.EasyExcel.Sheets</x:String>
+      <x:String>BalaReva.EasyExcel.Base</x:String>
+      <x:String>Microsoft.Office.Interop.Excel</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="66">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>BalaReva.EasyExcel.Utilities</AssemblyReference>
+      <AssemblyReference>BalaReva.EasyExcel</AssemblyReference>
+      <AssemblyReference>Microsoft.Office.Interop.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ExcelIslemleri" sap:VirtualizedContainerService.HintSize="939,4618" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="dtHamDataNihai" />
+      <Variable x:TypeArguments="ui:WorkbookApplication" Name="wb" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtHamData" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtBoldAndLine" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BuildDataTable sap2010:Annotation.AnnotationText="PKURG585 raporuna yeni bir sayfa eklenirse bu tabloya da yazılmalı. İlk satırları düzenlemek için kullanılıyor." DataTable="[dtBoldAndLine]" DisplayName="Build Data Table-dtBoldAndLine" sap:VirtualizedContainerService.HintSize="897,101" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;SheetName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Range&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;EFT&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AG1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;GELEN EFT&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AG1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;GİDEN EFT&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AG1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;HAVALE&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AG1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;GELEN HAVALE&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AG1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;GİDEN HAVALE&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AG1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;KASADAN YAPILAN NAKİT İŞLEMLER&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AN1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;KREDİLER&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:X1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;BANKAMIZ ÇEKLERİ ÖDEME&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AH1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;BANKAMIZ ÇEKLERİ TAHSİLAT&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AH1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;BANK. ÇEK. TAK. İLE ÖDENEN&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AG1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;DİĞ. BANK. TAK. ÇEK. TAHS. &lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AG1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;DİĞ. BANK. TAK. ÇEK. ÖDEMELERİ&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AH1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;İTHALAT DIŞI TRANSFERLER&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AH1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;GELEN ANLIK TRANSFER&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AH1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;GİDEN ANLIK TRANSFER&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:AH1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;SheetName&gt;HESAP EKSTRESİ&lt;/SheetName&gt;&#xA;    &lt;Range&gt;A1:Y1&lt;/Range&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BuildDataTable>
+    <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="897,260" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="10000" ReadOnly="True" Visible="False" Workbook="[wb]" WorkbookPath="[in_strTempFilePath]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtHamData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[wb.GetSheets(0)]">
+              <ui:ExcelReadRange.Range>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </ui:ExcelReadRange.Range>
+            </ui:ExcelReadRange>
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+    <ui:ExcelCloseWorkbook DisplayName="Close Workbook" sap:VirtualizedContainerService.HintSize="897,59" sap2010:WorkflowViewState.IdRef="ExcelCloseWorkbook_1" Workbook="[wb]" />
+    <If sap2010:Annotation.AnnotationText="dtCekNo 20.09.2022 tarihi ile kaldırılmıstır." Condition="[dtHamData.Rows.Count&gt;0]" sap:VirtualizedContainerService.HintSize="897,3986" sap2010:WorkflowViewState.IdRef="If_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="476,3797" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ExcelHamDataDuzenle workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\ExcelHamDataDuzenle.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strTempFilePath">[in_strTempFilePath]</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtHamDataNihai">[dtHamDataNihai]</OutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="io_strHamExcelPath">[io_strHamExcelPath]</InOutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke HesapEkstresiSayfası workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\HesapEkstresiSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_14" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke EFTSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\EFTSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_15" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke HavaleSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\HavaleSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_16" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Kasadan Yapılan Nakit İşlemler workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\Kasadan Yapılan Nakit İşlemler.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_17" />
+          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434,51" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="421,204" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke NakitIslemlerSheet workflow" sap:VirtualizedContainerService.HintSize="379,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\NakitIslemlerSheet.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </ui:CommentOut.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:CommentOut>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke KredilerSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\KredilerSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strKrediSkontFilePath">[in_strKrediSkontFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_18" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke BankamizCekleriOdemeSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\BankamizCekleriOdemeSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_19" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke BankamizCekleriTahsilatSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\BankamizCekleriTahsilatSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_20" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke BankamizCekleriTakasIleOdenenSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\BankamizCekleriTakasIleOdenenSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_21" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DigerBankaTakasCekTahsilatlariSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\DigerBankaTakasCekTahsilatlariSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_22" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DigerBankaTakasCekOdemeleriSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\DigerBankaTakasCekOdemeleriSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_23" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke IthalatDisiTransferlerSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\IthalatDisiTransferlerSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_24" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GelenAnlıkTransferSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\GelenAnlıkTransferSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_25" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GidenAnlikTransferSheet workflow" sap:VirtualizedContainerService.HintSize="434,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Process\PKURG585Raporu\ExcelIslemleri\GidenAnlikTransferSheet.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtHamData">[dtHamDataNihai]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_strHamDataFilePath">[in_strRapor585ExcelFilePath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Delay DisplayName="Delay 5sn" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_13" />
+          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtBoldAndLine]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="434,549" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+            <ui:ForEachRow.Body>
+              <ActivityAction x:TypeArguments="sd:DataRow">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,429" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Sayfaların başlıkları bold ve altı çizgili olacak şekilde ayarlanır." Code="Dim excel As Microsoft.Office.Interop.Excel.Application 'Init Excel application&#xA;Dim wb As Microsoft.Office.Interop.Excel.Workbook ' Init Excel Workbook&#xA;Dim ws As Microsoft.Office.Interop.Excel.Worksheet 'Init Worksheet&#xA;Try&#xA;    excel = New Microsoft.Office.Interop.Excel.ApplicationClass'create the instance of excel work book'&#xA;    wb = excel.Workbooks.Open(filepath)'Open the excel the file'&#xA;    excel.Visible=False&#xA;    ws=CType(wb.Sheets(sheetName),Microsoft.Office.Interop.Excel.Worksheet)'select a sheet and activiates'&#xA;    ws.Activate&#xA;    &#xA;    ws.Range(range).Font.Bold=True&#xA;    ws.Range(range).Font.Underline = true&#xA;    ws.Columns.AutoFit&#xA;    wb.Save&#xA;    &#xA;Catch es As Exception&#xA;Finally&#xA;    If Not wb Is Nothing Then&#xA;        wb.Close&#xA;    End If    &#xA;    If Not excel Is Nothing Then&#xA;        excel.Quit&#xA;    End If    &#xA;End Try" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,206" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                    <ui:InvokeCode.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="filepath">[in_strRapor585ExcelFilePath]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="sheetName">[CurrentRow(0).ToString]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="range">[CurrentRow(1).ToString]</InArgument>
+                    </ui:InvokeCode.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:InvokeCode>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[CurrentRow(0).ToString+&quot; sayfası için başlıklar düzenlendi.&quot;]" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachRow.Body>
+          </ui:ForEachRow>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Excel düzenleme işlemleri tamamlandı.&quot;]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <AddToCollection x:TypeArguments="x:String" Collection="[io_listEksikIslem]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="*PKURG585 raporu için data bulunamamıştır*" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;PKURG585 raporu için data bulunamamıştır&quot;]" />
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>
