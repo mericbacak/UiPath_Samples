@@ -1,0 +1,825 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="AdresGuncellemeIslemleri" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="&quot;7233&quot;" Name="in_strMusterino" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;BURSA&quot;" Name="in_stril" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;OSMANGAZİ&quot;" Name="in_strilce" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;ÖMER&quot;" Name="in_strMusteriAdi" Type="InArgument(x:String)" />
+    <x:Property Name="in_strPostaKodu" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\TRPAfs01\RPA001\TEST\OUTPUT\RPA005_988_AdresGuncelleme\ExceptionScreenShot\01.08.2022\&quot;" Name="in_strDailyScreenshotFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="out_strTransactionResultText" Type="OutArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;MUST_SOYAD 41066&quot;" Name="in_strMusteriSoyadi" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;KADIKÖY MAHALLESİ KADI CADDESİ  SOKAK NO:77 DAİRE:7 adnks&gt;tebligat İş&quot;" Name="in_strGuncelAdres" Type="InArgument(x:String)" />
+    <x:Property Name="out_BusinessException" Type="OutArgument(ui:BusinessRuleException)" />
+    <x:Property Name="out_SystemException" Type="OutArgument(s:Exception)" />
+    <x:Property Name="in_strAdresTipi" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="&quot;\\Trpafs01\rpa001\TEST\OUTPUT\RPA005_988_AdresGuncelleme\AdresGuncellemeExcelleri\RobotProcess\MüşteriGüncellemeListesi_02.08.2022_17.11.24.xlsx&quot;" Name="in_strTransactionExcelPath" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1160,6336.8</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>AdresGuncellemeIslemleri_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="33">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="33">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
+      <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="MUTA-AdresGüncelleme" sap:VirtualizedContainerService.HintSize="1048.8,6272" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strMusteriMUTAAd" />
+      <Variable x:TypeArguments="x:Boolean" Name="boolAdresTipi" />
+      <Variable x:TypeArguments="x:String" Default="1" Name="strWarningMessage" />
+      <Variable x:TypeArguments="x:Boolean" Name="BoolMusteriBireysel" />
+      <Variable x:TypeArguments="x:Int32" Default="1" Name="intAdresGuncellemeCounter" />
+      <Variable x:TypeArguments="x:Int32" Default="1" Name="intMutaCounter" />
+      <Variable x:TypeArguments="x:Boolean" Name="BoolMutaExist" />
+      <Variable x:TypeArguments="x:Boolean" Name="BoolCustomerUpdated" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtTransactionResults" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BuildDataTable sap2010:Annotation.AnnotationText="after workflow test this activity should removed" DataTable="[dtTransactionResults]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="1007.2,91.2" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;MusteriNo&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MusteriAdi&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MusteriSoyadi&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;GuncelAdres&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IL&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Ilce&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;AdresTipi&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;HataDurumu&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BuildDataTable>
+    <Sequence DisplayName="Processes" sap:VirtualizedContainerService.HintSize="1007.2,5748.8" sap2010:WorkflowViewState.IdRef="Sequence_1114">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:InterruptibleDoWhile Condition="[intAdresGuncellemeCounter&lt;=3 and BoolCustomerUpdated.Equals(False)]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="823.2,4884" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+        <ui:InterruptibleDoWhile.Body>
+          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="788,4676.8" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch.Try>
+              <Sequence DisplayName="Adres Güncelleme Adımları" sap:VirtualizedContainerService.HintSize="751.2,4422.4" sap2010:WorkflowViewState.IdRef="Sequence_1287">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="709.6,4329.6" sap2010:WorkflowViewState.IdRef="IfElseIf_12">
+                  <ui:IfElseIf.ConditionBlocks>
+                    <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                      <ui:IfElseIfBlock BlockType="If" Condition="[in_strGuncelAdres.Length&gt;120]">
+                        <ui:IfElseIfBlock.Then>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddressCharacterLimit workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_188" UnSafe="False" WorkflowFileName="Process\AddressCharacterLimit.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_strIl">[in_stril]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_strIlce">[in_strilce]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdrestipi]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+                              <OutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="out_BusinessException">[out_BusinessException]</OutArgument>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[dtTransactionResults]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                        </ui:IfElseIfBlock.Then>
+                      </ui:IfElseIfBlock>
+                      <ui:IfElseIfBlock BlockType="Else">
+                        <ui:IfElseIfBlock.Then>
+                          <Sequence DisplayName="Karakter Sınrı Uygun" sap:VirtualizedContainerService.HintSize="659.2,3988.8" sap2010:WorkflowViewState.IdRef="Sequence_1297">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" Window="{x:Null}" DisplayName="Attach MUTA" sap:VirtualizedContainerService.HintSize="617.6,3640" sap2010:WorkflowViewState.IdRef="WindowScope_7" InformativeScreenshot="fd31ce1a97c4379ce7b550b45b1339a7" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='MUTA - Müşteri Tanımlama - Arama' /&gt;" TimeoutMS="60000">
+                              <ui:WindowScope.Body>
+                                <ActivityAction x:TypeArguments="x:Object">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Müşteri Adres Güncelleme İşlemleri" sap:VirtualizedContainerService.HintSize="584,3452.8" sap2010:WorkflowViewState.IdRef="Sequence_1285">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CustomerSearch workflow" sap:VirtualizedContainerService.HintSize="542.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_189" UnSafe="False" WorkflowFileName="Process\CustomerSearch.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:InvokeWorkflowFile>
+                                    <ui:GetVisibleText FormattedText="{x:Null}" WordsInfo="{x:Null}" ContinueOnError="True" DisplayName="Get Visible Text 'LABEL'" sap:VirtualizedContainerService.HintSize="542.4,107.2" sap2010:WorkflowViewState.IdRef="GetVisibleText_200">
+                                      <ui:GetVisibleText.Target>
+                                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7f874556-8fd3-4365-9029-1fee0bfaffb3" InformativeScreenshot="cbd79749ac53630b1b5cea5670f8693b" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='Mesaj' /&gt;&lt;wnd cls='LABEL' idx='2' /&gt;" TimeoutMS="3000" WaitForReady="COMPLETE" />
+                                      </ui:GetVisibleText.Target>
+                                      <ui:GetVisibleText.Text>
+                                        <OutArgument x:TypeArguments="x:String">[strWarningMessage]</OutArgument>
+                                      </ui:GetVisibleText.Text>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:GetVisibleText>
+                                    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="542.4,308.8" sap2010:WorkflowViewState.IdRef="IfElseIf_10">
+                                      <ui:IfElseIf.ConditionBlocks>
+                                        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                          <ui:IfElseIfBlock BlockType="If" Condition="[strWarningMessage.Contains(&quot;kayıtlarımızda bulunmamaktadır&quot;)]">
+                                            <ui:IfElseIfBlock.Then>
+                                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CustomerDoesNotExist workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_216" UnSafe="False" WorkflowFileName="Process\CustomerDoesNotExist.xaml">
+                                                <ui:InvokeWorkflowFile.Arguments>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strDailyScreenShotFolderPath">[in_strDailyScreenshotFolderPath]</InArgument>
+                                                  <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[dtTransactionResults]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strIl">[in_stril]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strIlce">[in_strilce]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdrestipi]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+                                                  <OutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="out_BusinessException">[out_BusinessException]</OutArgument>
+                                                </ui:InvokeWorkflowFile.Arguments>
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                              </ui:InvokeWorkflowFile>
+                                            </ui:IfElseIfBlock.Then>
+                                          </ui:IfElseIfBlock>
+                                        </sc:BindingList>
+                                      </ui:IfElseIf.ConditionBlocks>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:IfElseIf>
+                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CheckCustomerNameProcess workflow" sap:VirtualizedContainerService.HintSize="542.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_217" UnSafe="False" WorkflowFileName="Process\CheckCustomerName.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <OutArgument x:TypeArguments="x:Boolean" x:Key="out_BoolMusteriBireysel">[BoolMusteriBireysel]</OutArgument>
+                                        <OutArgument x:TypeArguments="x:String" x:Key="out_strMusteriMUTAAd">[strMusteriMUTAAd]</OutArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:InvokeWorkflowFile>
+                                    <ui:IfElseIf sap2010:Annotation.AnnotationText="Check customer name" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="542.4,2556.8" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
+                                      <ui:IfElseIf.ConditionBlocks>
+                                        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                          <ui:IfElseIfBlock BlockType="If" Condition="[strMusteriMUTAAd.Equals( in_strMusteriAdi)]">
+                                            <ui:IfElseIfBlock.Then>
+                                              <Sequence DisplayName="Customer Name matches" sap:VirtualizedContainerService.HintSize="492,2184.8" sap2010:WorkflowViewState.IdRef="Sequence_1293">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DetectAddressType workflow" sap:VirtualizedContainerService.HintSize="450.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_219" UnSafe="False" WorkflowFileName="Process\DetectAddressType.xaml">
+                                                  <ui:InvokeWorkflowFile.Arguments>
+                                                    <OutArgument x:TypeArguments="x:Boolean" x:Key="out_boolAdresTipi">[boolAdresTipi]</OutArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_strAdrestipi">[in_strAdrestipi]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                                                  </ui:InvokeWorkflowFile.Arguments>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                </ui:InvokeWorkflowFile>
+                                                <ui:IfElseIf sap2010:Annotation.AnnotationText="1. adres veya 2. adres olayı" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="450.4,674.4" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+                                                  <ui:IfElseIf.ConditionBlocks>
+                                                    <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                      <ui:IfElseIfBlock BlockType="If" Condition="[boolAdresTipi.Equals(True)]">
+                                                        <ui:IfElseIfBlock.Then>
+                                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_321" Level="Info" Message="[in_strMusterino+ &quot; değişiklik yapılacak adres 1.Adreste bulundu.&quot; + &quot; Adres güncelleme işlemleri başlıyor.&quot;]">
+                                                            <sap:WorkflowViewStateService.ViewState>
+                                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                              </scg:Dictionary>
+                                                            </sap:WorkflowViewStateService.ViewState>
+                                                          </ui:LogMessage>
+                                                        </ui:IfElseIfBlock.Then>
+                                                      </ui:IfElseIfBlock>
+                                                      <ui:IfElseIfBlock BlockType="Else">
+                                                        <ui:IfElseIfBlock.Then>
+                                                          <Sequence DisplayName="2.Adres Güncelleme" sap:VirtualizedContainerService.HintSize="375.2,328" sap2010:WorkflowViewState.IdRef="Sequence_1279">
+                                                            <sap:WorkflowViewStateService.ViewState>
+                                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                              </scg:Dictionary>
+                                                            </sap:WorkflowViewStateService.ViewState>
+                                                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_338" Level="Info" Message="[in_strMusterino+ &quot; değişiklik yapılacak adres 2.Adreste bulundu.&quot; + &quot; Adres güncelleme işlemleri başlıyor.&quot;]">
+                                                              <sap:WorkflowViewStateService.ViewState>
+                                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                                </scg:Dictionary>
+                                                              </sap:WorkflowViewStateService.ViewState>
+                                                            </ui:LogMessage>
+                                                            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="2.Adrese git" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_2084" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                                              <ui:Click.CursorPosition>
+                                                                <ui:CursorPosition Position="Center">
+                                                                  <ui:CursorPosition.OffsetX>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetX>
+                                                                  <ui:CursorPosition.OffsetY>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:CursorPosition.OffsetY>
+                                                                </ui:CursorPosition>
+                                                              </ui:Click.CursorPosition>
+                                                              <ui:Click.Target>
+                                                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="74bf5c80-9277-47d0-90c5-364bfa3b3c03" InformativeScreenshot="0bd9d771eb8e99164a4f5c290604015b" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='MUTA - Müşteri Adres Bilgileri' /&gt;&lt;wnd cls='OSBUTTON' idx='15' /&gt;&lt;ctrl idx='1' role='push button' /&gt;" WaitForReady="COMPLETE">
+                                                                  <ui:Target.TimeoutMS>
+                                                                    <InArgument x:TypeArguments="x:Int32" />
+                                                                  </ui:Target.TimeoutMS>
+                                                                </ui:Target>
+                                                              </ui:Click.Target>
+                                                              <sap:WorkflowViewStateService.ViewState>
+                                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                                </scg:Dictionary>
+                                                              </sap:WorkflowViewStateService.ViewState>
+                                                            </ui:Click>
+                                                          </Sequence>
+                                                        </ui:IfElseIfBlock.Then>
+                                                      </ui:IfElseIfBlock>
+                                                    </sc:BindingList>
+                                                  </ui:IfElseIf.ConditionBlocks>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                </ui:IfElseIf>
+                                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke UpdateAddress workflow" sap:VirtualizedContainerService.HintSize="450.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_224" UnSafe="False" WorkflowFileName="Process\UpdateAddress.xaml">
+                                                  <ui:InvokeWorkflowFile.Arguments>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_stril">[in_stril]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_strilce">[in_strilce]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_strPostaKodu">[in_strPostaKodu]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_BoolMusteriBireysel">[BoolMusteriBireysel]</InArgument>
+                                                    <OutArgument x:TypeArguments="x:String" x:Key="out_strTransactionResultText">[out_strTransactionResultText]</OutArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_strDailyScreenShotFolderPath">[in_strDailyScreenshotFolderPath]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+                                                    <OutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="out_BusinessException">[out_BusinessException]</OutArgument>
+                                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[dtTransactionResults]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+                                                    <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdresTipi]</InArgument>
+                                                  </ui:InvokeWorkflowFile.Arguments>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                </ui:InvokeWorkflowFile>
+                                                <ui:GetVisibleText FormattedText="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get Visible Text 'Uyarı'" sap:VirtualizedContainerService.HintSize="450.4,107.2" sap2010:WorkflowViewState.IdRef="GetVisibleText_199">
+                                                  <ui:GetVisibleText.Target>
+                                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="46e0bb11-d3af-4073-a9fd-98d337641097" InformativeScreenshot="7c1957fdee954cc0e551eddb41d4253f" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='Mesaj' /&gt;&lt;wnd cls='LABEL' idx='2' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="COMPLETE">
+                                                      <ui:Target.TimeoutMS>
+                                                        <InArgument x:TypeArguments="x:Int32" />
+                                                      </ui:Target.TimeoutMS>
+                                                    </ui:Target>
+                                                  </ui:GetVisibleText.Target>
+                                                  <ui:GetVisibleText.Text>
+                                                    <OutArgument x:TypeArguments="x:String">[strWarningMessage]</OutArgument>
+                                                  </ui:GetVisibleText.Text>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                </ui:GetVisibleText>
+                                                <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="450.4,923.2" sap2010:WorkflowViewState.IdRef="IfElseIf_8">
+                                                  <ui:IfElseIf.ConditionBlocks>
+                                                    <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                                                      <ui:IfElseIfBlock BlockType="If" Condition="[strWarningMessage.Contains(&quot;ADNKS-Sorgula&quot;)]">
+                                                        <ui:IfElseIfBlock.Then>
+                                                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ADKNKS_Process workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_221" UnSafe="False" WorkflowFileName="Process\ADKNKS_Process.xaml">
+                                                            <ui:InvokeWorkflowFile.Arguments>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strIl">[in_stril]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strIlce">[in_strilce]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdrestipi]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+                                                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[dtTransactionResults]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strDailyScreenShotFolderPath">[in_strDailyScreenshotFolderPath]</InArgument>
+                                                              <OutArgument x:TypeArguments="x:String" x:Key="out_strTransactionResultText">[out_strTransactionResultText]</OutArgument>
+                                                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_BoolMusteriBireysel">[BoolMusteriBireysel]</InArgument>
+                                                              <OutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="out_BusinessException">[out_BusinessException]</OutArgument>
+                                                            </ui:InvokeWorkflowFile.Arguments>
+                                                            <sap:WorkflowViewStateService.ViewState>
+                                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                              </scg:Dictionary>
+                                                            </sap:WorkflowViewStateService.ViewState>
+                                                          </ui:InvokeWorkflowFile>
+                                                        </ui:IfElseIfBlock.Then>
+                                                      </ui:IfElseIfBlock>
+                                                      <ui:IfElseIfBlock BlockType="ElseIf" Condition="[strWarningMessage.Contains(&quot;güncelleme işleminiz tamamlandı&quot;)]">
+                                                        <ui:IfElseIfBlock.Then>
+                                                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddressUpdateSuccess workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_220" UnSafe="False" WorkflowFileName="Process\AddressUpdateSuccess.xaml">
+                                                            <ui:InvokeWorkflowFile.Arguments>
+                                                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_BoolMusteriBireysel">[BoolMusteriBireysel]</InArgument>
+                                                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[dtTransactionResults]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strIl">[in_stril]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strIlce">[in_strilce]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdrestipi]</InArgument>
+                                                              <OutArgument x:TypeArguments="x:String" x:Key="out_strTransactionResultText">[out_strTransactionResultText]</OutArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+                                                            </ui:InvokeWorkflowFile.Arguments>
+                                                            <sap:WorkflowViewStateService.ViewState>
+                                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                              </scg:Dictionary>
+                                                            </sap:WorkflowViewStateService.ViewState>
+                                                          </ui:InvokeWorkflowFile>
+                                                        </ui:IfElseIfBlock.Then>
+                                                      </ui:IfElseIfBlock>
+                                                      <ui:IfElseIfBlock BlockType="ElseIf" Condition="[strWarningMessage.Contains(&quot;Müşterinin İletişim/Tebligat Adresi zorunludur&quot;)]">
+                                                        <ui:IfElseIfBlock.Then>
+                                                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TebligatProcess workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_222" UnSafe="False" WorkflowFileName="Process\TebligatProcess.xaml">
+                                                            <ui:InvokeWorkflowFile.Arguments>
+                                                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_BoolMusteriBiresysel">[BoolMusteriBireysel]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strDailyScreenShotFolderPath">[in_strDailyScreenshotFolderPath]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strIl">[in_stril]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strIlce">[in_strilce]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdresTipi]</InArgument>
+                                                              <OutArgument x:TypeArguments="x:String" x:Key="out_strTransactionResultText">[out_strTransactionResultText]</OutArgument>
+                                                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[dtTransactionResults]</InArgument>
+                                                              <OutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="out_BusinessException">[out_BusinessException]</OutArgument>
+                                                            </ui:InvokeWorkflowFile.Arguments>
+                                                            <sap:WorkflowViewStateService.ViewState>
+                                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                              </scg:Dictionary>
+                                                            </sap:WorkflowViewStateService.ViewState>
+                                                          </ui:InvokeWorkflowFile>
+                                                        </ui:IfElseIfBlock.Then>
+                                                      </ui:IfElseIfBlock>
+                                                      <ui:IfElseIfBlock BlockType="Else">
+                                                        <ui:IfElseIfBlock.Then>
+                                                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AnyFailureProcess workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_223" UnSafe="False" WorkflowFileName="Process\AnyFailureProcess.xaml">
+                                                            <ui:InvokeWorkflowFile.Arguments>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strDailyScreenShotFolderPath">[in_strDailyScreenshotFolderPath]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strIl">[in_stril]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strIlce">[in_strilce]</InArgument>
+                                                              <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdrestipi]</InArgument>
+                                                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[dtTransactionResults]</InArgument>
+                                                              <InArgument x:TypeArguments="x:Boolean" x:Key="in_BoolMusteriBireysel">[BoolMusteriBireysel]</InArgument>
+                                                              <OutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="out_BusinessException">[out_BusinessException]</OutArgument>
+                                                            </ui:InvokeWorkflowFile.Arguments>
+                                                            <sap:WorkflowViewStateService.ViewState>
+                                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                              </scg:Dictionary>
+                                                            </sap:WorkflowViewStateService.ViewState>
+                                                          </ui:InvokeWorkflowFile>
+                                                        </ui:IfElseIfBlock.Then>
+                                                      </ui:IfElseIfBlock>
+                                                    </sc:BindingList>
+                                                  </ui:IfElseIf.ConditionBlocks>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                </ui:IfElseIf>
+                                              </Sequence>
+                                            </ui:IfElseIfBlock.Then>
+                                          </ui:IfElseIfBlock>
+                                          <ui:IfElseIfBlock BlockType="Else">
+                                            <ui:IfElseIfBlock.Then>
+                                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CustomerNameFailure workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_218" UnSafe="False" WorkflowFileName="Process\CustomerNameFailure.xaml">
+                                                <ui:InvokeWorkflowFile.Arguments>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strIl">[in_stril]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strIlce">[in_strilce]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdrestipi]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strDailyScreenShotFolderPath">[in_strDailyScreenshotFolderPath]</InArgument>
+                                                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_BoolMusteriBireysel">[BoolMusteriBireysel]</InArgument>
+                                                  <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+                                                  <OutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="out_BusinessException">[out_BusinessException]</OutArgument>
+                                                  <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[dtTransactionResults]</InArgument>
+                                                </ui:InvokeWorkflowFile.Arguments>
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                              </ui:InvokeWorkflowFile>
+                                            </ui:IfElseIfBlock.Then>
+                                          </ui:IfElseIfBlock>
+                                        </sc:BindingList>
+                                      </ui:IfElseIf.ConditionBlocks>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:IfElseIf>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:WindowScope.Body>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:WindowScope>
+                            <Assign sap:VirtualizedContainerService.HintSize="617.6,60" sap2010:WorkflowViewState.IdRef="Assign_418">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[BoolCustomerUpdated]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:AppendRange DataTable="[dtTransactionResults]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="617.6,116" sap2010:WorkflowViewState.IdRef="AppendRange_2" SheetName="Customers" WorkbookPath="[in_strTransactionExcelPath]">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:AppendRange>
+                          </Sequence>
+                        </ui:IfElseIfBlock.Then>
+                      </ui:IfElseIfBlock>
+                    </sc:BindingList>
+                  </ui:IfElseIf.ConditionBlocks>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:IfElseIf>
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="754.4,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="System Exception Steps" sap:VirtualizedContainerService.HintSize="524.8,1807.2" sap2010:WorkflowViewState.IdRef="Sequence_1292">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="483.2,255.2" sap2010:WorkflowViewState.IdRef="IfElseIf_11">
+                      <ui:IfElseIf.ConditionBlocks>
+                        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                          <ui:IfElseIfBlock BlockType="If" Condition="[intAdresGuncellemeCounter=3]">
+                            <ui:IfElseIfBlock.Then>
+                              <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_419">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="s:Exception">[out_SystemException]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                        </sc:BindingList>
+                      </ui:IfElseIf.ConditionBlocks>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:IfElseIf>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="483.2,88" sap2010:WorkflowViewState.IdRef="LogMessage_356" Level="Warn" Message="[in_strMusterino+&quot; müşterisinde  &quot;+intAdresGuncellemeCounter.ToString+&quot;. denemesinde adres güncellemesi BAŞARISIZ olmuştur. Alınan sistem hatası &quot;+Environment.NewLine +exception.ToString]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:LogMessage>
+                    <ui:InterruptibleDoWhile Condition="[BoolMutaExist.Equals(False) and intMutaCounter&lt;=3]" DisplayName="Do While " sap:VirtualizedContainerService.HintSize="483.2,606.4" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_4">
+                      <ui:InterruptibleDoWhile.Body>
+                        <Sequence DisplayName="MUTA Kapat Aç" sap:VirtualizedContainerService.HintSize="375.2,399.2" sap2010:WorkflowViewState.IdRef="Sequence_1290">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill EZE2IMG" sap:VirtualizedContainerService.HintSize="333.6,52.8" sap2010:WorkflowViewState.IdRef="KillProcess_3" ProcessName="EZE2IMG">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:KillProcess>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke MutaGiris workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_215" UnSafe="False" WorkflowFileName="NarIslemleri\MutaGiris.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_BoolMutaLogin">[BoolMutaExist]</OutArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                          <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_412">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[intMutaCounter]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">[intMutaCounter+1]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ui:InterruptibleDoWhile.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:InterruptibleDoWhile>
+                    <If Condition="[BoolMutaExist.Equals(False) and intMutaCounter&gt;3]" DisplayName="If" sap:VirtualizedContainerService.HintSize="483.2,512.8" sap2010:WorkflowViewState.IdRef="If_778">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence DisplayName="MutaLoginFail" sap:VirtualizedContainerService.HintSize="375.2,343.2" sap2010:WorkflowViewState.IdRef="Sequence_1291">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_357" Level="Warn" Message="[&quot;Adres Güncelleme adımlarında adresin tekrar güncellenmesinde MUTA 3.kez tekrar giriş başarısız olmuştur&quot;]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:LogMessage>
+                          <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_415">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="s:Exception">[out_SystemException]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Throw Exception="[out_SystemException]" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Throw_224" />
+                        </Sequence>
+                      </If.Then>
+                    </If>
+                    <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_413">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[intAdresGuncellemeCounter]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[intAdresGuncellemeCounter+1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </ActivityAction>
+              </Catch>
+              <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="754.4,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="BusinessException" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Business Exception" sap:VirtualizedContainerService.HintSize="375.2,303.2" sap2010:WorkflowViewState.IdRef="Sequence_1296">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:AppendRange DataTable="[dtTransactionResults]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="333.6,116" sap2010:WorkflowViewState.IdRef="AppendRange_3" SheetName="Customers" WorkbookPath="[in_strTransactionExcelPath]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:AppendRange>
+                    <Rethrow sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Rethrow_2" />
+                  </Sequence>
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+        </ui:InterruptibleDoWhile.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:InterruptibleDoWhile>
+      <If Condition="[intAdresGuncellemeCounter&gt;=3]" DisplayName="If-(3.kez adres güncelleme başarısız mı)" sap:VirtualizedContainerService.HintSize="823.2,732" sap2010:WorkflowViewState.IdRef="If_67">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="SysException Fail" sap:VirtualizedContainerService.HintSize="375.2,543.2" sap2010:WorkflowViewState.IdRef="Sequence_1295">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{in_strMusterino,in_strMusteriAdi,in_strMusteriSoyadi,in_strGuncelAdres,in_strIl, in_strIlce, in_strAdresTipi,&quot;Mistral Sistem Hatası&quot;}]" DataTable="[dtTransactionResults]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="333.6,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:AddDataRow>
+            <ui:AppendRange DataTable="[dtTransactionResults]" DisplayName="Append Range" sap:VirtualizedContainerService.HintSize="333.6,116" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="Customers" WorkbookPath="[in_strTransactionExcelPath]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:AppendRange>
+            <Throw sap2010:Annotation.AnnotationText="müşterinin 3.kez adres güncellemesi başarısız oldu" DisplayName="Throw" Exception="[out_SystemException]" sap:VirtualizedContainerService.HintSize="333.6,66.4" sap2010:WorkflowViewState.IdRef="Throw_26">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Throw>
+          </Sequence>
+        </If.Then>
+      </If>
+    </Sequence>
+    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="1007.2,259.2" sap2010:WorkflowViewState.IdRef="IfElseIf_7">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[in_strGuncelAdres.Length&gt;120]">
+            <ui:IfElseIfBlock.Then>
+              <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_1298" />
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+          <ui:IfElseIfBlock BlockType="Else">
+            <ui:IfElseIfBlock.Then>
+              <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_1299" />
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:IfElseIf>
+  </Sequence>
+</Activity>

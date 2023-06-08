@@ -1,0 +1,489 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="TebligatProcess" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_BoolMusteriBiresysel" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_strMusterino" Type="InArgument(x:String)" />
+    <x:Property Name="in_strDailyScreenShotFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_strMusteriAdi" Type="InArgument(x:String)" />
+    <x:Property Name="in_strMusteriSoyadi" Type="InArgument(x:String)" />
+    <x:Property Name="in_strGuncelAdres" Type="InArgument(x:String)" />
+    <x:Property Name="in_strIl" Type="InArgument(x:String)" />
+    <x:Property Name="in_strIlce" Type="InArgument(x:String)" />
+    <x:Property Name="in_strAdresTipi" Type="InArgument(x:String)" />
+    <x:Property Name="out_strTransactionResultText" Type="OutArgument(x:String)" />
+    <x:Property Name="in_dtTransactionResults" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="out_BusinessException" Type="OutArgument(ui:BusinessRuleException)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1152,3679.2</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>TebligatProcess_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="62">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="50">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="TebligatProcess" sap:VirtualizedContainerService.HintSize="625.6,3614.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="boolAdresTipi" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Tamam'" sap:VirtualizedContainerService.HintSize="584,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a8b22712-4444-47c5-bd31-d64b611c2c08" InformativeScreenshot="17fc5d9d289c928c236fe324632cca5f" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='Mesaj' /&gt;&lt;wnd cls='OSBUTTON' title='Tamam' /&gt;" WaitForReady="COMPLETE">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+        </ui:Target>
+      </ui:Click.Target>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:Click>
+    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'AdresBilgileri'" sap:VirtualizedContainerService.HintSize="584,107.2" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c7fee413-570b-4d0e-95d4-6533cef0d73b" InformativeScreenshot="eae91a89bdf922ee1c7c06890f4ef81f" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' /&gt;&lt;wnd cls='Button' title='*Müşteri Güncelleme' /&gt;&lt;wnd cls='OSBUTTON' title=' Adres Bilgileri ' /&gt;" WaitForReady="COMPLETE">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+        </ui:Target>
+      </ui:Click.Target>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:Click>
+    <ui:UiElementExists DisplayName="Element Exists 'GerekliAdresTipi'" Exists="[boolAdresTipi]" sap:VirtualizedContainerService.HintSize="584,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+      <ui:UiElementExists.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9375c390-20e4-4cd4-895f-85ff70e9a6ef" InformativeScreenshot="8a0f7397537d86528e1af0bdbd9f43b1" Selector="[String.Format(&quot;&lt;wnd app='eze2img.exe' cls='SHELL' title='MUTA - Müşteri Adres Bilgileri' /&gt;&lt;wnd cls='OSBUTTON' title='{0}' aastate='checked, focusable' /&gt;&quot;, in_strAdresTipi)]" TimeoutMS="5500" WaitForReady="COMPLETE" />
+      </ui:UiElementExists.Target>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:UiElementExists>
+    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="584,333.6" sap2010:WorkflowViewState.IdRef="IfElseIf_1">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[boolAdresTipi.Equals(False)]">
+            <ui:IfElseIfBlock.Then>
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="2.Adrese Geçmek için" ClickType="CLICK_SINGLE" DisplayName="Click" sap:VirtualizedContainerService.HintSize="333.6,138.4" sap2010:WorkflowViewState.IdRef="Click_26" KeyModifiers="None" MouseButton="BTN_LEFT">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition Position="Center">
+                    <ui:CursorPosition.OffsetX>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetX>
+                    <ui:CursorPosition.OffsetY>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetY>
+                  </ui:CursorPosition>
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="74bf5c80-9277-47d0-90c5-364bfa3b3c03" InformativeScreenshot="0bd9d771eb8e99164a4f5c290604015b" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='MUTA - Müşteri Adres Bilgileri' /&gt;&lt;wnd cls='OSBUTTON' idx='15' /&gt;&lt;ctrl idx='1' role='push button' /&gt;" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:Click.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:Click>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+    </ui:IfElseIf>
+    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="Müşteri Bilgileri değiştir, 2.adrese geçerken eğer uyarı gelirse" ClickType="CLICK_SINGLE" ContinueOnError="True" DisplayName="Click 'Evet'" sap:VirtualizedContainerService.HintSize="584,151.2" sap2010:WorkflowViewState.IdRef="Click_28" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="673d306c-04f7-44da-a925-0ea82e01546b" InformativeScreenshot="c877fdb5ebe048987e8b656872329036" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='Mesaj' /&gt;&lt;wnd cls='OSBUTTON' title=' Evet' /&gt;" TimeoutMS="2500" WaitForReady="COMPLETE" />
+      </ui:Click.Target>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:Click>
+    <Sequence DisplayName="Tebligat Adımları" sap:VirtualizedContainerService.HintSize="584,2515.2" sap2010:WorkflowViewState.IdRef="Sequence_11">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="strUyarı2">
+          <Variable.Default>
+            <Literal x:TypeArguments="x:String">1</Literal>
+          </Variable.Default>
+        </Variable>
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Checkbox'" sap:VirtualizedContainerService.HintSize="542.4,107.2" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+        <ui:Click.CursorPosition>
+          <ui:CursorPosition Position="Center">
+            <ui:CursorPosition.OffsetX>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:CursorPosition.OffsetX>
+            <ui:CursorPosition.OffsetY>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:CursorPosition.OffsetY>
+          </ui:CursorPosition>
+        </ui:Click.CursorPosition>
+        <ui:Click.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ceb5e134-5570-4f1d-b7fa-1cd08de62443" InformativeScreenshot="6f0371aebd63ed6091a62a0100cd03b1" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='MUTA - Müşteri Adres Bilgileri' /&gt;&lt;wnd cls='OSBUTTON' title='İletişim/Tebligat Adresi' /&gt;" WaitForReady="COMPLETE">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+          </ui:Target>
+        </ui:Click.Target>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:Click>
+      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Tamam'" sap:VirtualizedContainerService.HintSize="542.4,107.2" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
+        <ui:Click.CursorPosition>
+          <ui:CursorPosition Position="Center">
+            <ui:CursorPosition.OffsetX>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:CursorPosition.OffsetX>
+            <ui:CursorPosition.OffsetY>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:CursorPosition.OffsetY>
+          </ui:CursorPosition>
+        </ui:Click.CursorPosition>
+        <ui:Click.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fc99f0ff-5d68-42a8-9c60-2016be19a2c9" InformativeScreenshot="d751c7f5840c23b45a7235677649bdd8" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='MUTA - Müşteri Adres Bilgileri' /&gt;&lt;wnd cls='OSBUTTON' title='Tamam' /&gt;" WaitForReady="COMPLETE">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+          </ui:Target>
+        </ui:Click.Target>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:Click>
+      <ui:GetVisibleText FormattedText="{x:Null}" WordsInfo="{x:Null}" ContinueOnError="True" DisplayName="Get Visible Text 'Uyarı'" sap:VirtualizedContainerService.HintSize="542.4,107.2" sap2010:WorkflowViewState.IdRef="GetVisibleText_4">
+        <ui:GetVisibleText.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="46e0bb11-d3af-4073-a9fd-98d337641097" InformativeScreenshot="7c1957fdee954cc0e551eddb41d4253f" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='Mesaj' /&gt;&lt;wnd cls='LABEL' idx='2' /&gt;&lt;ctrl role='client' /&gt;" TimeoutMS="4000" WaitForReady="COMPLETE" />
+        </ui:GetVisibleText.Target>
+        <ui:GetVisibleText.Text>
+          <OutArgument x:TypeArguments="x:String">[strUyarı2]</OutArgument>
+        </ui:GetVisibleText.Text>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:GetVisibleText>
+      <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="542.4,817.6" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
+        <ui:IfElseIf.ConditionBlocks>
+          <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+            <ui:IfElseIfBlock BlockType="If" Condition="[strUyarı2.Contains(&quot;İletişim/Tebligat Adresi işaretli ise, adres teyidi işaretlenmelidir&quot;)]">
+              <ui:IfElseIfBlock.Then>
+                <Sequence DisplayName="Adres Teyit Process" sap:VirtualizedContainerService.HintSize="375.2,622.4" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Adres Teyit Tamam'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_29" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2385320f-4a7d-46ec-8109-d701059e2038" InformativeScreenshot="21ea16bd19ad4b57bf527bcbb58f1d08" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='Mesaj' /&gt;&lt;wnd cls='OSBUTTON' title='Tamam' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:Click.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:Click>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Adres Teyit'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_30" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="973be6db-024c-4072-b4e0-f634c19a0819" InformativeScreenshot="0f071d108f9359e79817d6b188e4d4e9" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='MUTA - Müşteri Adres Bilgileri' /&gt;&lt;wnd cls='Button' title='Adres Teyit Bilgileri' /&gt;&lt;wnd cls='OSBUTTON' title='Adres Teyit' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:Click.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:Click>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Tamam'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_31" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fc99f0ff-5d68-42a8-9c60-2016be19a2c9" InformativeScreenshot="d751c7f5840c23b45a7235677649bdd8" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='MUTA - Müşteri Adres Bilgileri' /&gt;&lt;wnd cls='OSBUTTON' title='Tamam' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:Click.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:Click>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[in_strMusterino+&quot; müşterisinde iletişim tebligat adımları işletilirken adres teyidi uyarısı adımları uygulandı&quot;]" />
+                </Sequence>
+              </ui:IfElseIfBlock.Then>
+            </ui:IfElseIfBlock>
+          </sc:BindingList>
+        </ui:IfElseIf.ConditionBlocks>
+      </ui:IfElseIf>
+      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'OSBUTTON'" sap:VirtualizedContainerService.HintSize="542.4,107.2" sap2010:WorkflowViewState.IdRef="Click_27" KeyModifiers="None" MouseButton="BTN_LEFT">
+        <ui:Click.CursorPosition>
+          <ui:CursorPosition Position="Center">
+            <ui:CursorPosition.OffsetX>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:CursorPosition.OffsetX>
+            <ui:CursorPosition.OffsetY>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:CursorPosition.OffsetY>
+          </ui:CursorPosition>
+        </ui:Click.CursorPosition>
+        <ui:Click.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2c4365b0-f67f-4b97-a2af-c85f03578357" InformativeScreenshot="cfbcc64e7cf4b603b40af39b7af41c24" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='MUTA - Bireysel Müşteri Bilgileri' /&gt;&lt;wnd cls='Button' title=' Seçim ' /&gt;&lt;wnd cls='OSBUTTON' title=' Tamam ' /&gt;" WaitForReady="COMPLETE">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+          </ui:Target>
+        </ui:Click.Target>
+      </ui:Click>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Zorunlu_Saha_Warning workflow" sap:VirtualizedContainerService.HintSize="542.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Process\Zorunlu_Saha_Warning.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strDailyScreenShotFolderPath">[in_strDailyScreenShotFolderPath]</InArgument>
+          <InArgument x:TypeArguments="x:Boolean" x:Key="in_BoolMusteriBireysel">[in_BoolMusteriBiresysel]</InArgument>
+          <OutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="out_BusinessException">[out_BusinessException]</OutArgument>
+          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[in_dtTransactionResults]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strIl">[in_strIl]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strIlce">[in_strIlce]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdresTipi]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:GetVisibleText FormattedText="{x:Null}" WordsInfo="{x:Null}" DisplayName="Get Visible Text 'Uyarı'" sap:VirtualizedContainerService.HintSize="542.4,107.2" sap2010:WorkflowViewState.IdRef="GetVisibleText_3">
+        <ui:GetVisibleText.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="46e0bb11-d3af-4073-a9fd-98d337641097" InformativeScreenshot="7c1957fdee954cc0e551eddb41d4253f" Selector="&lt;wnd app='eze2img.exe' cls='SHELL' title='Mesaj' /&gt;&lt;wnd cls='LABEL' idx='2' /&gt;&lt;ctrl role='client' /&gt;" WaitForReady="COMPLETE">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+          </ui:Target>
+        </ui:GetVisibleText.Target>
+        <ui:GetVisibleText.Text>
+          <OutArgument x:TypeArguments="x:String">[strUyarı2]</OutArgument>
+        </ui:GetVisibleText.Text>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:GetVisibleText>
+      <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="542.4,675.2" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+        <ui:IfElseIf.ConditionBlocks>
+          <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+            <ui:IfElseIfBlock BlockType="If" Condition="[strUyarı2.Contains(&quot;güncelleme işleminiz tamamlandı&quot;)]">
+              <ui:IfElseIfBlock.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="375.2,334.4" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;İletişim Tebligat adımları tamamlamıştır; müşteri &quot;+in_strMusterino+&quot; tebligat uygulanan adres tipi: &quot;+in_strAdrestipi]" />
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AddressUpdateSuccess workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Process\AddressUpdateSuccess.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:Boolean" x:Key="in_BoolMusteriBireysel">[in_BoolMusteriBiresysel]</InArgument>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[in_dtTransactionResults]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_strIl">[in_strIl]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_strIlce">[in_strIlce]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdresTipi]</InArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="out_strTransactionResultText">[out_strTransactionResultText]</OutArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </ui:IfElseIfBlock.Then>
+            </ui:IfElseIfBlock>
+            <ui:IfElseIfBlock BlockType="Else">
+              <ui:IfElseIfBlock.Then>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke AnyFailureProcess workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Process\AnyFailureProcess.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strMusterino">[in_strMusterino]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strDailyScreenShotFolderPath">[in_strDailyScreenShotFolderPath]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriAdi">[in_strMusteriAdi]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strMusteriSoyadi">[in_strMusteriSoyadi]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strGuncelAdres">[in_strGuncelAdres]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strIl">[in_strIl]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strIlce">[in_strIlce]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strAdresTipi">[in_strAdresTipi]</InArgument>
+                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtTransactionResults">[in_dtTransactionResults]</InArgument>
+                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_BoolMusteriBireysel">[in_BoolMusteriBiresysel]</InArgument>
+                    <OutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="out_BusinessException">[out_BusinessException]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </ui:IfElseIfBlock.Then>
+            </ui:IfElseIfBlock>
+          </sc:BindingList>
+        </ui:IfElseIf.ConditionBlocks>
+      </ui:IfElseIf>
+    </Sequence>
+  </Sequence>
+</Activity>
