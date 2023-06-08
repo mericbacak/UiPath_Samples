@@ -1,0 +1,585 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Output_SonuçMail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_strUserName" Type="InArgument(x:String)" />
+    <x:Property Name="in_strPass" Type="InArgument(ss:SecureString)" />
+    <x:Property Name="in_StrWarnMailTo" Type="InArgument(x:String)" />
+    <x:Property Name="in_strExchangeServer" Type="InArgument(x:String)" />
+    <x:Property Name="in_strExchangeDomain" Type="InArgument(x:String)" />
+    <x:Property Name="in_strTalepSahibiMailto" Type="InArgument(x:String)" />
+    <x:Property Name="in_strTalepSahibiMailCC" Type="InArgument(x:String)" />
+    <x:Property Name="in_ListMizanlar" Type="InArgument(scg:ICollection(x:String))" />
+    <x:Property Name="in_strSuccessMailBCC" Type="InArgument(x:String)" />
+    <x:Property Name="in_strTestRunTime" Type="InArgument(x:String)" />
+    <x:Property Name="in_strMZNG120WorkInfo" Type="InArgument(x:String)" />
+    <x:Property Name="in_strRunTimeHour" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1153,3723</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Output_HataMail_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="60">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>Microsoft.Exchange.WebServices.Data</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Mail.Exchange</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="64">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>Microsoft.Exchange.WebServices</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Output_SonuçMail" sap:VirtualizedContainerService.HintSize="706,3658" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="644,2914" sap2010:WorkflowViewState.IdRef="IfElseIf_10">
+      <ui:IfElseIf.ConditionBlocks>
+        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+          <ui:IfElseIfBlock BlockType="If" Condition="[in_strTestRunTime=&quot;1&quot;]">
+            <ui:IfElseIfBlock.Then>
+              <Sequence DisplayName="Test Koşumu" sap:VirtualizedContainerService.HintSize="400,81" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="531,2483" sap2010:WorkflowViewState.IdRef="IfElseIf_4">
+                  <ui:IfElseIf.ConditionBlocks>
+                    <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                      <ui:IfElseIfBlock BlockType="If" Condition="[in_strRunTimeHour=&quot;16&quot;]">
+                        <ui:IfElseIfBlock.Then>
+                          <Sequence DisplayName="16:00 kurgusu Test" sap:VirtualizedContainerService.HintSize="480,683" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,591" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <TryCatch.Try>
+                                <Sequence DisplayName="16:00 kurgusu" sap:VirtualizedContainerService.HintSize="376,364" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;16:00 koşumu kurgulanarak yapılan test koşumu doğrultusunda oluşan Mizanları,&quot;+Environment.NewLine+Environment.NewLine+&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendExchangeMail_15" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;d.MM.yyyy-HH:mm&quot;)+&quot;_ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;d.MM.yyyy-HH:mm&quot;)+&quot;_ANLIK YURTİÇİ MİZAN&quot;]" TimeoutMS="120000" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:SendExchangeMail>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;16:00 kurgusu Test Sonuç maili iletildi.&quot;]" />
+                                </Sequence>
+                              </TryCatch.Try>
+                              <TryCatch.Catches>
+                                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ActivityAction x:TypeArguments="s:Exception">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="Tekrar Gönderim" sap:VirtualizedContainerService.HintSize="376,556" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Warn" Message="[&quot;16:00 kurgusu Test Sonuç maili iletilmesinde hata alındı, 1 dk sonra mail gönderimi tekrarlancaktır&quot;]" />
+                                      <Delay DisplayName="Delay(1dk)" Duration="[TimeSpan.FromMinutes(1)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                                      <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;16:00 koşumu kurgulanarak yapılan test koşumu doğrultusunda oluşan Mizanları,&quot;+Environment.NewLine+Environment.NewLine+&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendExchangeMail_52" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;d.MM.yyyy-HH:mm&quot;)+&quot;_ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;d.MM.yyyy-HH:mm&quot;)+&quot;_ANLIK YURTİÇİ MİZAN&quot;]" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:SendExchangeMail>
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="Info" Message="[&quot;16:00 test koşum sonuç maili ikinci gönderim çalışmasında iletildi&quot;]" />
+                                    </Sequence>
+                                  </ActivityAction>
+                                </Catch>
+                              </TryCatch.Catches>
+                            </TryCatch>
+                          </Sequence>
+                        </ui:IfElseIfBlock.Then>
+                      </ui:IfElseIfBlock>
+                      <ui:IfElseIfBlock BlockType="ElseIf" Condition="[in_strRunTimeHour=&quot;17&quot;]">
+                        <ui:IfElseIfBlock.Then>
+                          <Sequence DisplayName="17:30 Kurgu Test" sap:VirtualizedContainerService.HintSize="480,683" sap2010:WorkflowViewState.IdRef="Sequence_85">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,591" sap2010:WorkflowViewState.IdRef="TryCatch_12">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <TryCatch.Try>
+                                <Sequence DisplayName="17:30 kurgusu" sap:VirtualizedContainerService.HintSize="376,364" sap2010:WorkflowViewState.IdRef="Sequence_83">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;17:30 koşumu kurgulanarak yapılan test koşumu doğrultusunda oluşan Mizanları,&quot;+Environment.NewLine+Environment.NewLine+&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendExchangeMail_48" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;d.MM.yyyy-HH:mm&quot;)+&quot;_ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;d.MM.yyyy-HH:mm&quot;)+&quot;_ANLIK YURTİÇİ MİZAN&quot;]" TimeoutMS="120000" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:SendExchangeMail>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_51" Level="Info" Message="[&quot;17:30 kurgusuTest Sonuç maili iletildi.&quot;]" />
+                                </Sequence>
+                              </TryCatch.Try>
+                              <TryCatch.Catches>
+                                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_12">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ActivityAction x:TypeArguments="s:Exception">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="Tekrar Gönderim" sap:VirtualizedContainerService.HintSize="376,555" sap2010:WorkflowViewState.IdRef="Sequence_84">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_52" Level="Warn" Message="[&quot;17:30 kurgusuTest Sonuç maili iletilmesinde hata alındı, 1 dk sonra mail gönderimi tekrarlancaktır&quot;]" />
+                                      <Delay DisplayName="Delay(1dk)" Duration="[TimeSpan.FromMinutes(1)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_12" />
+                                      <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;17:30 koşumu kurgulanarak yapılan test koşumu doğrultusunda oluşan Mizanları,&quot;+Environment.NewLine+&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendExchangeMail_49" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;d.MM.yyyy-HH:mm&quot;)+&quot;_ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;d.MM.yyyy-HH:mm&quot;)+&quot;_ANLIK YURTİÇİ MİZAN&quot;]" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:SendExchangeMail>
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_53" Level="Info" Message="[&quot;17:30 test koşum sonuç maili ikinci gönderim çalışmasında iletildi&quot;]" />
+                                    </Sequence>
+                                  </ActivityAction>
+                                </Catch>
+                              </TryCatch.Catches>
+                            </TryCatch>
+                          </Sequence>
+                        </ui:IfElseIfBlock.Then>
+                      </ui:IfElseIfBlock>
+                      <ui:IfElseIfBlock BlockType="ElseIf" Condition="[in_strRunTimeHour=&quot;18&quot;]">
+                        <ui:IfElseIfBlock.Then>
+                          <Sequence DisplayName="17:55 koşumu" sap:VirtualizedContainerService.HintSize="480,683" sap2010:WorkflowViewState.IdRef="Sequence_88">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,591" sap2010:WorkflowViewState.IdRef="TryCatch_13">
+                              <TryCatch.Try>
+                                <Sequence DisplayName="17:55 Koşumu" sap:VirtualizedContainerService.HintSize="376,364" sap2010:WorkflowViewState.IdRef="Sequence_86">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendExchangeMail_50" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;d.MM.yyyy&quot;)+&quot;_17:55 ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;d.MM.yyyy&quot;)+&quot;_17:55 ANLIK YURTİÇİ MİZAN&quot;]" TimeoutMS="120000" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:SendExchangeMail>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_54" Level="Info" Message="[&quot;17:55 koşumu için test Sonuç Maili iletildi&quot;]" />
+                                </Sequence>
+                              </TryCatch.Try>
+                              <TryCatch.Catches>
+                                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_13">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ActivityAction x:TypeArguments="s:Exception">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="Tekrar Gönderim" sap:VirtualizedContainerService.HintSize="376,555" sap2010:WorkflowViewState.IdRef="Sequence_87">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_55" Level="Warn" Message="[&quot;17:55 koşumu için  test Sonuç Maili iletilmesinde hata alındı 1dk sonra tekrar gönderim yapılacaktır&quot;]" />
+                                      <Delay DisplayName="Delay(1dk)" Duration="[TimeSpan.FromMinutes(1)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_13" />
+                                      <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendExchangeMail_51" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;d.MM.yyyy&quot;)+&quot;_17:55 ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;d.MM.yyyy&quot;)+&quot;_17:55 ANLIK YURTİÇİ MİZAN&quot;]" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:SendExchangeMail>
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_56" Level="Info" Message="[&quot;17:55 koşumu test sonuç maili ikinci gönderim denemesinde iletildi.&quot;]" />
+                                    </Sequence>
+                                  </ActivityAction>
+                                </Catch>
+                              </TryCatch.Catches>
+                            </TryCatch>
+                          </Sequence>
+                        </ui:IfElseIfBlock.Then>
+                      </ui:IfElseIfBlock>
+                    </sc:BindingList>
+                  </ui:IfElseIf.ConditionBlocks>
+                </ui:IfElseIf>
+              </Sequence>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+          <ui:IfElseIfBlock BlockType="Else">
+            <ui:IfElseIfBlock.Then>
+              <ui:IfElseIf DisplayName="Else If" sap:VirtualizedContainerService.HintSize="551,2607" sap2010:WorkflowViewState.IdRef="IfElseIf_3">
+                <ui:IfElseIf.ConditionBlocks>
+                  <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                    <ui:IfElseIfBlock BlockType="If" Condition="[in_strMZNG120WorkInfo.Contains(&quot;16&quot;)]">
+                      <ui:IfElseIfBlock.Then>
+                        <Sequence DisplayName="16:00 koşumu" sap:VirtualizedContainerService.HintSize="500,724" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,613" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                            <TryCatch.Try>
+                              <Sequence DisplayName="16:00 Koşumu" sap:VirtualizedContainerService.HintSize="400,385" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="338,146" sap2010:WorkflowViewState.IdRef="SendExchangeMail_16" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;dd.MM.yyyy&quot;)+&quot;_16:00 ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;dd.MM.yyyy&quot;)+&quot;_16:00 ANLIK YURTİÇİ MİZAN&quot;]" TimeoutMS="120000" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:SendExchangeMail>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,88" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;16:00 koşumu için Sonuç Maili iletildi&quot;]" />
+                              </Sequence>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Tekrar Gönderim" sap:VirtualizedContainerService.HintSize="400,573" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,88" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Warn" Message="[&quot;16:00 koşumu için Sonuç Maili iletilmesinde hata alındı 1dk sonra tekrar gönderim yapılacaktır&quot;]" />
+                                    <Delay DisplayName="Delay(1dk)" Duration="[TimeSpan.FromMinutes(1)]" sap:VirtualizedContainerService.HintSize="338,25" sap2010:WorkflowViewState.IdRef="Delay_4" />
+                                    <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="338,146" sap2010:WorkflowViewState.IdRef="SendExchangeMail_22" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;d.MM.yyyy&quot;)+&quot;_16:00 ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;d.MM.yyyy&quot;)+&quot;_16:00 ANLIK YURTİÇİ MİZAN&quot;]" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:SendExchangeMail>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,88" sap2010:WorkflowViewState.IdRef="LogMessage_29" Message="[&quot;16:00 koşumu sonuç maili ikinci gönderim denemesinde iletildi.&quot;]" />
+                                  </Sequence>
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </Sequence>
+                      </ui:IfElseIfBlock.Then>
+                    </ui:IfElseIfBlock>
+                    <ui:IfElseIfBlock BlockType="ElseIf" Condition="[in_strMZNG120WorkInfo.Contains(&quot;17:3&quot;)]">
+                      <ui:IfElseIfBlock.Then>
+                        <Sequence DisplayName="17:30 koşumu" sap:VirtualizedContainerService.HintSize="500,724" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,613" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                            <TryCatch.Try>
+                              <Sequence DisplayName="17:30 Koşumu" sap:VirtualizedContainerService.HintSize="400,385" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="338,146" sap2010:WorkflowViewState.IdRef="SendExchangeMail_17" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;dd.MM.yyyy&quot;)+&quot;_17:30 ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;dd.MM.yyyy&quot;)+&quot;_17:30 ANLIK YURTİÇİ MİZAN&quot;]" TimeoutMS="120000" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:SendExchangeMail>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,88" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;17:30 koşumu için Sonuç Maili iletildi&quot;]" />
+                              </Sequence>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Tekrar Gönderim" sap:VirtualizedContainerService.HintSize="400,573" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,88" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Warn" Message="[&quot;17:30 koşumu için Sonuç Maili iletilmesinde hata alındı 1dk sonra tekrar gönderim yapılacaktır&quot;]" />
+                                    <Delay DisplayName="Delay(1dk)" Duration="[TimeSpan.FromMinutes(1)]" sap:VirtualizedContainerService.HintSize="338,25" sap2010:WorkflowViewState.IdRef="Delay_5" />
+                                    <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="338,146" sap2010:WorkflowViewState.IdRef="SendExchangeMail_23" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;d.MM.yyyy&quot;)+&quot;_17:30 ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;d.MM.yyyy&quot;)+&quot;_17:30 ANLIK YURTİÇİ MİZAN&quot;]" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:SendExchangeMail>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,88" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[&quot;17:30 koşumu sonuç maili ikinci gönderim denemesinde iletildi.&quot;]" />
+                                  </Sequence>
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </Sequence>
+                      </ui:IfElseIfBlock.Then>
+                    </ui:IfElseIfBlock>
+                    <ui:IfElseIfBlock BlockType="ElseIf" Condition="[in_strMZNG120WorkInfo.Contains(&quot;17:5&quot;)]">
+                      <ui:IfElseIfBlock.Then>
+                        <Sequence DisplayName="17:55 koşumu" sap:VirtualizedContainerService.HintSize="500,724" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,613" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <TryCatch.Try>
+                              <Sequence DisplayName="17:55 Koşumu" sap:VirtualizedContainerService.HintSize="400,385" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="338,146" sap2010:WorkflowViewState.IdRef="SendExchangeMail_36" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;dd.MM.yyyy&quot;)+&quot;_17:55 ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;dd.MM.yyyy&quot;)+&quot;_17:55 ANLIK YURTİÇİ MİZAN&quot;]" TimeoutMS="120000" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:SendExchangeMail>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,88" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[&quot;17:55 koşumu için Sonuç Maili iletildi&quot;]" />
+                              </Sequence>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Tekrar Gönderim" sap:VirtualizedContainerService.HintSize="400,573" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,88" sap2010:WorkflowViewState.IdRef="LogMessage_34" Level="Warn" Message="[&quot;17:55 koşumu için Sonuç Maili iletilmesinde hata alındı 1dk sonra tekrar gönderim yapılacaktır&quot;]" />
+                                    <Delay DisplayName="Delay(1dk)" Duration="[TimeSpan.FromMinutes(1)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_6" />
+                                    <ui:SendExchangeMail ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AttachmentsCollection="[in_ListMizanlar]" AuthenticationMode="UserNameAndPassword" Bcc="[in_strSuccessMailBCC]" Body="[&quot;Bilgilerinize sunarım,&quot;+Environment.NewLine+Environment.NewLine+&quot;Saygılarımla,&quot;]" Cc="[in_strTalepSahibiMailCC]" DisplayName="Send Exchange Mail Message" Domain="[in_strExchangeDomain]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendExchangeMail_37" IsBodyHtml="False" IsDraft="False" SaveCopy="False" SecurePassword="[in_strPass]" Server="[in_strExchangeServer]" Subject="[DateTime.Now.ToString(&quot;d.MM.yyyy&quot;)+&quot;_17:55 ANLIK GENEL MİZAN &amp; &quot;+DateTime.Now.ToString(&quot;d.MM.yyyy&quot;)+&quot;_17:55 ANLIK YURTİÇİ MİZAN&quot;]" To="[in_strTalepSahibiMailto]" User="[in_strUserName]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:SendExchangeMail>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Info" Message="[&quot;17:55 koşumu sonuç maili ikinci gönderim denemesinde iletildi.&quot;]" />
+                                  </Sequence>
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </Sequence>
+                      </ui:IfElseIfBlock.Then>
+                    </ui:IfElseIfBlock>
+                  </sc:BindingList>
+                </ui:IfElseIf.ConditionBlocks>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:IfElseIf>
+            </ui:IfElseIfBlock.Then>
+          </ui:IfElseIfBlock>
+        </sc:BindingList>
+      </ui:IfElseIf.ConditionBlocks>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:IfElseIf>
+    <Delay sap2010:Annotation.AnnotationText="mail gönderimi sunucuda uzarsa (prod client makinesi değil exchange sreverdea işler uzarsa) dosyanın mailde sağlıklı gönderimi için slime işlemi önceis 15 sn beklensin" DisplayName="Delay(15sn)" Duration="[TimeSpan.FromSeconds(15)]" sap:VirtualizedContainerService.HintSize="644,127" sap2010:WorkflowViewState.IdRef="Delay_14">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Delay>
+    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="624,426" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ListMizanlar]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="426,302" sap2010:WorkflowViewState.IdRef="Sequence_89">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,79" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[item.ToString]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="384,91" sap2010:WorkflowViewState.IdRef="LogMessage_57" Level="Info" Message="[item.ToString+&quot; dizininde mizan silindi&quot;]" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+  </Sequence>
+</Activity>

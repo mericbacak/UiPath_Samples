@@ -1,0 +1,66 @@
+{
+  "name": "RPA016_948_AnlikMizan",
+  "description": "1) OPGE – Otomatik İş İstek / Parametre Giriş Ön Ekranından PMZNG120 işi için saat 17.00 seçilerek yeni giriş denilip çalıştırılır.\r\n2) PMZNG120 işi 20 dakika sonra çalıştı durumunda olunca PMZNI201 işinin 2777985 ve 2777986 istek numaraları işleri için kopyalayarak giriş denilerek gelen ekranda ilgili kısımlar doldurulduktan sonra tamam butonuna tıklanır.\r\n3) DosTran uygulaması açılır 2777985 ve 2777986 işleriyle ilgili dosyalar indirilip gerekli düzenlemeler yapılır.\r\n4) Düzenleme işlemi bitti",
+  "main": "RPA016_AnlikMizan.xaml",
+  "dependencies": {
+    "ANKALogin": "[1.0.24]",
+    "KillAllProcess": "[1.0.4]",
+    "MistralEkranLogin": "[1.0.11]",
+    "UiPath.Excel.Activities": "[2.11.4]",
+    "UiPath.Mail.Activities": "[1.12.3]",
+    "UiPath.System.Activities": "[21.10.4]",
+    "UiPath.UIAutomation.Activities": "[23.4.5]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "20.10.6.0",
+  "projectVersion": "1.0.7",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": false,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": false
+  },
+  "arguments": {
+    "input": [],
+    "output": []
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "RPA016_AnlikMizan.xaml",
+      "uniqueId": "7918ae0e-f833-43b7-aacf-06548a58e53c",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Legacy"
+}
